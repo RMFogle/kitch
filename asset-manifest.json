@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/kitch/static/css/main.5f361e03.chunk.css",
+    "main.js": "/kitch/static/js/main.116beca9.chunk.js",
+    "main.js.map": "/kitch/static/js/main.116beca9.chunk.js.map",
+    "runtime-main.js": "/kitch/static/js/runtime-main.22e7a070.js",
+    "runtime-main.js.map": "/kitch/static/js/runtime-main.22e7a070.js.map",
+    "static/js/2.57003d19.chunk.js": "/kitch/static/js/2.57003d19.chunk.js",
+    "static/js/2.57003d19.chunk.js.map": "/kitch/static/js/2.57003d19.chunk.js.map",
+    "index.html": "/kitch/index.html",
+    "precache-manifest.2067d13026d0c429f97b182a4a548374.js": "/kitch/precache-manifest.2067d13026d0c429f97b182a4a548374.js",
+    "service-worker.js": "/kitch/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/kitch/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.57003d19.chunk.js.LICENSE.txt": "/kitch/static/js/2.57003d19.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/kitch/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.22e7a070.js",
+    "static/js/2.57003d19.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.116beca9.chunk.js"
+  ]
+}
