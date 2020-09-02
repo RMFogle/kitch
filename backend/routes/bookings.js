@@ -12,7 +12,7 @@ router.route('/add').post((req, res) => {
     const eventtype = req.body.eventtype; 
     const location = req.body.location; 
     const date = Date.parse(req.body.date); 
-    const time = TimeRanges.parse(req.body.time); 
+   // const time = TimeRanges.parse(req.body.time); 
 
     
 const newBooking = new Booking({
@@ -20,7 +20,7 @@ const newBooking = new Booking({
     eventtype, 
     location, 
     date, 
-    time, 
+   // time, 
 }); 
 
 newBooking.save()

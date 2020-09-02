@@ -20,7 +20,7 @@ const clientSchema = new Schema({
     }, 
     notes: {
         type: String, 
-        required: true,
+        required: false,
     }, 
 }, {
     timestamps: true, 

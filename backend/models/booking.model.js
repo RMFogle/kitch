@@ -7,7 +7,7 @@ const bookingSchema = new Schema({
     eventtype: { type: String, required: true, }, 
     location: { type: String, required: true, }, 
     date: { type: Date, required: true }, 
-    time: { type: TimeRanges, required: true }, 
+  //  time: { type: TimeRanges, required: true }, 
 }, {
     timestamps: true, 
 }); 
