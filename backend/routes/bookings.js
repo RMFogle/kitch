@@ -28,6 +28,33 @@ newBooking.save()
 .catch(err => res.status(400).json('Error: ' + err)); 
 }); 
 
+router.route('/:id').get((req, res) => {
+    Booking.findById(req.params.id)
+        .then(booking => res.json(booking))
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/:id').delete((req, res) => {
+    Booking.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Booking deleted'))
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/update/:id').post((req, res) => {
+    Booking.findById(req.params.id)
+        .then(booking => {
+            booking.clientname = req.body.clientname; 
+            booking.eventtype = req.body.eventtype; 
+            booking.location = req.body.location; 
+            booking.date = Date.parse(req.body.date); 
+
+            booking.save()
+                .then(() => res.json('Booking updated!'))
+                .catch(err => res.status(400).json('Error: ' + err)); 
+        }) 
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
 module.exports = router; 
 
  
