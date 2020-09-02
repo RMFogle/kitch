@@ -25,4 +25,33 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err)); 
 }); 
 
+router.route('/:id').get((req, res) => {
+    Client.findById(req.params.id) 
+        .then(client => res.json(client))
+        .catch(err => res.status(400).json('Error: ' + err));
+}); 
+
+router.route('/:id').delete((req, res) => {
+    Client.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Client deleted!')) 
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/update/:id').post((req, res) => {
+    Client.findById(req.params.id)
+        .then(client => {
+            client.clientname = req.body.clientname;
+            client.phone = req.body.phone; 
+            client.email = req.body.email;
+            client.notes = req.body.notes; 
+
+            client.save()
+                .then(() => res.json('Client updated!'))
+                .catch(err => res.status(400).json('Error: ' + err)); 
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+}); 
+
+
+
 module.exports = router; 
