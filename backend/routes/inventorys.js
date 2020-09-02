@@ -34,5 +34,37 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err)); 
     }); 
 
+    router.route('/:id').get((req, res) => {
+        Inventory.findById(req.params.id)
+            .then(inventory => res.json(inventory))
+            .catch(err => res.status(400).json('Error: ' + err));
+    }); 
+
+    router.route('/:id').delete((req, res) => {
+        Inventory.findByIdAndDelete(req.params.id)
+            .then(() => res.json('Inventory deleted'))
+            .catch(err => res.status(400).json('Error: ' + err)); 
+    }); 
+
+    router.route('/update/:id').post((req, res) => {
+        Inventory.findById(req.params.id)
+            .then(inventory => {
+                inventory.fooditem = req.body.fooditme; 
+                inventory.category = req.body.category; 
+                inventory.unitsize = req.body.unitsize; 
+                inventory.instock = Number(req.body.instock); 
+                inventory.needed = Number(req.body.needed); 
+                inventory.topurchase = Number(req.body.topurchase); 
+                inventory.unitprice = Number(req.body.unitprice); 
+                inventory.totalcost = Number(req.body.totalcost); 
+
+                inventory.save()
+                    .then(() => res.json('Inventory updated!'))
+                    .catch(err => res.status(400).json('Error: ' + err)); 
+            })
+            .catch(err => res.status(400).json('Error: ' + err)); 
+    });
+
+
     module.exports = router; 
 
