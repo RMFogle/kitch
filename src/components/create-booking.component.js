@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css"; 
 
@@ -22,10 +23,15 @@ export default class CreateBooking extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            clients: ['test client'], 
-            clientname: 'test client'
-        })
+        axios.get('http://localhost:5000/clients/')
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        clients: response.data.map(client => client.clientname), 
+                        clientname: response.data[0].clientname
+                    })
+                }
+            })
     }
 
     onChangeClientname(e) {
@@ -63,6 +69,9 @@ export default class CreateBooking extends Component {
         }
 
         console.log(booking); 
+
+        axios.post('http://localhost:5000/bookings/add', booking)
+            .then(res => console.log(res.data)); 
 
         window.location = '/'; 
     }
