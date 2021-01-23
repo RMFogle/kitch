@@ -9,7 +9,8 @@ const Booking = props => (
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
-            <Link to={"/edit/"+props.booking._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBooking(props)}}>delete</a>
+            <Link to={"/edit/"+props.booking._id}>edit</Link> | 
+            <a href="#" onClick={() => { props.deleteBooking(props.booking._id) }}>delete</a>
         </td>
     </tr>
 )
@@ -19,9 +20,9 @@ export default class BookingsList extends Component {
     constructor(props) { 
         super(props); 
 
- this.deleteBooking = this.deleteBooking.bind(this); 
+        this.deleteBooking = this.deleteBooking.bind(this); 
 
- this.state = {bookings: []}; 
+        this.state = {bookings: []}; 
     }
 
     componentDidMount() {
@@ -35,15 +36,15 @@ export default class BookingsList extends Component {
     }
 
     deleteBooking(id) {
-        axios.delete('http://localhost:5000/bookings/' + id)
+        axios.delete('http://localhost:5000/bookings/'+id)
             .then(res => console.log(res.data)); 
 
         this.setState({
-            bookings: this.state.bookings.filter(el => el.id !== id)
+            bookings: this.state.bookings.filter(el => el._id !== id)
         })
     }
 
-    bookingsList() {
+    bookingList() {
         return this.state.bookings.map(currentbooking => {
             return <Booking booking={currentbooking} deleteBooking={this.deleteBooking} key={currentbooking._id}/>; 
         })
@@ -54,16 +55,17 @@ export default class BookingsList extends Component {
             <div>
                 <h3>Current Bookings</h3>
                 <table className="table">
-                    <thread className="thread-light">
+                    <thead className="thead-light">
                         <tr>
                             <th>Client</th>
                             <th>Event</th>
                             <th>Location</th>
                             <th>Date</th>
+                            <th>Actions</th>
                         </tr>
-                    </thread>
+                    </thead>
                     <tbody>
-                        { this.bookingsList() }
+                        { this.bookingList() }
                     </tbody>
                 </table>
             </div>

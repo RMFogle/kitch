@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css"
+import './App.css';
 
 import Navbar from "./components/navbar.component"; 
 import BookingsList from "./components/bookings-list.component";
@@ -12,12 +12,14 @@ import CreateClient from "./components/create-client.component";
 function App() {
   return (
     <Router>
+      <div className="container">
       <Navbar />
       <br/>
       <Route path="/" exact component={BookingsList} />
       <Route path="/edit/:id" component={EditBooking} />
       <Route path="/create" component={CreateBooking} />
       <Route path="/client" component={CreateClient} /> 
+      </div>
     </Router>
   );
 }
