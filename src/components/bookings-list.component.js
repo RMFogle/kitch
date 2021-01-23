@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import axios from 'axios'; 
 
+const Booking = props => (
+    <tr>
+        <td>{props.booking.clientname}</td>
+        <td>{props.booking.eventtype}</td>
+        <td>{props.booking.location}</td>
+        <td>{props.booking.date.substring(0,10)}</td>
+        <td>
+            <Link to={"/edit/"+props.booking._id}>edit</Link> | <a href="#" onClick={() => { props.deleteBooking(props)}}>delete</a>
+        </td>
+    </tr>
+)
+
 
 export default class BookingsList extends Component {
     constructor(props) { 
@@ -25,16 +37,35 @@ export default class BookingsList extends Component {
     deleteBooking(id) {
         axios.delete('http://localhost:5000/bookings/' + id)
             .then(res => console.log(res.data)); 
-            
+
         this.setState({
             bookings: this.state.bookings.filter(el => el.id !== id)
+        })
+    }
+
+    bookingsList() {
+        return this.state.bookings.map(currentbooking => {
+            return <Booking booking={currentbooking} deleteBooking={this.deleteBooking} key={currentbooking._id}/>; 
         })
     }
 
     render() { 
         return (
             <div>
-                <p>You are on the Bookings List Component!</p>
+                <h3>Current Bookings</h3>
+                <table className="table">
+                    <thread className="thread-light">
+                        <tr>
+                            <th>Client</th>
+                            <th>Event</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        { this.bookingsList() }
+                    </tbody>
+                </table>
             </div>
         )
     }
