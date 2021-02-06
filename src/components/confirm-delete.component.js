@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import  { Button, Confirm } from 'semantic-ui-react' 
 
 class ConfirmDelete extends Component {
-    state = { open: false, result: 'show the modal to capture a result' }
+  
+    state = { open: false, result: 'Are you sure you want to delete?' }
 
     show = () => this.setState({ open: true })
     handleConfirm = () => this.setState({ result: 'confirmed', open: false })
@@ -14,10 +15,10 @@ class ConfirmDelete extends Component {
         return (
             <div>
             <p>
-              Result: <em>{result}</em>
+             <em>{result}</em>
             </p>
     
-            <Button onClick={this.show}>Show</Button>
+            {/* <Button onClick={this.show}>delete</Button> */}
             <Confirm
               open={open}
               onCancel={this.handleCancel}

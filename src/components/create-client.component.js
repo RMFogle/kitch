@@ -44,6 +44,7 @@ export default class CreateClient extends Component {
     }
 
     onSubmit(e) {
+        alert("Client Successfully Added!!!")
         e.preventDefault(); 
 
         const client = {

@@ -7,6 +7,8 @@ import Navbar from "./components/navbar.component";
 import BookingsList from "./components/bookings-list.component";
 import EditBooking from "./components/edit-booking.component"; 
 import CreateBooking from "./components/create-booking.component"; 
+import ClientsList from "./components/clients-list.component"; 
+import EditClient from "./components/edits-client.components";
 import CreateClient from "./components/create-client.component"; 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
       <Route path="/" exact component={BookingsList} />
       <Route path="/edit/:id" component={EditBooking} />
       <Route path="/create" component={CreateBooking} />
+      <Route path="/clients" component={ClientsList} />
+      <Route path="/edits/:id" component={EditClient} />
       <Route path="/client" component={CreateClient} /> 
       </div>
     </Router>

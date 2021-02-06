@@ -1,7 +1,9 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
-import "react-datepicker/dist/react-datepicker.css"; 
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 export default class CreateBooking extends Component {
     constructor(props) {
@@ -58,7 +60,8 @@ export default class CreateBooking extends Component {
         }); 
     }
 
-    onSubmit(e) { 
+    onSubmit(e) {
+       alert("Booking Successfully Added!!!")
         e.preventDefault(); 
 
         const booking = {
@@ -127,7 +130,7 @@ export default class CreateBooking extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Save Booking" className="btn btn-primary" />
+                        <input type="submit" value="Save Booking" className="btn btn-primary"/>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
+import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
+// import ConfirmDelete from './confirm-delete.component';
 
 const Booking = props => (
     <tr>
@@ -9,8 +11,14 @@ const Booking = props => (
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
-            <Link to={"/edit/"+props.booking._id}>edit</Link> | 
-            <a href="#" onClick={() => { props.deleteBooking(props.booking._id) }}>delete</a>
+            {/* Change buttons below to new layout and add actions needed */}
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/edit/"+props.booking._id}>edit</Link>
+            </Button> |  
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
+                        onClick= {() => { props.deleteBooking(props.booking._id) }}>
+            delete</Button>
+            
         </td>
     </tr>
 )
