@@ -17,10 +17,10 @@ const clientSchema = new Schema({
     email: {
         type: String, 
         required: true,
-    }, 
+    },
     notes: {
         type: String, 
-        required: false,
+        required: true,
     }, 
 }, {
     timestamps: true, 

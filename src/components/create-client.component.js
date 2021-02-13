@@ -15,7 +15,7 @@ export default class CreateClient extends Component {
             clientname: '', 
             phone: '', 
             email: '', 
-            notes: '' 
+            notes: ''
         }
     }
 
@@ -62,7 +62,7 @@ export default class CreateClient extends Component {
         this.setState({
             clientname: '', 
             phone: '', 
-            email: '', 
+            email: '',
             notes: ''
         })
     }

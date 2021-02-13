@@ -10,14 +10,14 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => { 
     const clientname = req.body.clientname; 
     const phone = req.body.phone; 
-    const email = req.body.email; 
+    const email = req.body.email;
     const notes = req.body.notes; 
     
     const newClient = new Client({
         clientname,
         phone,
-        email, 
-        notes, 
+        email,
+        notes
     }); 
 
     newClient.save()
