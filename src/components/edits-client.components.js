@@ -99,20 +99,22 @@ export default class EditClient extends Component {
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
-                    <select ref="clientInput"
+                    {/* <select ref="clientInput" */}
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.clientname}
-                        onChange={this.onChangeClientname}>
-                        {
+                        onChange={this.onChangeClientname}
+                        />
+                        {/* {
                             this.state.clients.map(function(client) {
                                 return <option 
                                 key={client}
                                 value={client}>{client}
                                 </option>; 
                             })
-                        }
-                    </select>
+                        } */}
+                    {/* </select> */}
                 </div>
                 <div className="form-group">
                     <label>Phone: </label>
