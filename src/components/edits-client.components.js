@@ -14,7 +14,7 @@ export default class EditClient extends Component {
         this.state = {
             clientname: '', 
             phone: '', 
-            email: '', 
+            email: '',
             notes: '',
             clients: []
         }
@@ -67,17 +67,19 @@ export default class EditClient extends Component {
 
     onChangeNotes(e) {
         this.setState({
-            notes: e.target.notes
+            notes: e.target.value
         }); 
     }
 
     onSubmit(e) { 
         e.preventDefault(); 
 
+        console.log(this); 
+
         const client = {
             clientname: this.state.clientname, 
             phone: this.state.phone, 
-            email: this.state.email, 
+            email: this.state.email,
             notes: this.state.notes
         }
 
@@ -125,6 +127,7 @@ export default class EditClient extends Component {
                     <label>Email: </label>
                     <input 
                         type="text"
+                        required
                         className="form-control"
                         value={this.state.email}
                         onChange={this.onChangeEmail}
@@ -132,14 +135,12 @@ export default class EditClient extends Component {
                 </div>
                 <div className="form-group">
                     <label>Notes: </label>
-                    <div>
-                    <input 
-                        type="text"
+                    <input type="text"
+                        required
                         className="form-control"
                         value={this.state.notes}
                         onChange={this.onChangeNotes}
                         />
-                    </div>
                 </div>
 
                 <div className="form-group">
