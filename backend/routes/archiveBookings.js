@@ -1,0 +1,58 @@
+const router = require('express').Router(); 
+let ArchiveBooking = require('../models/archiveBooking.model'); 
+
+router.route('/').get((req, res) => {
+    ArchiveBooking.find()
+    .then(archiveBookings => res.json(archiveBookings))
+    .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/add').post((req, res) => {
+    const clientname = req.body.clientname; 
+    const eventtype = req.body.eventtype; 
+    const location = req.body.location; 
+    const date = Date.parse(req.body.date); 
+   // const time = TimeRanges.parse(req.body.time); 
+
+    
+const newArchiveBooking = new ArchiveBooking({
+    clientname, 
+    eventtype, 
+    location, 
+    date, 
+   // time, 
+}); 
+
+newArchiveBooking.save()
+.then(() => res.json('Archive Booking added!'))
+.catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/:id').get((req, res) => {
+    ArchiveBooking.findById(req.params.id)
+        .then(archiveBooking => res.json(archiveBooking))
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/:id').delete((req, res) => {
+    ArchiveBooking.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Archive Booking deleted'))
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+router.route('/update/:id').post((req, res) => {
+    ArchiveBooking.findById(req.params.id)
+        .then(archiveBooking => {
+            archiveBooking.clientname = req.body.clientname; 
+            archiveBooking.eventtype = req.body.eventtype; 
+            archiveBooking.location = req.body.location; 
+            archiveBooking.date = Date.parse(req.body.date); 
+
+            archiveBooking.save()
+                .then(() => res.json('Archive Booking updated!'))
+                .catch(err => res.status(400).json('Error: ' + err)); 
+        }) 
+        .catch(err => res.status(400).json('Error: ' + err)); 
+}); 
+
+module.exports = router; 
