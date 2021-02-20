@@ -4,7 +4,7 @@ let ArchiveInventory = require('../models/archiveInventory.model');
 router.route('/').get((req, res) => {
     ArchiveInventory.find()
     .then(archiveInventorys => res.json(archiveInventorys))
-    .catch(err -> res.status(400).json('Error: ' + err)); 
+    .catch(err => res.status(400).json('Error: ' + err)); 
 }); 
 
 
@@ -37,7 +37,7 @@ router.route('/').get((req, res) => {
     router.route('/:id').get((req, res) => {
         ArchiveInventory.findById(req.params.id)
             .then(archiveInventory => res.json(archiveInventory))
-            .catch(err -> res.status(400).json('Error: ' + err)); 
+            .catch(err => res.status(400).json('Error: ' + err)); 
     }); 
 
     router.route('/:id').delete((req, res) => {
