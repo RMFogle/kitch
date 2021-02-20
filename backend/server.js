@@ -24,6 +24,9 @@ const inventorysRouter = require('./routes/inventorys');
 const archiveBookingsRouter = require('./routes/archiveBookings'); 
 const archiveClientsRouter = require('./routes/archiveClients'); 
 const archiveInventorysRouter = require('./routes/archiveInventorys'); 
+const trashBookingsRouter = require('./routes/trashBookings'); 
+const trashClientsRouter = require('./routes/trashClients'); 
+const trashInventorysRouter = require('./routes/trashInventorys'); 
 
 app.use('/bookings', bookingsRouter); 
 app.use('/clients', clientsRouter); 
@@ -31,6 +34,9 @@ app.use('/inventorys', inventorysRouter);
 app.use('/archiveBookings', archiveBookingsRouter); 
 app.use('/archiveClients', archiveClientsRouter); 
 app.use('/archiveInventorys', archiveInventorysRouter); 
+app.use('/trashBookings', trashBookingsRouter); 
+app.use('/trashClients', trashClientsRouter); 
+app.use('/trashInventorys', trashInventorysRouter); 
 
 
 app.listen(port, () => {
