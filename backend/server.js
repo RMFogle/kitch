@@ -30,7 +30,7 @@ app.use('/clients', clientsRouter);
 app.use('/inventorys', inventorysRouter); 
 app.use('/archiveBookings', archiveBookingsRouter); 
 app.use('/archiveClients', archiveClientsRouter); 
-app.use('archiveInventorys', archiveInventorysRouter); 
+app.use('/archiveInventorys', archiveInventorysRouter); 
 
 
 app.listen(port, () => {
