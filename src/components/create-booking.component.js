@@ -76,7 +76,14 @@ export default class CreateBooking extends Component {
         axios.post('http://localhost:5000/bookings/add', booking)
             .then(res => console.log(res.data)); 
 
-        window.location = '/booking'; 
+            this.setState({
+                clientname: '', 
+                eventtype: '', 
+                location: '',
+                date: ''
+            })
+
+            window.location.reload(); 
     }
     
     render() { 

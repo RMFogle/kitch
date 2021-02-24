@@ -16,9 +16,9 @@ export default class MainNavbar extends Component {
                         <Nav.Link href="/booking">Bookings</Nav.Link>
                         <Nav.Link href="/client">Clients</Nav.Link>
                             <NavDropdown title="Other" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="/Archive">Archive</NavDropdown.Item>
+                                <NavDropdown.Item href="/archive">Archive</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="/Trash">Trash</NavDropdown.Item>
+                                <NavDropdown.Item href="/trash">Trash</NavDropdown.Item>
                             </NavDropdown>
                     </Nav>
                     <Nav>

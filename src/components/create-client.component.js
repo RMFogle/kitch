@@ -65,6 +65,8 @@ export default class CreateClient extends Component {
             email: '',
             notes: ''
         })
+
+        window.location.reload();
     }
 
 
