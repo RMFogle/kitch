@@ -88,7 +88,7 @@ export default class EditBooking extends Component {
         axios.post('http://localhost:5000/bookings/update/'+this.props.match.params.id, booking)
         .then(res => console.log(res.data)); 
 
-        window.location = '/'; 
+        window.location = '/booking'; 
     }
 
 

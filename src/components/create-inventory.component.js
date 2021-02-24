@@ -13,6 +13,7 @@ export default class CreateInventory extends Component {
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
             fooditem: '', 
@@ -79,7 +80,7 @@ export default class CreateInventory extends Component {
         e.preventDefault(); 
 
         const inventory = {
-            fooditem: this.state.fooditem, 
+            fooditem: this.state.fooditem,  
             category: this.state.category, 
             unitsize: this.state.unitsize,
             instock: this.state.instock,
