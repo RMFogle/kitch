@@ -49,7 +49,7 @@ router.route('/').get((req, res) => {
     router.route('/update/:id').post((req, res) => {
         Inventory.findById(req.params.id)
             .then(inventory => {
-                inventory.fooditem = req.body.fooditme; 
+                inventory.fooditem = req.body.fooditem; 
                 inventory.category = req.body.category; 
                 inventory.unitsize = req.body.unitsize; 
                 inventory.instock = Number(req.body.instock); 

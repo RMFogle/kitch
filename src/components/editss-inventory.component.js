@@ -13,6 +13,7 @@ export default class EditInventory extends Component {
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
             fooditem: '', 
@@ -22,7 +23,8 @@ export default class EditInventory extends Component {
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: '' 
+            totalcost: '', 
+            inventorys: []
         }   
     }
 
@@ -126,7 +128,7 @@ export default class EditInventory extends Component {
         axios.post('http://localhost:5000/inventorys/update/'+this.props.match.params.id, inventory)
         .then(res => console.log(res.data)); 
 
-        window.location = '/inventorys'; 
+        window.location = '/inventory'; 
     }
 
 

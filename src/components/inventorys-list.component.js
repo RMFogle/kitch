@@ -6,14 +6,14 @@ import axios from 'axios';
 
 const Inventory = props => (
     <tr>
-        <td>{props.booking.fooditem}</td>
-        <td>{props.booking.category}</td>
-        <td>{props.booking.unitsize}</td>
-        <td>{props.booking.instock}</td>
-        <td>{props.booking.needed}</td>
-        <td>{props.booking.topurchase}</td>
-        <td>{props.booking.unitprice}</td>
-        <td>{props.booking.totalcost}</td>
+        <td>{props.inventory.fooditem}</td>
+        <td>{props.inventory.category}</td>
+        <td>{props.inventory.unitsize}</td>
+        <td>{props.inventory.instock}</td>
+        <td>{props.inventory.needed}</td>
+        <td>{props.inventory.topurchase}</td>
+        <td>{props.inventory.unitprice}</td>
+        <td>{props.inventory.totalcost}</td>
         <td>
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
