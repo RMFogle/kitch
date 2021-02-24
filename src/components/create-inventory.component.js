@@ -75,6 +75,8 @@ export default class CreateInventory extends Component {
         }); 
     }
 
+    
+
     onSubmit(e) {
         alert("Inventory Successfully Added!!!")
         e.preventDefault(); 
@@ -104,7 +106,9 @@ export default class CreateInventory extends Component {
             topurchase: '', 
             unitprice: '', 
             totalcost: ''
-        })
+        }) 
+
+        window.location.reload();
     }
 
     render() {
