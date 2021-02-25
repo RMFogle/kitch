@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
-// import ConfirmDelete from './confirm-delete.component';
 
 const Booking = props => (
     <tr>

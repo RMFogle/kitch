@@ -83,7 +83,7 @@ export default class CreateBooking extends Component {
                 date: ''
             })
 
-            window.location.reload(); 
+        window.location.reload(); 
     }
     
     render() { 
