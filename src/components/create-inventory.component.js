@@ -23,7 +23,7 @@ export default class CreateInventory extends Component {
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: '' 
+            totalcost: ''
         }   
     }
 
@@ -75,8 +75,9 @@ export default class CreateInventory extends Component {
         }); 
     }
 
-    
 
+
+    
     onSubmit(e) {
         alert("Inventory Successfully Added!!!")
         e.preventDefault(); 
@@ -115,7 +116,7 @@ export default class CreateInventory extends Component {
         return (
             <div>
                 <h3>Add Inventory</h3>
-                <form onSubmit={this.onSubmit}>
+                <form name="SumForm" onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Food Item: </label>
                         <input type="text"

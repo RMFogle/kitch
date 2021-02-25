@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 
-const Inventory = props => (
+const ArchiveInventory = props => (
     <tr>
         <td>{props.inventory.fooditem}</td>
         <td>{props.inventory.category}</td>
@@ -37,7 +37,7 @@ export default class InventoryList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/inventorys/')
+        axios.get('http://localhost:5000/archiveInventorys/')
         .then(response => {
             this.setState({ inventorys: response.data})
         })
@@ -47,7 +47,7 @@ export default class InventoryList extends Component {
     }
 
     deleteInventory(id) {
-        axios.delete('http://localhost:5000/inventorys/'+id)
+        axios.delete('http://localhost:5000/archiveInventorys/'+id)
             .then(res => console.log(res.data)); 
 
         this.setState({
@@ -55,16 +55,16 @@ export default class InventoryList extends Component {
         })
     }
 
-    inventoryList() {
+    archiveInventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <Inventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
+            return <ArchiveInventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
         })
     }
 
     render() { 
         return (
             <div>
-                <h3>Current Inventory</h3>
+                <h3>Arhive Inventory</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -79,7 +79,7 @@ export default class InventoryList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.inventoryList() }
+                        { this.archiveInventoryList() }
                     </tbody>
                 </table>
             </div>
