@@ -17,7 +17,10 @@ const Inventory = props => (
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             <Link to={"/editss/"+props.inventory._id}>edit</Link>
-            </Button> |  
+            </Button> |
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/sendTo/"+props.inventory._id}>archive</Link>
+            </Button> |
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
             delete</Button>
@@ -32,8 +35,8 @@ export default class InventoryList extends Component {
         super(props); 
 
         this.deleteInventory = this.deleteInventory.bind(this); 
-
-        this.state = {inventorys: []}; 
+        
+        this.state = {inventorys: []} 
     }
 
     componentDidMount() {
