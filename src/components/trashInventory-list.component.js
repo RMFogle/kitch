@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 
-const ArchiveInventory = props => (
+const TrashInventory = props => (
     <tr>
         <td>{props.inventory.fooditem}</td>
         <td>{props.inventory.category}</td>
@@ -27,7 +27,7 @@ const ArchiveInventory = props => (
 )
 
 
-export default class ArchiveInventoryList extends Component {
+export default class TrashInventoryList extends Component {
     constructor(props) { 
         super(props); 
 
@@ -37,7 +37,7 @@ export default class ArchiveInventoryList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/archiveInventorys/')
+        axios.get('http://localhost:5000/trashInventorys/')
         .then(response => {
             this.setState({ inventorys: response.data})
         })
@@ -47,7 +47,7 @@ export default class ArchiveInventoryList extends Component {
     }
 
     deleteInventory(id) {
-        axios.delete('http://localhost:5000/archiveInventorys/'+id)
+        axios.delete('http://localhost:5000/trashInventorys/'+id)
             .then(res => console.log(res.data)); 
 
         this.setState({
@@ -55,16 +55,16 @@ export default class ArchiveInventoryList extends Component {
         })
     }
 
-    archiveInventoryList() {
+    trashInventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <ArchiveInventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
+            return <TrashInventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
         })
     }
 
     render() { 
         return (
             <div>
-                <h3>Archived Inventory</h3>
+                <h3>Trash Inventory</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -79,7 +79,7 @@ export default class ArchiveInventoryList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.archiveInventoryList() }
+                        { this.trashInventoryList() }
                     </tbody>
                 </table>
             </div>

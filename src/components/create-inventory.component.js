@@ -116,7 +116,7 @@ export default class CreateInventory extends Component {
         return (
             <div>
                 <h3>Add Inventory</h3>
-                <form name="SumForm" onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Food Item: </label>
                         <input type="text"
