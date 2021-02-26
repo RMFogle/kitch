@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 
-export default class EditInventory extends Component {
+export default class ArchiveInventory extends Component {
     constructor(props) {
         super(props); 
 
@@ -125,7 +125,7 @@ export default class EditInventory extends Component {
 
         console.log(inventory);
 
-        axios.post('http://localhost:5000/inventorys/update/'+this.props.match.params.id, inventory)
+        axios.post('http://localhost:5000/archiveInventorys/add/', inventory)
         .then(res => console.log(res.data)); 
     
 
@@ -136,7 +136,7 @@ export default class EditInventory extends Component {
     render() {
         return (
             <div>
-               <h3>Edit Inventory</h3>
+               <h3>Archive Inventory</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
@@ -223,7 +223,7 @@ export default class EditInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Edit Inventory" className="btn btn-primary" />
+                    <input type="submit" value="Archive Item" className="btn btn-primary" />
                 </div>
             </form>
             </div>
