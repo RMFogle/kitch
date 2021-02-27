@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button'; 
 
-export default class ArchiveInventory extends Component {
+export default class ArchiveRestoreInventory extends Component {
     constructor(props) {
         super(props); 
 
@@ -31,7 +31,7 @@ export default class ArchiveInventory extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:5000/inventorys/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/archiveInventorys/'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     fooditem: response.data.fooditem, 
@@ -48,7 +48,7 @@ export default class ArchiveInventory extends Component {
                 console.log(error); 
             })
 
-        axios.get('http://localhost:5000/inventorys/')
+        axios.get('http://localhost:5000/archiveInventorys/')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
@@ -109,7 +109,7 @@ export default class ArchiveInventory extends Component {
     }
 
     onSubmit(e) {
-        alert("Item Sent To Archive!!!")  
+        alert("Item Added Back To Inventory!!!") 
         e.preventDefault(); 
 
         console.log(this); 
@@ -127,18 +127,18 @@ export default class ArchiveInventory extends Component {
 
         console.log(inventory);
 
-        axios.post('http://localhost:5000/archiveInventorys/add/', inventory)
+        axios.post('http://localhost:5000/inventorys/add/', inventory)
         .then(res => console.log(res.data)); 
 
     
-        window.location = '/inventory'; 
+        window.location = '/archive'; 
     }
 
 
     render() {
         return (
             <div>
-               <h3>Archive Inventory</h3>
+               <h3>Restore Inventory</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
@@ -225,9 +225,9 @@ export default class ArchiveInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Archive Item" className="btn btn-primary" />
+                    <input type="submit" value="Restore Item" className="btn btn-primary" />
                     {" "}
-                    <Button href="/inventory/">Back to Inventory</Button>
+                    <Button href="/archive/">Back to Archive</Button>
                 </div>
             </form>
             </div>

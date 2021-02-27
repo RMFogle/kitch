@@ -16,11 +16,14 @@ const ArchiveInventory = props => (
         <td>
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            <Link to={"/editss/"+props.inventory._id}>edit</Link>
+            <Link to={"/restore/"+props.inventory._id}>restore</Link>
             </Button> |  
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/sendTos/"+props.inventory._id}>trash</Link>
+            </Button> |
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
-            delete</Button>
+            remove</Button>
             
         </td>
     </tr>
