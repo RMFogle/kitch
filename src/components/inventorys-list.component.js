@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 
 const Inventory = props => (
+    
     <tr>
         <td>{props.inventory.fooditem}</td>
         <td>{props.inventory.category}</td>
@@ -23,12 +24,11 @@ const Inventory = props => (
             </Button> |
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
-            delete</Button>
+            remove</Button>
             
         </td>
     </tr>
 )
-
 
 export default class InventoryList extends Component {
     constructor(props) { 
