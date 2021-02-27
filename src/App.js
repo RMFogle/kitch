@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom"; 
-import "bootstrap/dist/css/bootstrap.min.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import Navbar from "./components/navbar.component"; 
+import MainNavbar from "./components/main-navbar.component"; 
 import InventoryList from "./components/inventorys-list.component"; 
 import EditInventory from "./components/editss-inventory.component"; 
 import CreateInventory from "./components/create-inventory.component"; 
@@ -13,12 +13,15 @@ import CreateBooking from "./components/create-booking.component";
 import ClientsList from "./components/clients-list.component"; 
 import EditClient from "./components/edits-client.components";
 import CreateClient from "./components/create-client.component"; 
+import ArchiveInventoryList from "./components/archiveInventory-list.component"; 
+import TrashInventoryList from "./components/trashInventory-list.component";
+import ArchiveInventory from "./components/sendTo-archiveInventory.component";
 
 function App() {
   return (
     <Router>
       <div className="container">
-      <Navbar />
+      <MainNavbar />
       <br/>
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
@@ -29,6 +32,9 @@ function App() {
       <Route path="/client" component={CreateClient} /> 
       <Route path="/client" component={ClientsList} />
       <Route path="/edits/:id" component={EditClient} />
+      <Route path="/archive" component={ArchiveInventoryList} />
+      <Route path="/trash" component={TrashInventoryList} />
+      <Route path="/sendTo/:id" component={ArchiveInventory} />
       </div>
     </Router>
   );

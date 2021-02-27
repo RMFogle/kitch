@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
+import Button from 'react-bootstrap/Button';
 
 export default class EditInventory extends Component {
     constructor(props) {
@@ -223,7 +224,9 @@ export default class EditInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Edit Inventory" className="btn btn-primary" />
+                    <input type="submit" value="Edit Item" className="btn btn-primary" />
+                    {" "}
+                    <Button href="/inventory/">Back to Inventory</Button>
                 </div>
             </form>
             </div>
