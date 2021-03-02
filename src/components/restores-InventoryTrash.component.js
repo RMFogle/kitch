@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button'; 
 
-export default class ArchiveInventory extends Component {
+export default class TrashRestoreInventory extends Component {
     constructor(props) {
         super(props); 
 
@@ -31,7 +31,7 @@ export default class ArchiveInventory extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:5000/inventorys/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/trashInventorys/'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     fooditem: response.data.fooditem, 
@@ -48,7 +48,7 @@ export default class ArchiveInventory extends Component {
                 console.log(error); 
             })
 
-        axios.get('http://localhost:5000/inventorys/')
+        axios.get('http://localhost:5000/trashInventorys/')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
@@ -108,7 +108,12 @@ export default class ArchiveInventory extends Component {
         }); 
     }
 
-    addToArchive() {
+    onSubmit(e) {
+        alert("Item Added Back To Inventory!!!") 
+        e.preventDefault(); 
+
+        console.log(this); 
+
         const inventory = {
             fooditem: this.state.fooditem, 
             category: this.state.category, 
@@ -119,36 +124,21 @@ export default class ArchiveInventory extends Component {
             unitprice: this.state.unitprice, 
             totalcost: this.state.totalcost
         }
-    
+
         console.log(inventory);
 
-        axios.post('http://localhost:5000/archiveInventorys/add/', inventory)
-        .then(res => console.log(res.data));
-    }
-
-    deleteInventory() {
-        axios.delete('http://localhost:5000/inventorys/'+this.props.match.params.id)
-        .then(res => console.log(res.data));
-    }
-
-    onSubmit(e) {
-        alert("Item Sent To Archive!!!")  
-        e.preventDefault(); 
-
-        console.log(this); 
-
-        axios.all([this.addToArchive(), this.deleteInventory()])
+        axios.post('http://localhost:5000/inventorys/add/', inventory)
         .then(res => console.log(res.data)); 
 
     
-        window.location = '/inventory'; 
+        window.location = '/trash'; 
     }
 
 
     render() {
         return (
             <div>
-               <h3>Archive Inventory</h3>
+               <h3>Restore Inventory</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
@@ -235,12 +225,10 @@ export default class ArchiveInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <Button type="submit" value="Archive Item">
-                    submit</Button>
+                    <input type="submit" value="Restore Item" className="btn btn-primary" />
                     {" "}
-                    <Button href="/inventory/">Back to Inventory</Button>
+                    <Button href="/trash/">Back to Trash</Button>
                 </div>
-            
             </form>
             </div>
         )
