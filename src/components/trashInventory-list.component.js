@@ -16,7 +16,7 @@ const TrashInventory = props => (
         <td>
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            <Link to={"/editss/"+props.inventory._id}>edit</Link>
+            <Link to={"/restores/"+props.inventory._id}>restore</Link>
             </Button> |  
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
