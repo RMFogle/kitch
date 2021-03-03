@@ -31,7 +31,7 @@ export default class TrashInventory extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:5000/archiveInventorys/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/inventorys/'+this.props.match.params.id)
             .then(response => {
                 this.setState({
                     fooditem: response.data.fooditem, 
@@ -48,7 +48,7 @@ export default class TrashInventory extends Component {
                 console.log(error); 
             })
 
-        axios.get('http://localhost:5000/archiveInventorys/')
+        axios.get('http://localhost:5000/inventorys/')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
@@ -108,12 +108,7 @@ export default class TrashInventory extends Component {
         }); 
     }
 
-    onSubmit(e) { 
-        alert("Item Sent To Trash!!!") 
-        e.preventDefault(); 
-
-        console.log(this); 
-
+    addToTrash() {
         const inventory = {
             fooditem: this.state.fooditem, 
             category: this.state.category, 
@@ -129,9 +124,24 @@ export default class TrashInventory extends Component {
 
         axios.post('http://localhost:5000/trashInventorys/add/', inventory)
         .then(res => console.log(res.data)); 
+    }
+
+    deleteInventory() {
+        axios.delete('http://localhost:5000/inventorys/'+this.props.match.params.id)
+        .then(res => console.log(res.data)); 
+    }
+
+    onSubmit(e) { 
+        alert("Item Sent To Trash!!!") 
+        e.preventDefault(); 
+
+        console.log(this);
+
+        axios.all([this.addToTrash(), this.deleteInventory()])
+        .then(res => console.log(res.data)); 
 
     
-        window.location = '/archive'; 
+        window.location = '/inventory/'; 
     }
 
 
@@ -142,22 +152,12 @@ export default class TrashInventory extends Component {
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
-                    {/* <select ref="clientInput" */}
                     <input type="text"
                         required
                         className="form-control"
                         value={this.state.fooditem}
                         onChange={this.onChangeFooditem}
                         readOnly/>
-                        {/* {
-                            this.state.clients.map(function(client) {
-                                return <option 
-                                key={client}
-                                value={client}>{client}
-                                </option>; 
-                            })
-                        } */}
-                    {/* </select> */}
                 </div>
                 <div className="form-group">
                     <label>Category: </label>
@@ -225,9 +225,10 @@ export default class TrashInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Trash Item" className="btn btn-primary" />
+                    <Button type="submit" value="Trash Item">
+                        Trash Item</Button>
                     {" "}
-                    <Button href="/archive/">Back to Archive</Button>
+                    <Button href="/inventory/">Cancel</Button>
                 </div>
             </form>
             </div>

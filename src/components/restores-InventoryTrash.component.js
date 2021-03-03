@@ -108,12 +108,7 @@ export default class TrashRestoreInventory extends Component {
         }); 
     }
 
-    onSubmit(e) {
-        alert("Item Added Back To Inventory!!!") 
-        e.preventDefault(); 
-
-        console.log(this); 
-
+    restoreToInventory() {
         const inventory = {
             fooditem: this.state.fooditem, 
             category: this.state.category, 
@@ -130,6 +125,21 @@ export default class TrashRestoreInventory extends Component {
         axios.post('http://localhost:5000/inventorys/add/', inventory)
         .then(res => console.log(res.data)); 
 
+    }
+
+    deleteTrashInventory() {
+        axios.delete('http://localhost:5000/trashInventorys/'+this.props.match.params.id)
+        .then(res => console.log(res.data)); 
+    }
+
+    onSubmit(e) {
+        alert("Item Added Back To Inventory!!!") 
+        e.preventDefault(); 
+
+        console.log(this); 
+
+        axios.all([this.restoreToInventory(), this.deleteTrashInventory()])
+        .then(res => console.log(res.data)); 
     
         window.location = '/trash'; 
     }
@@ -142,22 +152,12 @@ export default class TrashRestoreInventory extends Component {
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
-                    {/* <select ref="clientInput" */}
                     <input type="text"
                         required
                         className="form-control"
                         value={this.state.fooditem}
                         onChange={this.onChangeFooditem}
                         readOnly/>
-                        {/* {
-                            this.state.clients.map(function(client) {
-                                return <option 
-                                key={client}
-                                value={client}>{client}
-                                </option>; 
-                            })
-                        } */}
-                    {/* </select> */}
                 </div>
                 <div className="form-group">
                     <label>Category: </label>
@@ -225,10 +225,12 @@ export default class TrashRestoreInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Restore Item" className="btn btn-primary" />
+                    <Button type="submit" value="Restore Item">
+                        Restore Item</Button>
                     {" "}
-                    <Button href="/trash/">Back to Trash</Button>
+                    <Button href="/trash/">Cancel</Button>
                 </div>
+
             </form>
             </div>
         )

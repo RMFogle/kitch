@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button'; 
 
-export default class ArchiveRestoreInventory extends Component {
+export default class TrashInventoryFromArchive extends Component {
     constructor(props) {
         super(props); 
 
@@ -108,7 +108,7 @@ export default class ArchiveRestoreInventory extends Component {
         }); 
     }
 
-    restoreToInventory() {
+    addToTrashFromArchive() {
         const inventory = {
             fooditem: this.state.fooditem, 
             category: this.state.category, 
@@ -122,9 +122,8 @@ export default class ArchiveRestoreInventory extends Component {
 
         console.log(inventory);
 
-        axios.post('http://localhost:5000/inventorys/add/', inventory)
-        .then(res => console.log(res.data));
-
+        axios.post('http://localhost:5000/trashInventorys/add/', inventory)
+        .then(res => console.log(res.data)); 
     }
 
     deleteArchiveInventory() {
@@ -132,16 +131,16 @@ export default class ArchiveRestoreInventory extends Component {
         .then(res => console.log(res.data)); 
     }
 
-    onSubmit(e) {
-        alert("Item Added Back To Inventory!!!") 
+    onSubmit(e) { 
+        alert("Item Sent To Trash!!!") 
         e.preventDefault(); 
 
         console.log(this);
 
-        axios.all([this.restoreToInventory(), this.deleteArchiveInventory()])
+        axios.all([this.addToTrashFromArchive(), this.deleteArchiveInventory()])
         .then(res => console.log(res.data)); 
-    
 
+    
         window.location = '/archive'; 
     }
 
@@ -149,7 +148,7 @@ export default class ArchiveRestoreInventory extends Component {
     render() {
         return (
             <div>
-               <h3>Restore Inventory</h3>
+               <h3>Trash Inventory</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
@@ -226,12 +225,11 @@ export default class ArchiveRestoreInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <Button type="submit" value="Restore Item">
-                        Restore Item</Button>
+                    <Button type="submit" value="Trash Item">
+                        Trash Item</Button>
                     {" "}
                     <Button href="/archive/">Cancel</Button>
                 </div>
-                
             </form>
             </div>
         )

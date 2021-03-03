@@ -22,7 +22,7 @@ export default class MainNavbar extends Component {
                             </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">Sign in</Nav.Link>
+                        <Nav.Link href="#deets">Sign In</Nav.Link>
                         {/* <Nav.Link eventKey={2} href="#memes">
                             Dank memes
                         </Nav.Link> */}

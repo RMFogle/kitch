@@ -141,22 +141,12 @@ export default class EditInventory extends Component {
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
-                    {/* <select ref="clientInput" */}
                     <input type="text"
                         required
                         className="form-control"
                         value={this.state.fooditem}
                         onChange={this.onChangeFooditem}
                         />
-                        {/* {
-                            this.state.clients.map(function(client) {
-                                return <option 
-                                key={client}
-                                value={client}>{client}
-                                </option>; 
-                            })
-                        } */}
-                    {/* </select> */}
                 </div>
                 <div className="form-group">
                     <label>Category: </label>
@@ -226,7 +216,7 @@ export default class EditInventory extends Component {
                 <div className="form-group">
                     <input type="submit" value="Edit Item" className="btn btn-primary" />
                     {" "}
-                    <Button href="/inventory/">Back to Inventory</Button>
+                    <Button href="/inventory/">Cancel</Button>
                 </div>
             </form>
             </div>
