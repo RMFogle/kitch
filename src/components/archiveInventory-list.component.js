@@ -19,11 +19,8 @@ const ArchiveInventory = props => (
             <Link to={"/restore/"+props.inventory._id}>restore</Link>
             </Button> |  
             <Button variant="outline-warning" size="sm">
-            <Link to={"/sendTos/"+props.inventory._id}>trash</Link>
-            </Button> |
-            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
-                        onClick= {() => { props.deleteInventory(props.inventory._id) }}>
-            remove</Button>
+            <Link to={"/sendToos/"+props.inventory._id}>trash</Link>
+            </Button>
             
         </td>
     </tr>
@@ -33,8 +30,6 @@ const ArchiveInventory = props => (
 export default class ArchiveInventoryList extends Component {
     constructor(props) { 
         super(props); 
-
-        this.deleteInventory = this.deleteInventory.bind(this); 
 
         this.state = {inventorys: []}; 
     }
@@ -46,15 +41,6 @@ export default class ArchiveInventoryList extends Component {
         })
         .catch((error) => {
             console.log(error); 
-        })
-    }
-
-    deleteInventory(id) {
-        axios.delete('http://localhost:5000/archiveInventorys/'+id)
-            .then(res => console.log(res.data)); 
-
-        this.setState({
-            inventorys: this.state.inventorys.filter(el => el._id !== id)
         })
     }
 

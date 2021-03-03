@@ -190,7 +190,7 @@ export default class CreateInventory extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Add Inventory" className="btn btn-primary" />
+                        <input type="submit" value="Add Item" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

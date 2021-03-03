@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
+import { OverlayTrigger } from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const TrashInventory = props => (
     <tr>
@@ -18,10 +20,18 @@ const TrashInventory = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/restores/"+props.inventory._id}>restore</Link>
             </Button> |  
+        <OverlayTrigger
+            placement="top"
+            overlay={
+                <Tooltip id={`tooltip`}>
+                    Warning!!! Will Permanently Delete Item!
+                </Tooltip>
+            }
+            >
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
             delete</Button>
-            
+            </OverlayTrigger>
         </td>
     </tr>
 )
