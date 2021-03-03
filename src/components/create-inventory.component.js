@@ -1,5 +1,8 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+
 
 export default class CreateInventory extends Component {
     constructor(props) {
@@ -115,7 +118,14 @@ export default class CreateInventory extends Component {
     render() {
         return (
             <div>
-                <h3>Add Inventory</h3>
+                <Accordion>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                           +Add Inventory
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                {/* <h3>Add Inventory</h3> */}
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Food Item: </label>
@@ -193,6 +203,10 @@ export default class CreateInventory extends Component {
                         <input type="submit" value="Add Item" className="btn btn-primary" />
                     </div>
                 </form>
+                </Card.Body>
+                </Accordion.Collapse>
+                </Card>
+                </Accordion>
             </div>
         )
     }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+
 
 const Inventory = props => (
     
@@ -56,7 +59,14 @@ export default class InventoryList extends Component {
     render() { 
         return (
             <div>
-                <h3>Current Inventory</h3>
+                <Accordion defaultActiveKey="1">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="1">
+                           Inventory List
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                        <Card.Body>
+                {/* <h3>Current Inventory</h3> */}
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -74,6 +84,10 @@ export default class InventoryList extends Component {
                         { this.inventoryList() }
                     </tbody>
                 </table>
+                </Card.Body>
+                </Accordion.Collapse>
+                </Card>
+                </Accordion>
             </div>
         )
     }
