@@ -13,7 +13,7 @@ const TrashBooking = props => (
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
             <Button variant="outline-warning" size="sm">
-            <Link to={""}>restore</Link>
+            <Link to={"/restoresBooking/"+props.booking._id}>restore</Link>
             </Button> |
             <OverlayTrigger
             placement="top"
