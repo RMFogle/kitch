@@ -214,7 +214,7 @@ export default class EditInventory extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Edit Item" className="btn btn-primary" />
+                    <input type="submit" value="Save" className="btn btn-primary" />
                     {" "}
                     <Button href="/inventory/">Cancel</Button>
                 </div>

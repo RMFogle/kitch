@@ -46,7 +46,7 @@ export default class ArchiveInventoryList extends Component {
 
     archiveInventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <ArchiveInventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
+            return <ArchiveInventory inventory={currentinventory} key={currentinventory._id}/>; 
         })
     }
 

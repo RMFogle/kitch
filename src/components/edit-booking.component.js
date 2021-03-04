@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css"; 
+import Button from 'react-bootstrap/Button';
 
 export default class EditBooking extends Component {
     constructor(props) {
@@ -143,7 +144,9 @@ export default class EditBooking extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Edit Booking" className="btn btn-primary" />
+                    <input type="submit" value="Save" className="btn btn-primary" />
+                    {" "}
+                    <Button href="/booking/">Cancel</Button>
                 </div>
             </form>
             </div>

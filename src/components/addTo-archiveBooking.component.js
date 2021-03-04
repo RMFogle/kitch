@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css";
+import Button from 'react-bootstrap/Button'; 
 
 
-
-export default class CreateBooking extends Component {
+export default class ArchiveBooking extends Component {
     constructor(props) {
         super(props);
 
@@ -25,14 +25,28 @@ export default class CreateBooking extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/clients/')
+        axios.get('http://localhost:5000/bookings/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    clientname: response.data.clientname, 
+                    eventtype: response.data.eventtype, 
+                    location: response.data.location, 
+                    date: new Date(response.data.date)
+                })
+            })
+            .catch(function (error) {
+                console.log(error); 
+            })
+
+        axios.get('http://localhost:5000/bookings/')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
                         clients: response.data.map(client => client.clientname), 
-                        clientname: response.data[0].clientname
+
                     })
                 }
+
             })
     }
 
@@ -60,10 +74,7 @@ export default class CreateBooking extends Component {
         }); 
     }
 
-    onSubmit(e) {
-       alert("Booking Successfully Added!!!")
-        e.preventDefault(); 
-
+    addToArchive() {
         const booking = {
             clientname: this.state.clientname, 
             eventtype: this.state.eventtype, 
@@ -73,40 +84,42 @@ export default class CreateBooking extends Component {
 
         console.log(booking); 
 
-        axios.post('http://localhost:5000/bookings/add', booking)
+        axios.post('http://localhost:5000/archiveBookings/add', booking)
             .then(res => console.log(res.data)); 
+    }
 
-            this.setState({
-                clientname: '', 
-                eventtype: '', 
-                location: '',
-                date: ''
-            })
+    deleteBooking() {
+        axios.delete('http://localhost:5000/bookings/'+this.props.match.params.id)
+        .then(res => console.log(res.data));
+    }
 
-        window.location.reload(); 
+    onSubmit(e) {
+       alert("Booking Sent To Archive!!!")
+        e.preventDefault();
+
+        console.log(this);
+
+        axios.all([this.addToArchive(), this.deleteBooking()])
+        .then(res => console.log(res.data)); 
+
+
+        window.location = '/booking';  
     }
     
+
     render() { 
         return (
             <div>
-                <h3>Add Booking</h3>
+                <h3>Archive Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Client Name: </label>
-                        <select ref="clientInput" 
+                        <input type="text"
                         required
                         className="form-control"
                         value={this.state.clientname}
-                        onChange={this.onChangeClientname}>
-                            {
-                                this.state.clients.map(function(client) {
-                                    return <option 
-                                        key={client}
-                                        value={client}>{client}
-                                        </option>; 
-                                })
-                            }
-                        </select>
+                        onChange={this.onChangeClientname}
+                        readOnly/>
                     </div>
                     <div className="form-group">
                         <label>Event: </label>
@@ -115,7 +128,7 @@ export default class CreateBooking extends Component {
                         className="form-control"
                         value={this.state.eventtype}
                         onChange={this.onChangeEventtype}
-                        />
+                        readOnly/>
                     </div>
                     <div className="form-group">
                         <label>Location: </label>
@@ -124,7 +137,7 @@ export default class CreateBooking extends Component {
                         className="form-control"
                         value={this.state.location}
                         onChange={this.onChangeLocation}
-                        />
+                        readOnly/>
                     </div>
                     <div className="form-group">
                         <label>Date: </label>
@@ -132,15 +145,19 @@ export default class CreateBooking extends Component {
                             <DatePicker 
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
-                            />
+                                readOnly/>
                         </div>
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Save Booking" className="btn btn-primary"/>
+                        <Button type="submit" value="Archive Booking">
+                        Archive Booking</Button>
+                        {" "}
+                        <Button href="/booking/">Cancel</Button>
                     </div>
                 </form>
             </div>
         )
     }
 }
+
