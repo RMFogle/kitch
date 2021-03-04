@@ -11,7 +11,7 @@ const ArchiveBooking = props => (
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
             <Button variant="outline-warning" size="sm">
-            <Link to={""}>restore</Link>
+            <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
             <Link to={""}>trash</Link>
