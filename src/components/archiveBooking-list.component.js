@@ -3,38 +3,35 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 
-const Booking = props => (
+const ArchiveBooking = props => (
     <tr>
         <td>{props.booking.clientname}</td>
         <td>{props.booking.eventtype}</td>
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            <Link to={"/edit/"+props.booking._id}>edit</Link>
-            </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/addTo/"+props.booking._id}>archive</Link>
+            <Link to={""}>restore</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
             <Link to={""}>trash</Link>
             </Button>
-            
-        </td>
-    </tr>
+        
+    </td>
+</tr>
 )
 
 
-export default class BookingsList extends Component {
-    constructor(props) { 
+export default class ArchiveBookingList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.state = {bookings: []}; 
+        this.state = {bookings: []}
+
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/bookings/')
+        axios.get('http://localhost:5000/archiveBookings/')
         .then(response => {
             this.setState({ bookings: response.data})
         })
@@ -43,25 +40,16 @@ export default class BookingsList extends Component {
         })
     }
 
-    deleteBooking(id) {
-        axios.delete('http://localhost:5000/bookings/'+id)
-            .then(res => console.log(res.data)); 
-
-        this.setState({
-            bookings: this.state.bookings.filter(el => el._id !== id)
-        })
-    }
-
-    bookingList() {
+    archiveBookingList() {
         return this.state.bookings.map(currentbooking => {
-            return <Booking booking={currentbooking} key={currentbooking._id}/>; 
+            return <ArchiveBooking booking={currentbooking} key={currentbooking._id}/>; 
         })
     }
 
     render() { 
         return (
             <div>
-                <h3>Current Bookings</h3>
+                <h3>Archived Bookings</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -73,7 +61,7 @@ export default class BookingsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.bookingList() }
+                        { this.archiveBookingList() }
                     </tbody>
                 </table>
             </div>

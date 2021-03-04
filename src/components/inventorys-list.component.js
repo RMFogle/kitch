@@ -52,7 +52,7 @@ export default class InventoryList extends Component {
 
     inventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <Inventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
+            return <Inventory inventory={currentinventory} key={currentinventory._id}/>; 
         })
     }
 
@@ -78,6 +78,7 @@ export default class InventoryList extends Component {
                             <th>To Purchase</th>
                             <th>Unit Price</th>
                             <th>Total Cost</th>
+                            <th>Actions:</th>
                         </tr>
                     </thead>
                     <tbody>
