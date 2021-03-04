@@ -2,39 +2,48 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
+import { OverlayTrigger } from 'react-bootstrap';
+import Tooltip from 'react-bootstrap/Tooltip';
 
-const Booking = props => (
+const TrashBooking = props => (
     <tr>
         <td>{props.booking.clientname}</td>
         <td>{props.booking.eventtype}</td>
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            <Link to={"/edit/"+props.booking._id}>edit</Link>
+            <Link to={""}>restore</Link>
             </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/addTo/"+props.booking._id}>archive</Link>
-            </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/addToo/"+props.booking._id}>trash</Link>
-            </Button>
-            
-        </td>
-    </tr>
+            <OverlayTrigger
+            placement="top"
+            overlay={
+                <Tooltip id={`tooltip`}>
+                    Warning!!! Will Permanently Delete Item!
+                </Tooltip>
+            }
+            >
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
+                        onClick= {() => { props.deleteBooking(props.booking._id) }}>
+            delete</Button>
+            </OverlayTrigger>
+    </td>
+</tr>
 )
 
 
-export default class BookingsList extends Component {
-    constructor(props) { 
+export default class TrashBookingList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.state = {bookings: []}; 
+        this.deleteBooking = this.deleteBooking.bind(this); 
+
+        this.state = {bookings: []}
+
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/bookings/')
+        axios.get('http://localhost:5000/trashBookings/')
         .then(response => {
             this.setState({ bookings: response.data})
         })
@@ -44,7 +53,7 @@ export default class BookingsList extends Component {
     }
 
     deleteBooking(id) {
-        axios.delete('http://localhost:5000/bookings/'+id)
+        axios.delete('http://localhost:5000/trashBookings/'+id)
             .then(res => console.log(res.data)); 
 
         this.setState({
@@ -52,16 +61,16 @@ export default class BookingsList extends Component {
         })
     }
 
-    bookingList() {
+    trashBookingList() {
         return this.state.bookings.map(currentbooking => {
-            return <Booking booking={currentbooking} key={currentbooking._id}/>; 
+            return <TrashBooking booking={currentbooking} deleteBooking={this.deleteBooking} key={currentbooking._id}/>; 
         })
     }
 
     render() { 
         return (
             <div>
-                <h3>Current Bookings</h3>
+                <h3>Trash Bookings</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -73,7 +82,7 @@ export default class BookingsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.bookingList() }
+                        { this.trashBookingList() }
                     </tbody>
                 </table>
             </div>
