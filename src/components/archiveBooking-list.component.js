@@ -14,7 +14,7 @@ const ArchiveBooking = props => (
             <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
-            <Link to={""}>trash</Link>
+            <Link to={"/addTooTrash/"+props.booking._id}>trash</Link>
             </Button>
         
     </td>
