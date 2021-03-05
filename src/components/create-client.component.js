@@ -1,5 +1,7 @@
 import React, { Component } from 'react'; 
-import axios from 'axios'; 
+import axios from 'axios';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card'; 
 
 export default class CreateClient extends Component {
     constructor(props) {
@@ -73,7 +75,13 @@ export default class CreateClient extends Component {
     render() { 
         return (
             <div>
-                <h3>New Client</h3>
+                <Accordion>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                           +Add Client
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Client: </label>
@@ -115,6 +123,10 @@ export default class CreateClient extends Component {
                         <input type="submit" value="Add Client" className="btn btn-primary" />
                     </div>
                 </form>
+                </Card.Body>
+                </Accordion.Collapse>
+                </Card>
+                </Accordion>
             </div>
         )
     }
