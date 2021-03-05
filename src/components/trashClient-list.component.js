@@ -16,7 +16,7 @@ const TrashClient = props => (
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             {/* check edit link below */}
-            <Link to={"//"}>restore</Link>
+            <Link to={"/restoresClient/"+props.client._id}>restore</Link>
             </Button> |  
             <OverlayTrigger
             placement="top"
