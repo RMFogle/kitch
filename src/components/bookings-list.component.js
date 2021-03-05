@@ -70,7 +70,6 @@ export default class BookingsList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <h3>Current Bookings</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
