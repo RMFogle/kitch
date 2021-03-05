@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
 const Booking = props => (
     <tr>
@@ -61,6 +63,13 @@ export default class BookingsList extends Component {
     render() { 
         return (
             <div>
+                <Accordion defaultActiveKey="1">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="1">
+                           Booking List
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                        <Card.Body>
                 <h3>Current Bookings</h3>
                 <table className="table">
                     <thead className="thead-light">
@@ -76,6 +85,10 @@ export default class BookingsList extends Component {
                         { this.bookingList() }
                     </tbody>
                 </table>
+                </Card.Body>
+                </Accordion.Collapse>
+                </Card>
+                </Accordion>
             </div>
         )
     }

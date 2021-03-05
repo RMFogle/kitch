@@ -125,7 +125,6 @@ export default class CreateInventory extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
-                {/* <h3>Add Inventory</h3> */}
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Food Item: </label>

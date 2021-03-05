@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css";
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -89,6 +91,13 @@ export default class CreateBooking extends Component {
     render() { 
         return (
             <div>
+                <Accordion>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                           +Add Booking
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
                 <h3>Create Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
@@ -140,6 +149,10 @@ export default class CreateBooking extends Component {
                         <input type="submit" value="Save Booking" className="btn btn-primary"/>
                     </div>
                 </form>
+                </Card.Body>
+                </Accordion.Collapse>
+                </Card>
+                </Accordion>
             </div>
         )
     }
