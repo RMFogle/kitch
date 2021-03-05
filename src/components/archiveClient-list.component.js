@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 
 
-const Client = props => (
+const ArchiveClient = props => (
     <tr>
         <td>{props.client.clientname}</td>
         <td>{props.client.phone}</td>
@@ -14,23 +14,26 @@ const Client = props => (
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             {/* check edit link below */}
-            <Link to={"/edits/"+props.client._id}>edit</Link>
-            </Button> | 
+            <Link to={"//"}>restore</Link>
+            </Button> |  
+            <Button variant="outline-warning" size="sm">
+            <Link to={"//"}>trash</Link>
+            </Button>
             
         </td>
     </tr>
 )
 
 
-export default class ClientsList extends Component {
-    constructor(props) { 
+export default class ArchiveClientList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.state = {clients: []}; 
+        this.state = {clients: [] }
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/clients/')
+        axios.get('http://localhost:5000/archiveClients/')
         .then(response => {
             this.setState({ clients: response.data})
         })
@@ -39,28 +42,28 @@ export default class ClientsList extends Component {
         })
     }
 
-    clientList() {
+    archiveClientList() {
         return this.state.clients.map(currentclient => {
-            return <Client client={currentclient} deleteClient={this.deleteClient} key={currentclient._id}/>; 
+            return <ArchiveClient client={currentclient} key={currentclient._id}/>;
         })
     }
 
     render() { 
         return (
             <div>
-                <h3>Client List</h3>
+                <h3>Archived Clients</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
                             <th>Client</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Notes</th>
+                            <th>Event</th>
+                            <th>Location</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        { this.clientList() }
+                        { this.archiveClientList() }
                     </tbody>
                 </table>
             </div>

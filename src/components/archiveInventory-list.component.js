@@ -65,6 +65,7 @@ export default class ArchiveInventoryList extends Component {
                             <th>To Purchase</th>
                             <th>Unit Price</th>
                             <th>Total Cost</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
