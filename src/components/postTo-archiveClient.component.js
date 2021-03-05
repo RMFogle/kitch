@@ -1,9 +1,8 @@
 import React, { Component } from 'react'; 
-import axios from 'axios';
+import axios from 'axios'; 
 import Button from 'react-bootstrap/Button'; 
 
-
-export default class EditClient extends Component {
+export default class ArchiveClient extends Component {
     constructor(props) {
         super(props); 
 
@@ -73,11 +72,7 @@ export default class EditClient extends Component {
         }); 
     }
 
-    onSubmit(e) { 
-        e.preventDefault(); 
-
-        console.log(this); 
-
+    addToArchive() {
         const client = {
             clientname: this.state.clientname, 
             phone: this.state.phone, 
@@ -87,17 +82,33 @@ export default class EditClient extends Component {
 
         console.log(client);
 
-        axios.post('http://localhost:5000/clients/update/'+this.props.match.params.id, client)
+        axios.post('http://localhost:5000/archiveClients/add', client)
         .then(res => console.log(res.data)); 
-
-        window.location = '/client'; 
     }
 
+    deleteClient() { 
+        axios.delete('http://localhost:5000/clients/'+this.props.match.params.id)
+        .then(res => console.log(res.data));
+    }
 
-    render() { 
+    onSubmit(e) {
+        alert("Client Sent To Archive!!!")
+         e.preventDefault();
+ 
+         console.log(this);
+ 
+         axios.all([this.addToArchive(), this.deleteClient()])
+         .then(res => console.log(res.data)); 
+ 
+ 
+         window.location = '/client';  
+     }
+
+
+     render() { 
         return (
             <div>
-               <h3>Edit Client</h3>
+               <h3>Archive Client</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
@@ -106,7 +117,7 @@ export default class EditClient extends Component {
                         className="form-control"
                         value={this.state.clientname}
                         onChange={this.onChangeClientname}
-                        />
+                        readOnly/>
                 </div>
                 <div className="form-group">
                     <label>Phone: </label>
@@ -115,7 +126,7 @@ export default class EditClient extends Component {
                         className="form-control"
                         value={this.state.phone}
                         onChange={this.onChangePhone}
-                        />
+                        readOnly/>
                 </div>
                 <div className="form-group">
                     <label>Email: </label>
@@ -125,7 +136,7 @@ export default class EditClient extends Component {
                         className="form-control"
                         value={this.state.email}
                         onChange={this.onChangeEmail}
-                        />
+                        readOnly/>
                 </div>
                 <div className="form-group">
                     <label>Notes: </label>
@@ -134,16 +145,17 @@ export default class EditClient extends Component {
                         className="form-control"
                         value={this.state.notes}
                         onChange={this.onChangeNotes}
-                        />
+                        readOnly/>
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Edit Client" className="btn btn-primary" />
+                    <Button type="submit" value="Archive Client">
+                    Archive Client</Button>
                     {" "}
                     <Button href="/client/">Cancel</Button>
                 </div>
             </form>
-            </div>
+        </div>
         )
     }
 }

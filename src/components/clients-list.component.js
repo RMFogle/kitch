@@ -16,6 +16,12 @@ const Client = props => (
             {/* check edit link below */}
             <Link to={"/edits/"+props.client._id}>edit</Link>
             </Button> | 
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/postTo/"+props.client._id}>archive</Link>
+            </Button> |
+            <Button variant="outline-warning" size="sm">
+            <Link to={"//"}>trash</Link>
+            </Button>
             
         </td>
     </tr>
