@@ -20,7 +20,7 @@ const Client = props => (
             <Link to={"/postTo/"+props.client._id}>archive</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
-            <Link to={"//"}>trash</Link>
+            <Link to={"/postToo/"+props.client._id}>trash</Link>
             </Button>
             
         </td>
