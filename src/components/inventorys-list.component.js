@@ -66,7 +66,6 @@ export default class InventoryList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                {/* <h3>Current Inventory</h3> */}
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
