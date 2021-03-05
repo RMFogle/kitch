@@ -17,7 +17,7 @@ const ArchiveClient = props => (
             <Link to={"/restoreClient/"+props.client._id}>restore</Link>
             </Button> |  
             <Button variant="outline-warning" size="sm">
-            <Link to={"//"}>trash</Link>
+            <Link to={"/postToTrash/"+props.client._id}>trash</Link>
             </Button>
             
         </td>
