@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import { Icon } from '@iconify/react';
+import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
 
 
 export default class CreateInventory extends Component {
@@ -122,6 +124,7 @@ export default class CreateInventory extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                            +Add Inventory
+                           <Icon icon={roundArrowDropDown} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>

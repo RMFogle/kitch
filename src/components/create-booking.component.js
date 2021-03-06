@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import { Icon } from '@iconify/react';
+import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
 
 
 
@@ -95,6 +97,7 @@ export default class CreateBooking extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
                            +Add Booking
+                           <Icon icon={roundArrowDropDown} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
