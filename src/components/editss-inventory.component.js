@@ -92,19 +92,21 @@ export default class EditInventory extends Component {
 
     onChangeTopurchase(e) {
         this.setState({
-            topurchase: e.target.value
+            topurchase: e.target.value, 
+            totalcost: e.target.value * this.state.unitprice
         }); 
     }
 
     onChangeUnitprice(e) {
         this.setState({
-            unitprice: e.target.value
+            unitprice: e.target.value, 
+            totalcost: e.target.value * this.state.topurchase
         }); 
     }
 
     onChangeTotalcost(e) {
         this.setState({
-            totalcost: e.target.value
+                totalcost: e.target.value
         }); 
     }
 
@@ -210,6 +212,7 @@ export default class EditInventory extends Component {
                         className="form-control"
                         value={this.state.totalcost}
                         onChange={this.onChangeTotalcost}
+                        readOnly
                         />
                 </div>
 
