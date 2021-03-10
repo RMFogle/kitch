@@ -17,8 +17,8 @@ const Inventory = props => (
         <td>{props.inventory.instock}</td>
         <td>{props.inventory.needed}</td>
         <td>{props.inventory.topurchase}</td>
-        <td>{props.inventory.unitprice}</td>
-        <td>{props.inventory.totalcost}</td>
+        <td>${props.inventory.unitprice}</td>
+        <td>${props.inventory.totalcost}</td>
         <td>
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
@@ -38,8 +38,12 @@ const Inventory = props => (
 export default class InventoryList extends Component {
     constructor(props) { 
         super(props); 
+
         
         this.state = {inventorys: []} 
+
+        this.compareBy.bind(this); 
+        this.sortBy.bind(this); 
     }
 
     componentDidMount() {
@@ -50,6 +54,20 @@ export default class InventoryList extends Component {
         .catch((error) => {
             console.log(error); 
         })
+    }
+
+    compareBy(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        };
+    }
+
+    sortBy(key) {
+        let arrayCopy = [...this.state.inventorys]; 
+        arrayCopy.sort(this.compareBy(key)); 
+        this.setState({inventorys: arrayCopy}); 
     }
 
     inventoryList() {
@@ -72,14 +90,14 @@ export default class InventoryList extends Component {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th>Food Item</th>
-                            <th>Category</th>
-                            <th>Unit Size</th>
-                            <th>In Stock</th>
-                            <th>Need</th>
-                            <th>To Purchase</th>
-                            <th>Unit Price</th>
-                            <th>Total Cost</th>
+                            <th onClick={() => this.sortBy('fooditem')}>Food Item</th>
+                            <th onClick={() => this.sortBy('category')}>Category</th>
+                            <th onClick={() => this.sortBy('unitsize')}>Unit Size</th>
+                            <th onClick={() => this.sortBy('instock')}>In Stock</th>
+                            <th onClick={() => this.sortBy('need')}>Need</th>
+                            <th onClick={() => this.sortBy('topurchase')}>To Purchase</th>
+                            <th onClick={() => this.sortBy('unitprice')}>Unit Price</th>
+                            <th onClick={() => this.sortBy('totalcost')}>Total Cost</th>
                             <th>Actions:</th>
                         </tr>
                     </thead>
