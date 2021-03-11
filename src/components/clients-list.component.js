@@ -36,6 +36,9 @@ export default class ClientsList extends Component {
         super(props); 
 
         this.state = {clients: []}; 
+
+        this.compareBy.bind(this); 
+        this.sortBy.bind(this); 
     }
 
     componentDidMount() {
@@ -46,6 +49,20 @@ export default class ClientsList extends Component {
         .catch((error) => {
             console.log(error); 
         })
+    }
+
+    compareBy(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        };
+    }
+
+    sortBy(key) {
+        let arrayCopy = [...this.state.clients]; 
+        arrayCopy.sort(this.compareBy(key)); 
+        this.setState({clients: arrayCopy}); 
     }
 
     clientList() {
@@ -68,10 +85,10 @@ export default class ClientsList extends Component {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th>Client</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Notes</th>
+                            <th onClick={() => this.sortBy('clientname')}>Client</th>
+                            <th onClick={() => this.sortBy('phone')}>Phone</th>
+                            <th onClick={() => this.sortBy('email')}>Email</th>
+                            <th onClick={() => this.sortBy('notes')}>Notes</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
