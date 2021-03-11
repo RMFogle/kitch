@@ -35,6 +35,9 @@ export default class BookingsList extends Component {
         super(props); 
 
         this.state = {bookings: []}; 
+
+        this.compareBy.bind(this); 
+        this.sortBy.bind(this); 
     }
 
     componentDidMount() {
@@ -47,13 +50,18 @@ export default class BookingsList extends Component {
         })
     }
 
-    deleteBooking(id) {
-        axios.delete('http://localhost:5000/bookings/'+id)
-            .then(res => console.log(res.data)); 
+    compareBy(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        };
+    }
 
-        this.setState({
-            bookings: this.state.bookings.filter(el => el._id !== id)
-        })
+    sortBy(key) {
+        let arrayCopy = [...this.state.bookings]; 
+        arrayCopy.sort(this.compareBy(key)); 
+        this.setState({bookings: arrayCopy}); 
     }
 
     bookingList() {
@@ -76,10 +84,10 @@ export default class BookingsList extends Component {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th>Client</th>
-                            <th>Event</th>
-                            <th>Location</th>
-                            <th>Date</th>
+                            <th onClick={() => this.sortBy('clientname')}>Client</th>
+                            <th onClick={() => this.sortBy('eventtype')}>Event</th>
+                            <th onClick={() => this.sortBy('location')}>Location</th>
+                            <th onClick={() => this.sortBy('date')}>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
