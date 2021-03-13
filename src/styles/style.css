@@ -1,5 +1,9 @@
 table thead i {
     margin-left: 10px;
     margin-top: -5px; 
-    margin-bottom: -5px; 
+    margin-bottom: -5px;
+}
+
+i:active {
+    color: white;
 }
