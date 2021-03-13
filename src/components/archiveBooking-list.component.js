@@ -5,7 +5,10 @@ import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import '../styles/style.css'; 
+
 
 const ArchiveBooking = props => (
     <tr>
@@ -32,6 +35,10 @@ export default class ArchiveBookingList extends Component {
 
         this.state = {bookings: []}
 
+        this.compareByDescend.bind(this); 
+        this.compareByAscend.bind(this); 
+        this.sortByUp.bind(this); 
+        this.sortByDown.bind(this);
     }
 
     componentDidMount() {
@@ -42,6 +49,36 @@ export default class ArchiveBookingList extends Component {
         .catch((error) => {
             console.log(error); 
         })
+    }
+
+    compareByDescend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        }; 
+    }
+
+    compareByAscend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return 1; 
+            if (a[key] > b[key]) return -1; 
+            return 0; 
+        }; 
+    }
+
+    // A-Z and 1-100 
+    sortByUp(key) {
+        let arrayCopy = [...this.state.bookings]; 
+        arrayCopy.sort(this.compareByDescend(key)); 
+        this.setState({bookings: arrayCopy});
+    }
+
+    // Z-A and 100-1 
+    sortByDown(key) {
+        let arrayCopy = [...this.state.bookings]; 
+        arrayCopy.sort(this.compareByAscend(key)); 
+        this.setState({bookings: arrayCopy});
     }
 
     archiveBookingList() {
@@ -57,17 +94,49 @@ export default class ArchiveBookingList extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                            Archive Booking List
-                           <Icon icon={roundArrowDropDown} height="2em" />
+                           <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table">
+                <table className="table" class="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th>Client</th>
-                            <th>Event</th>
-                            <th>Location</th>
-                            <th>Date</th>
+                            <th>
+                            Client
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('clientname')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('clientname')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Event
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('eventtype')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('eventtype')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Location
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Date
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
