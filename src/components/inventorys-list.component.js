@@ -22,7 +22,6 @@ const Inventory = props => (
         <td>${props.inventory.unitprice}</td>
         <td>${props.inventory.totalcost}</td>
         <td>
-            
             <Button variant="outline-warning" size="sm">
             <Link to={"/editss/"+props.inventory._id}>edit</Link>
             </Button> |
@@ -32,7 +31,6 @@ const Inventory = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/sendToo/"+props.inventory._id}>trash</Link>
             </Button>
-            
         </td>
     </tr>
 )
