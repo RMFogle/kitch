@@ -163,7 +163,8 @@ export default class InventoryList extends Component {
                                 </i>
                                 <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('topurchase')}>
                                 </i>
-                                </ButtonGroup></th>
+                                </ButtonGroup>
+                            </th>
                             <th>
                             Unit Price
                                 <ButtonGroup vertical>
