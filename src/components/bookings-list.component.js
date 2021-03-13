@@ -5,7 +5,9 @@ import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import '../styles/style.css'; 
 
 const Booking = props => (
     <tr>
@@ -14,7 +16,6 @@ const Booking = props => (
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
         <td>
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             <Link to={"/edit/"+props.booking._id}>edit</Link>
             </Button> |
@@ -24,7 +25,6 @@ const Booking = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/addToo/"+props.booking._id}>trash</Link>
             </Button>
-            
         </td>
     </tr>
 )
@@ -36,8 +36,10 @@ export default class BookingsList extends Component {
 
         this.state = {bookings: []}; 
 
-        this.compareBy.bind(this); 
-        this.sortBy.bind(this); 
+        this.compareByDescend.bind(this); 
+        this.compareByAscend.bind(this); 
+        this.sortByUp.bind(this); 
+        this.sortByDown.bind(this);
     }
 
     componentDidMount() {
@@ -50,18 +52,34 @@ export default class BookingsList extends Component {
         })
     }
 
-    compareBy(key) {
+    compareByDescend(key) {
         return function (a, b) {
             if (a[key] < b[key]) return -1; 
             if (a[key] > b[key]) return 1; 
             return 0; 
-        };
+        }; 
     }
 
-    sortBy(key) {
+    compareByAscend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return 1; 
+            if (a[key] > b[key]) return -1; 
+            return 0; 
+        }; 
+    }
+
+    // A-Z and 1-100 
+    sortByUp(key) {
         let arrayCopy = [...this.state.bookings]; 
-        arrayCopy.sort(this.compareBy(key)); 
-        this.setState({bookings: arrayCopy}); 
+        arrayCopy.sort(this.compareByDescend(key)); 
+        this.setState({bookings: arrayCopy});
+    }
+
+    // Z-A and 100-1 
+    sortByDown(key) {
+        let arrayCopy = [...this.state.bookings]; 
+        arrayCopy.sort(this.compareByAscend(key)); 
+        this.setState({bookings: arrayCopy});
     }
 
     bookingList() {
@@ -77,17 +95,49 @@ export default class BookingsList extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                            Booking List
-                           <Icon icon={roundArrowDropDown} height="2em" />
+                           <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table">
+                <table className="table" class="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th onClick={() => this.sortBy('clientname')}>Client</th>
-                            <th onClick={() => this.sortBy('eventtype')}>Event</th>
-                            <th onClick={() => this.sortBy('location')}>Location</th>
-                            <th onClick={() => this.sortBy('date')}>Date</th>
+                            <th>
+                            Client
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('clientname')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('clientname')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Event
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('eventtype')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('eventtype')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Location
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Date
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
