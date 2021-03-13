@@ -5,8 +5,9 @@ import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
-
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import '../styles/style.css'; 
 
 
 const ArchiveInventory = props => (
@@ -27,7 +28,6 @@ const ArchiveInventory = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/sendToos/"+props.inventory._id}>trash</Link>
             </Button>
-            
         </td>
     </tr>
 )
@@ -38,6 +38,11 @@ export default class ArchiveInventoryList extends Component {
         super(props); 
 
         this.state = {inventorys: []}; 
+
+        this.compareByDescend.bind(this); 
+        this.compareByAscend.bind(this); 
+        this.sortByUp.bind(this); 
+        this.sortByDown.bind(this); 
     }
 
     componentDidMount() {
@@ -49,6 +54,38 @@ export default class ArchiveInventoryList extends Component {
             console.log(error); 
         })
     }
+
+
+    compareByDescend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        }; 
+    }
+
+    compareByAscend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return 1; 
+            if (a[key] > b[key]) return -1; 
+            return 0; 
+        }; 
+    }
+
+    // A-Z and 1-100 
+    sortByUp(key) {
+        let arrayCopy = [...this.state.inventorys]; 
+        arrayCopy.sort(this.compareByDescend(key)); 
+        this.setState({inventorys: arrayCopy});
+    }
+
+    // Z-A and 100-1 
+    sortByDown(key) {
+        let arrayCopy = [...this.state.inventorys]; 
+        arrayCopy.sort(this.compareByAscend(key)); 
+        this.setState({inventorys: arrayCopy});
+    }
+
 
     archiveInventoryList() {
         return this.state.inventorys.map(currentinventory => {
@@ -63,21 +100,85 @@ export default class ArchiveInventoryList extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                           Archive Inventory List
-                          <Icon icon={roundArrowDropDown} height="2em" />
+                          <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table">
+                <table className="table" class="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th>Food Item</th>
-                            <th>Category</th>
-                            <th>Unit Size</th>
-                            <th>In Stock</th>
-                            <th>Need</th>
-                            <th>To Purchase</th>
-                            <th>Unit Price</th>
-                            <th>Total Cost</th>
+                            <th>
+                            Food Item
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('fooditem')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('fooditem')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Category
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('category')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('category')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Unit Size
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('unitsize')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('unitsize')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            In Stock
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('instock')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('instock')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Need
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('needed')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('needed')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            To Purchase
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('topurchase')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('topurchase')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Unit Price
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('unitprice')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('unitprice')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Total Cost
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('totalcost')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('totalcost')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
