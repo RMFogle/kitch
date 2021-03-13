@@ -9,6 +9,7 @@ import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import '../styles/style.css'; 
 
+
 const Booking = props => (
     <tr>
         <td>{props.booking.clientname}</td>
