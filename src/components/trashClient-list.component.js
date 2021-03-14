@@ -7,7 +7,9 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import '../styles/style.css'; 
 
 
 const TrashClient = props => (
@@ -17,22 +19,19 @@ const TrashClient = props => (
         <td>{props.client.email}</td>
         <td>{props.client.notes}</td>
         <td>
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            {/* check edit link below */}
             <Link to={"/restoresClient/"+props.client._id}>restore</Link>
             </Button> |  
             <OverlayTrigger
-            placement="top"
-            overlay={
-                <Tooltip id={`tooltip`}>
-                    Warning!!! Will Permanently Delete Client!
-                </Tooltip>
-            }
-            >
-            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
+                placement="top"
+                    overlay={
+                        <Tooltip id={`tooltip`}>
+                        Warning!!! Will Permanently Delete Client!
+                        </Tooltip>
+                    }>
+                    <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteClient(props.client._id) }}>
-            delete</Button>
+                    delete</Button>
             </OverlayTrigger>
         </td>
     </tr>
@@ -46,6 +45,11 @@ export default class TrashClientList extends Component {
         this.deleteClient = this.deleteClient.bind(this); 
 
         this.state = {clients: []}; 
+
+        this.compareByDescend.bind(this); 
+        this.compareByAscend.bind(this); 
+        this.sortByUp.bind(this); 
+        this.sortByDown.bind(this);
     }
 
     componentDidMount() {
@@ -56,6 +60,36 @@ export default class TrashClientList extends Component {
         .catch((error) => {
             console.log(error); 
         })
+    }
+
+    compareByDescend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        }; 
+    }
+
+    compareByAscend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return 1; 
+            if (a[key] > b[key]) return -1; 
+            return 0; 
+        }; 
+    }
+
+    // A-Z and 1-100 
+    sortByUp(key) {
+        let arrayCopy = [...this.state.clients]; 
+        arrayCopy.sort(this.compareByDescend(key)); 
+        this.setState({clients: arrayCopy});
+    }
+
+    // Z-A and 100-1 
+    sortByDown(key) {
+        let arrayCopy = [...this.state.clients]; 
+        arrayCopy.sort(this.compareByAscend(key)); 
+        this.setState({clients: arrayCopy});
     }
 
     deleteClient(id) {
@@ -80,17 +114,49 @@ export default class TrashClientList extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                           Trash Client List
-                          <Icon icon={roundArrowDropDown} height="2em" />
+                          <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table">
+                <table className="table" class="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th>Client</th>
-                            <th>Event</th>
-                            <th>Location</th>
-                            <th>Date</th>
+                            <th>
+                            Client
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('clientname')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('clientname')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Phone
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('phone')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('phone')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Email
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('email')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('email')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Notes
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('notes')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('notes')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
