@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
-import { OverlayTrigger } from 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 import '../styles/style.css'; 
 
 
-const TrashBooking = props => (
+const TrashBooking = props => {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+return(
     <tr>
         <td>{props.booking.clientname}</td>
         <td>{props.booking.eventtype}</td>
@@ -22,20 +28,32 @@ const TrashBooking = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/restoresBooking/"+props.booking._id}>restore</Link>
             </Button> |
-            <OverlayTrigger
-                placement="top"
-                    overlay={
-                        <Tooltip id={`tooltip`}>
-                        Warning!!! Will Permanently Delete Item!
-                        </Tooltip>
-                    }>
-                    <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
-                        onClick= {() => { props.deleteBooking(props.booking._id) }}>
-                    delete</Button>
-            </OverlayTrigger>
-    </td>
-</tr>
-)
+            <>
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
+            delete
+            </Button> 
+                <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Booking</Modal.Title>
+                    </Modal.Header>
+                        <Modal.Body>
+                        Are you sure you want to delete this booking? 
+                        </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                        <Button variant="primary" onClick= {() => { props.deleteBooking(props.booking._id) }}>Confirm</Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+        </td>
+    </tr>
+    );
+}
 
 
 export default class TrashBookingList extends Component {

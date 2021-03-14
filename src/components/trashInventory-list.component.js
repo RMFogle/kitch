@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
-import { OverlayTrigger } from 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 import '../styles/style.css'; 
 
+const TrashInventory = props => {
 
-const TrashInventory = props => (
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+return (
     <tr>
         <td>{props.inventory.fooditem}</td>
         <td>{props.inventory.category}</td>
@@ -26,20 +31,32 @@ const TrashInventory = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/restores/"+props.inventory._id}>restore</Link>
             </Button> |  
-            <OverlayTrigger
-                placement="top"
-                    overlay={
-                        <Tooltip id={`tooltip`}>
-                        Warning!!! Will Permanently Delete Item!
-                        </Tooltip>
-                    }>
-                    <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
-                        onClick= {() => { props.deleteInventory(props.inventory._id) }}>
-                    delete</Button>
-            </OverlayTrigger>
+            <>
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
+            delete
+            </Button> 
+                <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Item</Modal.Title>
+                    </Modal.Header>
+                        <Modal.Body>
+                        Are you sure you want to delete this item? 
+                        </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                        <Button variant="primary" onClick= {() => { props.deleteInventory(props.inventory._id) }}>Confirm</Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         </td>
     </tr>
-)
+    );
+}
 
 
 export default class TrashInventoryList extends Component {
