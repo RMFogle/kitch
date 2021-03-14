@@ -130,7 +130,6 @@ export default class EditClient extends Component {
                 <div className="form-group">
                     <label>Notes: </label>
                     <input type="text"
-                        required
                         className="form-control"
                         value={this.state.notes}
                         onChange={this.onChangeNotes}
