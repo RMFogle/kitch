@@ -6,7 +6,6 @@ import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 
 
-
 export default class CreateInventory extends Component {
     constructor(props) {
         super(props); 
@@ -53,19 +52,19 @@ export default class CreateInventory extends Component {
 
     onChangeInstock(e) {
         this.setState({
-            instock: e.target.value 
+            instock: e.target.value
         }); 
     }
 
     onChangeNeeded(e) {
         this.setState({
-            needed: e.target.value 
+            needed: e.target.value
         }); 
     }
 
     onChangeTopurchase(e) {
         this.setState({
-            topurchase: e.target.value, 
+            topurchase: e.target.value,
             totalcost: e.target.value * this.state.unitprice
         }); 
     }
@@ -78,12 +77,10 @@ export default class CreateInventory extends Component {
     }
 
     onChangeTotalcost(e) {
-            this.setState({
-                totalcost: e.target.value
+        this.setState({
+            totalcost: e.target.value
         }); 
     }
-
-
 
     
     onSubmit(e) {

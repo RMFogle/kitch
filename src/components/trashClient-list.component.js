@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button'; 
 import axios from 'axios'; 
-import { OverlayTrigger } from 'react-bootstrap';
-import Tooltip from 'react-bootstrap/Tooltip';
+import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 import '../styles/style.css'; 
 
+const TrashClient = props => {
+    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-const TrashClient = props => (
+return (
     <tr>
         <td>{props.client.clientname}</td>
         <td>{props.client.phone}</td>
@@ -21,21 +26,33 @@ const TrashClient = props => (
         <td>
             <Button variant="outline-warning" size="sm">
             <Link to={"/restoresClient/"+props.client._id}>restore</Link>
-            </Button> |  
-            <OverlayTrigger
-                placement="top"
-                    overlay={
-                        <Tooltip id={`tooltip`}>
-                        Warning!!! Will Permanently Delete Client!
-                        </Tooltip>
-                    }>
-                    <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
-                        onClick= {() => { props.deleteClient(props.client._id) }}>
-                    delete</Button>
-            </OverlayTrigger>
+            </Button> |
+            <>
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
+            delete
+            </Button> 
+                <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Client</Modal.Title>
+                    </Modal.Header>
+                        <Modal.Body>
+                        Are you sure you want to delete this client? 
+                        </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                        <Button variant="primary" onClick= {() => { props.deleteClient(props.client._id) }}>Confirm</Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         </td>
     </tr>
-)
+    );
+}
 
 
 export default class TrashClientList extends Component {
