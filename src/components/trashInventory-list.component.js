@@ -7,7 +7,10 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import roundArrowDropDown from '@iconify-icons/ic/round-arrow-drop-down';
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import '../styles/style.css'; 
+
 
 const TrashInventory = props => (
     <tr>
@@ -20,21 +23,19 @@ const TrashInventory = props => (
         <td>{props.inventory.unitprice}</td>
         <td>{props.inventory.totalcost}</td>
         <td>
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             <Link to={"/restores/"+props.inventory._id}>restore</Link>
             </Button> |  
-        <OverlayTrigger
-            placement="top"
-            overlay={
-                <Tooltip id={`tooltip`}>
-                    Warning!!! Will Permanently Delete Item!
-                </Tooltip>
-            }
-            >
-            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
+            <OverlayTrigger
+                placement="top"
+                    overlay={
+                        <Tooltip id={`tooltip`}>
+                        Warning!!! Will Permanently Delete Item!
+                        </Tooltip>
+                    }>
+                    <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" 
                         onClick= {() => { props.deleteInventory(props.inventory._id) }}>
-            delete</Button>
+                    delete</Button>
             </OverlayTrigger>
         </td>
     </tr>
@@ -48,6 +49,11 @@ export default class TrashInventoryList extends Component {
         this.deleteInventory = this.deleteInventory.bind(this); 
 
         this.state = {inventorys: []}; 
+
+        this.compareByDescend.bind(this); 
+        this.compareByAscend.bind(this); 
+        this.sortByUp.bind(this); 
+        this.sortByDown.bind(this); 
     }
 
     componentDidMount() {
@@ -59,6 +65,38 @@ export default class TrashInventoryList extends Component {
             console.log(error); 
         })
     }
+
+
+    compareByDescend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return -1; 
+            if (a[key] > b[key]) return 1; 
+            return 0; 
+        }; 
+    }
+
+    compareByAscend(key) {
+        return function (a, b) {
+            if (a[key] < b[key]) return 1; 
+            if (a[key] > b[key]) return -1; 
+            return 0; 
+        }; 
+    }
+
+    // A-Z and 1-100 
+    sortByUp(key) {
+        let arrayCopy = [...this.state.inventorys]; 
+        arrayCopy.sort(this.compareByDescend(key)); 
+        this.setState({inventorys: arrayCopy});
+    }
+
+    // Z-A and 100-1 
+    sortByDown(key) {
+        let arrayCopy = [...this.state.inventorys]; 
+        arrayCopy.sort(this.compareByAscend(key)); 
+        this.setState({inventorys: arrayCopy});
+    }
+
 
     deleteInventory(id) {
         axios.delete('http://localhost:5000/trashInventorys/'+id)
@@ -82,21 +120,85 @@ export default class TrashInventoryList extends Component {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                           Trash Inventory List
-                          <Icon icon={roundArrowDropDown} height="2em" />
+                          <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table">
+                <table className="table" class="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
-                            <th>Food Item</th>
-                            <th>Category</th>
-                            <th>Unit Size</th>
-                            <th>In Stock</th>
-                            <th>Need</th>
-                            <th>To Purchase</th>
-                            <th>Unit Price</th>
-                            <th>Total Cost</th>
+                            <th>
+                            Food Item
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('fooditem')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('fooditem')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Category
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('category')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('category')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Unit Size
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('unitsize')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('unitsize')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            In Stock
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('instock')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('instock')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Need
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('needed')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('needed')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            To Purchase
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('topurchase')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('topurchase')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Unit Price
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('unitprice')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('unitprice')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Total Cost
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('totalcost')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('totalcost')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
