@@ -24,6 +24,8 @@ return(
         <td>{props.booking.eventtype}</td>
         <td>{props.booking.location}</td>
         <td>{props.booking.date.substring(0,10)}</td>
+        <td>{props.booking.starttime}</td>
+        <td>{props.booking.endtime}</td>
         <td>
             <Button variant="outline-warning" size="sm">
             <Link to={"/restoresBooking/"+props.booking._id}>restore</Link>
@@ -172,6 +174,24 @@ export default class TrashBookingList extends Component {
                                 <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
                                 </i>
                                 <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Start Time
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('starttime')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('starttime')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            End Time
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('endtime')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('endtime')}>
                                 </i>
                                 </ButtonGroup>
                             </th>

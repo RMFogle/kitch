@@ -12,7 +12,8 @@ router.route('/add').post((req, res) => {
     const eventtype = req.body.eventtype; 
     const location = req.body.location; 
     const date = Date.parse(req.body.date); 
-   // const time = TimeRanges.parse(req.body.time); 
+    const starttime = req.body.starttime; 
+    const endtime = req.body.endtime; 
 
     
 const newBooking = new Booking({
@@ -20,7 +21,8 @@ const newBooking = new Booking({
     eventtype, 
     location, 
     date, 
-   // time, 
+    starttime, 
+    endtime,
 }); 
 
 newBooking.save()
@@ -47,6 +49,8 @@ router.route('/update/:id').post((req, res) => {
             booking.eventtype = req.body.eventtype; 
             booking.location = req.body.location; 
             booking.date = Date.parse(req.body.date); 
+            booking.starttime = req.body.starttime; 
+            booking.endtime = req.body.endtime; 
 
             booking.save()
                 .then(() => res.json('Booking updated!'))

@@ -13,6 +13,8 @@ export default class ArchiveBooking extends Component {
         this.onChangeEventtype = this.onChangeEventtype.bind(this); 
         this.onChangeLocation = this.onChangeLocation.bind(this); 
         this.onChangeDate = this.onChangeDate.bind(this); 
+        this.onChangeStartTime = this.onChangeStartTime.bind(this); 
+        this.onChangeEndTime = this.onChangeEndTime.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -20,6 +22,8 @@ export default class ArchiveBooking extends Component {
             eventtype: '', 
             location: '', 
             date: new Date(), 
+            starttime: '', 
+            endtime: '', 
             clients: []
         }
     }
@@ -31,7 +35,9 @@ export default class ArchiveBooking extends Component {
                     clientname: response.data.clientname, 
                     eventtype: response.data.eventtype, 
                     location: response.data.location, 
-                    date: new Date(response.data.date)
+                    date: new Date(response.data.date),
+                    starttime: response.data.starttime, 
+                    endtime: response.data.endtime
                 })
             })
             .catch(function (error) {
@@ -74,12 +80,26 @@ export default class ArchiveBooking extends Component {
         }); 
     }
 
+    onChangeStartTime(e) {
+        this.setState({
+            starttime: e.target.value 
+        });
+    }
+
+    onChangeEndTime(e) {
+        this.setState({
+            endtime: e.target.value 
+        });
+    }
+
     addToArchive() {
         const booking = {
             clientname: this.state.clientname, 
             eventtype: this.state.eventtype, 
             location: this.state.location, 
-            date: this.state.date 
+            date: this.state.date, 
+            starttime: this.state.starttime, 
+            endtime: this.state.endtime
         }
 
         console.log(booking); 
@@ -139,13 +159,33 @@ export default class ArchiveBooking extends Component {
                         onChange={this.onChangeLocation}
                         readOnly/>
                     </div>
-                    <div className="form-group">
+                    <div class="form-row">
+                    <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>
                             <DatePicker 
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
                                 readOnly/>
+                        </div>
+                    </div>
+                    <div className="form-group col-md-4">
+                    <label>Start Time: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.starttime}
+                        onChange={this.onChangeStartTime}
+                        readOnly/>
+                        </div>
+                        <div className="form-group col-md-4">
+                        <label>End Time: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.endtime}
+                        onChange={this.onChangeEndTime}
+                        readOnly/>
                         </div>
                     </div>
 
