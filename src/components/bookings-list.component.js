@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
-import axios from 'axios'; 
+import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
@@ -31,6 +31,7 @@ const Booking = props => (
         </td>
     </tr>
 )
+
 
 
 export default class BookingsList extends Component {
@@ -90,6 +91,7 @@ export default class BookingsList extends Component {
             return <Booking booking={currentbooking} key={currentbooking._id}/>; 
         })
     }
+
 
     render() { 
         return (
