@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css"; 
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import es from 'date-fns/locale/es';
 import Button from 'react-bootstrap/Button';
 
 export default class EditBooking extends Component {
@@ -75,6 +77,8 @@ export default class EditBooking extends Component {
     }
 
     onChangeDate(date) {
+        registerLocale('es', es); 
+        setDefaultLocale('es');
         this.setState({
             date: date 
         }); 
@@ -158,6 +162,7 @@ export default class EditBooking extends Component {
                     <label>Date: </label>
                     <div>
                         <DatePicker
+                            locale="es"
                             selected={this.state.date}
                             onChange={this.onChangeDate}
                         /> 

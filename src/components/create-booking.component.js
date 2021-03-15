@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import DatePicker from 'react-datepicker'; 
 import "react-datepicker/dist/react-datepicker.css";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import es from 'date-fns/locale/es';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 
-
+    //test function for list
 
 export default class CreateBooking extends Component {
     constructor(props) {
@@ -63,6 +65,8 @@ export default class CreateBooking extends Component {
     }
 
     onChangeDate(date) {
+        registerLocale('es', es); 
+        setDefaultLocale('es');
         this.setState({
             date: date 
         }); 
@@ -79,6 +83,9 @@ export default class CreateBooking extends Component {
             endtime: e.target.value 
         });
     }
+
+    //test function for list
+
 
     onSubmit(e) {
        alert("Booking Successfully Added!!!")
@@ -162,8 +169,9 @@ export default class CreateBooking extends Component {
                     <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>
-                            <DatePicker 
-                                selected={this.state.date}
+                            <DatePicker
+                                locale="es"
+                                selected={ this.state.date}
                                 onChange={this.onChangeDate}
                             />
                         </div>
@@ -224,6 +232,7 @@ export default class CreateBooking extends Component {
                             <option>11:00 PM</option>
                             <option>11:30 PM</option>
                             <option>12:00 PM</option>
+                            {/* test function for list */}
                         </select>
                         </div>
                         <div className="form-group col-md-4">
@@ -282,6 +291,7 @@ export default class CreateBooking extends Component {
                             <option>11:00 PM</option>
                             <option>11:30 PM</option>
                             <option>12:00 PM</option>
+                            {/* test function for list */}
                         </select>
                         </div>
                     </div>
