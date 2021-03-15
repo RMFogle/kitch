@@ -12,7 +12,8 @@ router.route('/add').post((req, res) => {
     const eventtype = req.body.eventtype; 
     const location = req.body.location; 
     const date = Date.parse(req.body.date); 
-   // const time = TimeRanges.parse(req.body.time); 
+    const starttime = req.body.starttime; 
+    const endtime = req.body.endtime; 
 
     
 const newArchiveBooking = new ArchiveBooking({
@@ -20,7 +21,8 @@ const newArchiveBooking = new ArchiveBooking({
     eventtype, 
     location, 
     date, 
-   // time, 
+    starttime, 
+    endtime,
 }); 
 
 newArchiveBooking.save()
@@ -46,7 +48,9 @@ router.route('/update/:id').post((req, res) => {
             archiveBooking.clientname = req.body.clientname; 
             archiveBooking.eventtype = req.body.eventtype; 
             archiveBooking.location = req.body.location; 
-            archiveBooking.date = Date.parse(req.body.date); 
+            archiveBooking.date = Date.parse(req.body.date);
+            archiveBooking.starttime = req.body.starttime; 
+            archiveBooking.endtime = req.body.endtime; 
 
             archiveBooking.save()
                 .then(() => res.json('Archive Booking updated!'))

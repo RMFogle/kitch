@@ -12,7 +12,8 @@ router.route('/add').post((req, res) => {
     const eventtype = req.body.eventtype; 
     const location = req.body.location; 
     const date = Date.parse(req.body.date); 
-   // const time = TimeRanges.parse(req.body.time); 
+    const starttime = req.body.starttime; 
+    const endtime = req.body.endtime; 
 
     
 const newTrashBooking = new TrashBooking({
@@ -20,7 +21,8 @@ const newTrashBooking = new TrashBooking({
     eventtype, 
     location, 
     date, 
-   // time, 
+    starttime, 
+    endtime,
 }); 
 
 newTrashBooking.save()
@@ -47,6 +49,8 @@ router.route('/update/:id').post((req, res) => {
             trashBooking.eventtype = req.body.eventtype; 
             trashBooking.location = req.body.location; 
             trashBooking.date = Date.parse(req.body.date); 
+            trashBooking.starttime = req.body.starttime; 
+            trashBooking.endtime = req.body.endtime; 
 
             trashBooking.save()
                 .then(() => res.json('Trash Booking updated!'))
