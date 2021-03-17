@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom"; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import './styles/style.css';
 
 import MainNavbar from "./components/main-navbar.component"; 
 import InventoryList from "./components/inventorys-list.component"; 

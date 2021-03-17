@@ -1,3 +1,7 @@
+/* body {
+    background-color: silver;
+} */
+
 table thead i {
     margin-left: 10px;
     margin-top: -5px; 
@@ -7,3 +11,7 @@ table thead i {
 i:active {
     color: white;
 }
+
+/* .navbar {
+    opacity: 0.5;
+} */
