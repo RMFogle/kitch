@@ -41,12 +41,16 @@ export default class InventoryList extends Component {
         super(props); 
 
         
-        this.state = {inventorys: []}
+        this.state = {
+            inventorys: [], 
+            searchInventory: ''
+        } 
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
         this.sortByUp.bind(this); 
         this.sortByDown.bind(this); 
+        this.handleInput.bind(this);
     }
 
     componentDidMount() {
@@ -58,7 +62,6 @@ export default class InventoryList extends Component {
             console.log(error); 
         })
     }
-
 
     compareByDescend(key) {
         return function (a, b) {
@@ -90,8 +93,15 @@ export default class InventoryList extends Component {
         this.setState({inventorys: arrayCopy});
     }
 
+    handleInput = (e) => {
+        console.log(e.target.value); 
+        this.setState({
+            searchInventory: e.target.value
+        })
+    }
 
     inventoryList() {
+        console.log(this); 
         return this.state.inventorys.map(currentinventory => {
             return <Inventory inventory={currentinventory} key={currentinventory._id}/>; 
         })
@@ -108,7 +118,8 @@ export default class InventoryList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table" class="table table-sm table-hover table-bordered">
+                        <input type="text" value={this.state.searchInventory} onChange={this.handleInput} placeholder="Search..."/>
+                <table className="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
                             <th>
@@ -189,6 +200,19 @@ export default class InventoryList extends Component {
                     <tbody>
                         { this.inventoryList() }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Food Item</th>
+                            <th>Category</th>
+                            <th>Unit Size</th>
+                            <th>In Stock</th>
+                            <th>Need</th>
+                            <th>To Purchase</th>
+                            <th>Unit Price</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 </Card.Body>
                 </Accordion.Collapse>
