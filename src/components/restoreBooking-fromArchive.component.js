@@ -1,7 +1,6 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
-import DatePicker from 'react-datepicker'; 
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-date-picker'; 
 import Button from 'react-bootstrap/Button'; 
 
 
@@ -162,7 +161,7 @@ export default class ArchiveRestoreBooking extends Component {
                     <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>
-                            <DatePicker 
+                            <DatePicker
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
                                 readOnly/>
