@@ -216,7 +216,7 @@ export default class CreateBooking extends Component {
                         onChange={this.onChangeLocation}
                         />
                     </div>
-                    <div class="form-row">
+                    <div className="form-row">
                     <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>
@@ -227,7 +227,7 @@ export default class CreateBooking extends Component {
                         </div>
                     </div>
                     <div className="form-group col-md-4">
-                    <label for="time1">Start Time: </label>
+                    <label htmlFor="time1">Start Time: </label>
                         <select id="time1"
                         required
                         className="form-control"
@@ -237,7 +237,7 @@ export default class CreateBooking extends Component {
                         </select>
                         </div>
                         <div className="form-group col-md-4">
-                        <label for="time2">End Time: </label>
+                        <label htmlFor="time2">End Time: </label>
                         <select id="time2"
                         required
                         className="form-control"

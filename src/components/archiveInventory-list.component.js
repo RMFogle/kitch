@@ -8,20 +8,19 @@ import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import '../styles/style.css'; 
-
+import '../styles/table-style.css'; 
 
 const ArchiveInventory = props => (
     <tr>
-        <td>{props.inventory.fooditem}</td>
-        <td>{props.inventory.category}</td>
-        <td>{props.inventory.unitsize}</td>
-        <td>{props.inventory.instock}</td>
-        <td>{props.inventory.needed}</td>
-        <td>{props.inventory.topurchase}</td>
-        <td>{props.inventory.unitprice}</td>
-        <td>{props.inventory.totalcost}</td>
-        <td>
-            {/* Change buttons below to new layout and add actions needed */}
+        <td className="inventorylist">{props.inventory.fooditem}</td>
+        <td className="inventorylist">{props.inventory.category}</td>
+        <td className="inventorylist">{props.inventory.unitsize}</td>
+        <td className="inventorylist">{props.inventory.instock}</td>
+        <td className="inventorylist">{props.inventory.needed}</td>
+        <td className="inventorylist">{props.inventory.topurchase}</td>
+        <td className="inventorylist">{props.inventory.unitprice}</td>
+        <td className="inventorylist">{props.inventory.totalcost}</td>
+        <td className="inventorylist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/restore/"+props.inventory._id}>restore</Link>
             </Button> |  
@@ -95,7 +94,7 @@ export default class ArchiveInventoryList extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="table-responsive">
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -104,7 +103,7 @@ export default class ArchiveInventoryList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table" class="table table-sm table-hover table-bordered">
+                <table className="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
                             <th>
@@ -185,6 +184,19 @@ export default class ArchiveInventoryList extends Component {
                     <tbody>
                         { this.archiveInventoryList() }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Food Item</th>
+                            <th>Category</th>
+                            <th>Unit Size</th>
+                            <th>In Stock</th>
+                            <th>Need</th>
+                            <th>To Purchase</th>
+                            <th>Unit Price</th>
+                            <th>Total Cost</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 </Card.Body>
                 </Accordion.Collapse>
