@@ -159,7 +159,7 @@ export default class TrashBookingFromArchive extends Component {
                         onChange={this.onChangeLocation}
                         readOnly/>
                     </div>
-                    <div class="form-row">
+                    <div className="form-row">
                     <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>

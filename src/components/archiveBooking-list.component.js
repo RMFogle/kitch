@@ -7,18 +7,19 @@ import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css'; 
+import '../styles/style.css';
+import '../styles/table-style.css';
 
 
 const ArchiveBooking = props => (
     <tr>
-        <td>{props.booking.clientname}</td>
-        <td>{props.booking.eventtype}</td>
-        <td>{props.booking.location}</td>
-        <td>{props.booking.date.substring(0,10)}</td>
-        <td>{props.booking.starttime}</td>
-        <td>{props.booking.endtime}</td>
-        <td>
+        <td className="bookinglist">{props.booking.clientname}</td>
+        <td className="bookinglist">{props.booking.eventtype}</td>
+        <td className="bookinglist">{props.booking.location}</td>
+        <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
+        <td className="bookinglist">{props.booking.starttime}</td>
+        <td className="bookinglist">{props.booking.endtime}</td>
+        <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
             </Button> |
@@ -91,7 +92,7 @@ export default class ArchiveBookingList extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="table-responsive">
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -100,7 +101,7 @@ export default class ArchiveBookingList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table" class="table table-sm table-hover table-bordered">
+                <table className="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
                             <th>
@@ -163,6 +164,17 @@ export default class ArchiveBookingList extends Component {
                     <tbody>
                         { this.archiveBookingList() }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Client</th>
+                            <th>Event</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 </Card.Body>
                 </Accordion.Collapse>

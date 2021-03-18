@@ -7,21 +7,22 @@ import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css'; 
+import '../styles/style.css';
+import '../styles/table-style.css';
 
 
 const Inventory = props => (
     
     <tr>
-        <td>{props.inventory.fooditem}</td>
-        <td>{props.inventory.category}</td>
-        <td>{props.inventory.unitsize}</td>
-        <td>{props.inventory.instock}</td>
-        <td>{props.inventory.needed}</td>
-        <td>{props.inventory.topurchase}</td>
-        <td>${props.inventory.unitprice}</td>
-        <td>${props.inventory.totalcost}</td>
-        <td>
+        <td className="inventorylist">{props.inventory.fooditem}</td>
+        <td className="inventorylist">{props.inventory.category}</td>
+        <td className="inventorylist">{props.inventory.unitsize}</td>
+        <td className="inventorylist">{props.inventory.instock}</td>
+        <td className="inventorylist">{props.inventory.needed}</td>
+        <td className="inventorylist">{props.inventory.topurchase}</td>
+        <td className="inventorylist">${props.inventory.unitprice}</td>
+        <td className="inventorylist">${props.inventory.totalcost}</td>
+        <td className="inventorylist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/editss/"+props.inventory._id}>edit</Link>
             </Button> |
@@ -100,7 +101,7 @@ export default class InventoryList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="table-responsive">
                 <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">

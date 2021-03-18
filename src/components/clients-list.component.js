@@ -7,15 +7,16 @@ import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css'; 
+import '../styles/style.css';
+import '../styles/table-style.css'; 
 
 const Client = props => (
     <tr>
-        <td>{props.client.clientname}</td>
-        <td>{props.client.phone}</td>
-        <td>{props.client.email}</td>
-        <td>{props.client.notes}</td>
-        <td>
+        <td className="clientlist">{props.client.clientname}</td>
+        <td className="clientlist">{props.client.phone}</td>
+        <td className="clientlist">{props.client.email}</td>
+        <td className="clientlist">{props.client.notes}</td>
+        <td className="clientlist">
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             {/* check edit link below */}
@@ -93,7 +94,7 @@ export default class ClientsList extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="table-responsive">
                 <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -102,7 +103,7 @@ export default class ClientsList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                <table className="table" class="table table-sm table-hover table-bordered">
+                <table className="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
                             <th>
@@ -147,6 +148,15 @@ export default class ClientsList extends Component {
                     <tbody>
                         { this.clientList() }
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Client</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 </Card.Body>
                 </Accordion.Collapse>
