@@ -1,13 +1,10 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
-import DatePicker from 'react-datepicker'; 
-import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import es from 'date-fns/locale/es';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import DatePicker from 'react-date-picker'; 
 
 
 const BookingTimes = () => (
@@ -119,8 +116,6 @@ export default class CreateBooking extends Component {
     }
 
     onChangeDate(date) {
-        registerLocale('es', es); 
-        setDefaultLocale('es');
         this.setState({
             date: date 
         }); 
@@ -225,10 +220,9 @@ export default class CreateBooking extends Component {
                     <div className="form-group col-md-3">
                         <label>Date: </label>
                         <div>
-                            <DatePicker
-                                locale="es"
-                                selected={ this.state.date}
-                                onChange={this.onChangeDate}
+                            <DatePicker 
+                            value={this.state.date}
+                            onChange={this.onChangeDate}
                             />
                         </div>
                     </div>
