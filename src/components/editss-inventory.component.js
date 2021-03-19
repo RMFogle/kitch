@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button';
+import NumberFormat from 'react-number-format'; 
+
 
 export default class EditInventory extends Component {
     constructor(props) {
@@ -207,13 +209,15 @@ export default class EditInventory extends Component {
                 </div>
                 <div className="form-group">
                     <label>Total Cost: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
+                    <div>
+                        <NumberFormat
+                        thousandSeparator={true} 
+                        prefix={'$'} 
+                        inputmode="numeric"
                         value={this.state.totalcost}
                         onChange={this.onChangeTotalcost}
-                        readOnly
                         />
+                    </div>
                 </div>
 
                 <div className="form-group">
