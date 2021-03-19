@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'; 
+import NumberFormat from 'react-number-format'; 
 
 
 export default class EditClient extends Component {
@@ -110,12 +111,14 @@ export default class EditClient extends Component {
                 </div>
                 <div className="form-group">
                     <label>Phone: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
+                    <div>
+                        <NumberFormat 
+                        format="(###) ###-####" 
+                        mask="_"
                         value={this.state.phone}
                         onChange={this.onChangePhone}
                         />
+                    </div>
                 </div>
                 <div className="form-group">
                     <label>Email: </label>
