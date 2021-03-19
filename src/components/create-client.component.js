@@ -3,8 +3,8 @@ import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
-import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line'; 
-import '../styles/style.css'; 
+import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import NumberFormat from 'react-number-format';
 
 
 export default class CreateClient extends Component {
@@ -99,12 +99,14 @@ export default class CreateClient extends Component {
                     </div>
                     <div className="form-group">
                         <label>Phone: </label>
-                        <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.phone}
-                        onChange={this.onChangePhone}
-                        />
+                        <div>
+                            <NumberFormat 
+                            format="(###) ###-####" 
+                            mask="_"
+                            value={this.state.phone}
+                            onChange={this.onChangePhone}
+                            />
+                        </div>
                     </div>
                     <div className="form-group">
                         <label>Email: </label>
