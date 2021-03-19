@@ -4,6 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import NumberFormat from 'react-number-format'; 
 
 
 export default class CreateInventory extends Component {
@@ -28,7 +29,7 @@ export default class CreateInventory extends Component {
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: ''
+            totalcost: '', 
         }   
     }
 
@@ -194,13 +195,15 @@ export default class CreateInventory extends Component {
                     </div>
                     <div className="form-group">
                         <label>Total Cost: </label>
-                        <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.totalcost}
-                        onChange={this.onChangeTotalcost}
-                        readOnly
-                        />
+                        <div>
+                            <NumberFormat
+                            thousandSeparator={true} 
+                            prefix={'$'} 
+                            inputmode="numeric"
+                            value={this.state.totalcost}
+                            onChange={this.onChangeTotalcost}
+                            />
+                        </div>
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Add Item" className="btn btn-primary" />
