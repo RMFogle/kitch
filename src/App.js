@@ -35,6 +35,7 @@ import TrashClient from "./components/postToo-trashClient.component";
 import ArchiveRestoreClient from "./components/restoreClient-fromArchive.component";
 import TrashClientFromArchive from "./components/postToTrash-fromArchiveClient.component"; 
 import TrashRestoreClient from "./components/restoresClient-fromTrash.component"; 
+import DataChart from "./components/data-charts.component"; 
 
 
 
@@ -53,6 +54,7 @@ function App() {
       <Route path="/client" component={CreateClient} /> 
       <Route path="/client" component={ClientsList} />
       <Route path="/edits/:id" component={EditClient} />
+      <Route path="/report" component={DataChart} />
       <Route path="/archive" component={ArchiveInventoryList} />
       <Route path="/archive" component={ArchiveBookingList} />
       <Route path="/archive" component={ArchiveClientList} />
