@@ -17,8 +17,8 @@ const ArchiveInventory = props => (
         <td className="inventorylist">{props.inventory.instock}</td>
         <td className="inventorylist">{props.inventory.needed}</td>
         <td className="inventorylist">{props.inventory.topurchase}</td>
-        <td className="inventorylist">{props.inventory.unitprice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-        <td className="inventorylist">{props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="inventorylist">${props.inventory.unitprice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="inventorylist">${props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="inventorylist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/restore/"+props.inventory._id}>restore</Link>
