@@ -1,42 +1,43 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'; 
 import axios from 'axios'; 
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css';
-import '../styles/table-style.css';
+import '../styles/table-style.css'; 
 
-
-const ArchiveBooking = props => (
+const Client = props => (
     <tr>
-        <td className="bookinglist">{props.booking.clientname}</td>
-        <td className="bookinglist">{props.booking.eventtype}</td>
-        <td className="bookinglist">{props.booking.location}</td>
-        <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
-        <td className="bookinglist">{props.booking.starttime}</td>
-        <td className="bookinglist">{props.booking.endtime}</td>
-        <td className="bookinglist">
+        <td className="clientlist">{props.client.clientname}</td>
+        <td className="clientlist">{props.client.phone}</td>
+        <td className="clientlist">{props.client.email}</td>
+        <td className="clientlist">{props.client.notes}</td>
+        <td className="clientlist">
+            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
+            {/* check edit link below */}
+            <Link to={"/edits/"+props.client._id}>edit</Link>
+            </Button> | 
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/postTo/"+props.client._id}>archive</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
-            <Link to={"/addTooTrash/"+props.booking._id}>trash</Link>
+            <Link to={"/postToo/"+props.client._id}>trash</Link>
             </Button>
-        
-    </td>
-</tr>
+            
+        </td>
+    </tr>
 )
 
 
-export default class ArchiveBookingList extends Component {
-    constructor(props) {
+export default class ClientsList extends Component {
+    constructor(props) { 
         super(props); 
 
-        this.state = {bookings: []}
+        this.state = {clients: []}; 
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -45,9 +46,9 @@ export default class ArchiveBookingList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/archiveBookings/')
+        axios.get('http://localhost:5000/clients/')
         .then(response => {
-            this.setState({ bookings: response.data})
+            this.setState({ clients: response.data})
         })
         .catch((error) => {
             console.log(error); 
@@ -72,31 +73,31 @@ export default class ArchiveBookingList extends Component {
 
     // A-Z and 1-100 
     sortByUp(key) {
-        let arrayCopy = [...this.state.bookings]; 
+        let arrayCopy = [...this.state.clients]; 
         arrayCopy.sort(this.compareByDescend(key)); 
-        this.setState({bookings: arrayCopy});
+        this.setState({clients: arrayCopy});
     }
 
     // Z-A and 100-1 
     sortByDown(key) {
-        let arrayCopy = [...this.state.bookings]; 
+        let arrayCopy = [...this.state.clients]; 
         arrayCopy.sort(this.compareByAscend(key)); 
-        this.setState({bookings: arrayCopy});
+        this.setState({clients: arrayCopy});
     }
 
-    archiveBookingList() {
-        return this.state.bookings.map(currentbooking => {
-            return <ArchiveBooking booking={currentbooking} key={currentbooking._id}/>; 
+    clientList() {
+        return this.state.clients.map(currentclient => {
+            return <Client client={currentclient} deleteClient={this.deleteClient} key={currentclient._id}/>; 
         })
     }
 
     render() { 
         return (
             <div className="table-responsive">
-                <Accordion>
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Archive Booking List
+                           Client List
                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
@@ -114,47 +115,29 @@ export default class ArchiveBookingList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Event
+                            Phone
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('eventtype')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('phone')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('eventtype')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('phone')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Location
+                            Email
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('email')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('email')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Date
+                            Notes
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('notes')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
-                                </i>
-                                </ButtonGroup>
-                            </th>
-                            <th>
-                            Start Time
-                                <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('starttime')}>
-                                </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('starttime')}>
-                                </i>
-                                </ButtonGroup>
-                            </th>
-                            <th>
-                            End Time
-                                <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('endtime')}>
-                                </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('endtime')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('notes')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
@@ -162,16 +145,14 @@ export default class ArchiveBookingList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.archiveBookingList() }
+                        { this.clientList() }
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Client</th>
-                            <th>Event</th>
-                            <th>Location</th>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Notes</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>

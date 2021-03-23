@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
-import Button from 'react-bootstrap/Button'; 
+import Button from 'react-bootstrap/Button';
 import axios from 'axios'; 
 import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
@@ -9,24 +9,26 @@ import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
-import '../styles/style.css'; 
 import '../styles/table-style.css';
 
-const TrashClient = props => {
-    
+
+const TrashBooking = props => {
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-return (
+return(
     <tr>
-        <td className="clientlist">{props.client.clientname}</td>
-        <td className="clientlist">{props.client.phone}</td>
-        <td className="clientlist">{props.client.email}</td>
-        <td className="clientlist">{props.client.notes}</td>
-        <td className="clientlist">
+        <td className="bookinglist">{props.booking.clientname}</td>
+        <td className="bookinglist">{props.booking.eventtype}</td>
+        <td className="bookinglist">{props.booking.location}</td>
+        <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
+        <td className="bookinglist">{props.booking.starttime}</td>
+        <td className="bookinglist">{props.booking.endtime}</td>
+        <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
-            <Link to={"/restoresClient/"+props.client._id}>restore</Link>
+            <Link to={"/restoresBooking/"+props.booking._id}>restore</Link>
             </Button> |
             <>
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
@@ -39,14 +41,14 @@ return (
                 keyboard={false}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Delete Client</Modal.Title>
+                        <Modal.Title>Delete Booking</Modal.Title>
                     </Modal.Header>
                         <Modal.Body>
-                        Are you sure you want to delete this client? 
+                        Are you sure you want to delete this booking? 
                         </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-                        <Button variant="primary" onClick= {() => { props.deleteClient(props.client._id) }}>Confirm</Button>
+                        <Button variant="primary" onClick= {() => { props.deleteBooking(props.booking._id) }}>Confirm</Button>
                     </Modal.Footer>
                 </Modal>
             </>
@@ -56,13 +58,13 @@ return (
 }
 
 
-export default class TrashClientList extends Component {
-    constructor(props) { 
+export default class TrashBookingList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.deleteClient = this.deleteClient.bind(this); 
+        this.deleteBooking = this.deleteBooking.bind(this); 
 
-        this.state = {clients: []}; 
+        this.state = {bookings: []}
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -71,9 +73,9 @@ export default class TrashClientList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/trashClients/')
+        axios.get('http://localhost:5000/trashBookings/')
         .then(response => {
-            this.setState({ clients: response.data})
+            this.setState({ bookings: response.data})
         })
         .catch((error) => {
             console.log(error); 
@@ -98,40 +100,40 @@ export default class TrashClientList extends Component {
 
     // A-Z and 1-100 
     sortByUp(key) {
-        let arrayCopy = [...this.state.clients]; 
+        let arrayCopy = [...this.state.bookings]; 
         arrayCopy.sort(this.compareByDescend(key)); 
-        this.setState({clients: arrayCopy});
+        this.setState({bookings: arrayCopy});
     }
 
     // Z-A and 100-1 
     sortByDown(key) {
-        let arrayCopy = [...this.state.clients]; 
+        let arrayCopy = [...this.state.bookings]; 
         arrayCopy.sort(this.compareByAscend(key)); 
-        this.setState({clients: arrayCopy});
+        this.setState({bookings: arrayCopy});
     }
 
-    deleteClient(id) {
-        axios.delete('http://localhost:5000/trashClients/'+id)
+    deleteBooking(id) {
+        axios.delete('http://localhost:5000/trashBookings/'+id)
             .then(res => console.log(res.data)); 
 
         this.setState({
-            clients: this.state.clients.filter(el => el._id !== id)
+            bookings: this.state.bookings.filter(el => el._id !== id)
         })
     }
 
-    trashClientList() { 
-        return this.state.clients.map(currentclient => {
-            return <TrashClient client={currentclient} deleteClient={this.deleteClient} key={currentclient._id}/>;
+    trashBookingList() {
+        return this.state.bookings.map(currentbooking => {
+            return <TrashBooking booking={currentbooking} deleteBooking={this.deleteBooking} key={currentbooking._id}/>; 
         })
     }
 
-    render() {
-        return ( 
+    render() { 
+        return (
             <div className="table-responsive">
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Trash Client List
+                          Trash Booking List
                           <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
@@ -149,29 +151,47 @@ export default class TrashClientList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Phone
+                            Event
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('phone')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('eventtype')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('phone')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('eventtype')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Email
+                            Location
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('email')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('email')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Notes
+                            Date
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('notes')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('notes')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Start Time
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('starttime')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('starttime')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            End Time
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('endtime')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('endtime')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
@@ -179,14 +199,16 @@ export default class TrashClientList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.trashClientList() }
+                        { this.trashBookingList() }
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>Client</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Notes</th>
+                            <th>Event</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>

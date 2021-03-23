@@ -7,10 +7,9 @@ import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css';
-import '../styles/table-style.css'; 
+import '../styles/table-style.css';
 
-const Client = props => (
+const ArchiveClient = props => (
     <tr>
         <td className="clientlist">{props.client.clientname}</td>
         <td className="clientlist">{props.client.phone}</td>
@@ -20,13 +19,10 @@ const Client = props => (
             {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
             {/* check edit link below */}
-            <Link to={"/edits/"+props.client._id}>edit</Link>
-            </Button> | 
+            <Link to={"/restoreClient/"+props.client._id}>restore</Link>
+            </Button> |  
             <Button variant="outline-warning" size="sm">
-            <Link to={"/postTo/"+props.client._id}>archive</Link>
-            </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/postToo/"+props.client._id}>trash</Link>
+            <Link to={"/postToTrash/"+props.client._id}>trash</Link>
             </Button>
             
         </td>
@@ -34,11 +30,11 @@ const Client = props => (
 )
 
 
-export default class ClientsList extends Component {
-    constructor(props) { 
+export default class ArchiveClientList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.state = {clients: []}; 
+        this.state = {clients: [] }
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -47,7 +43,7 @@ export default class ClientsList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/clients/')
+        axios.get('http://localhost:5000/archiveClients/')
         .then(response => {
             this.setState({ clients: response.data})
         })
@@ -86,19 +82,19 @@ export default class ClientsList extends Component {
         this.setState({clients: arrayCopy});
     }
 
-    clientList() {
+    archiveClientList() {
         return this.state.clients.map(currentclient => {
-            return <Client client={currentclient} deleteClient={this.deleteClient} key={currentclient._id}/>; 
+            return <ArchiveClient client={currentclient} key={currentclient._id}/>;
         })
     }
 
     render() { 
         return (
             <div className="table-responsive">
-                <Accordion defaultActiveKey="1">
+                <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Client List
+                           Archive Client List
                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
@@ -146,7 +142,7 @@ export default class ClientsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.clientList() }
+                        { this.archiveClientList() }
                     </tbody>
                     <tfoot>
                         <tr>

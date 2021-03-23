@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown'; 
-import '../styles/style.css'; 
+import '../styles/table-style.css'; 
 
 export default class MainNavbar extends Component {
 

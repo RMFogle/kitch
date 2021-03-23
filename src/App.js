@@ -2,40 +2,43 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom"; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './styles/style.css';
 
-import MainNavbar from "./components/main-navbar.component"; 
-import InventoryList from "./components/inventorys-list.component"; 
-import EditInventory from "./components/editss-inventory.component"; 
-import CreateInventory from "./components/create-inventory.component"; 
-import BookingsList from "./components/bookings-list.component";
-import EditBooking from "./components/edit-booking.component"; 
-import CreateBooking from "./components/create-booking.component"; 
-import ClientsList from "./components/clients-list.component"; 
-import EditClient from "./components/edits-client.components";
-import CreateClient from "./components/create-client.component"; 
-import ArchiveInventoryList from "./components/archiveInventory-list.component"; 
-import TrashInventoryList from "./components/trashInventory-list.component";
-import ArchiveInventory from "./components/sendTo-archiveInventory.component";
-import TrashInventory from "./components/sendToo-trashInventory.component";
-import TrashInventoryFromArchive from "./components/sendToos-trashInventoryFromArchive.component"; 
-import ArchiveRestoreInventory from "./components/restore-Inventory.component";
-import TrashRestoreInventory from "./components/restores-InventoryTrash.component"; 
-import ArchiveBookingList from "./components/archiveBooking-list.component"; 
-import ArchiveBooking from "./components/addTo-archiveBooking.component";
-import TrashBooking from "./components/addToo-trashBooking.component";
-import TrashBookingList from "./components/trashBooking-list.component";
-import ArchiveRestoreBooking from "./components/restoreBooking-fromArchive.component";
-import TrashBookingFromArchive from "./components/addTooTrash-fromArchiveBooking.component";
-import TrashRestoreBooking from "./components/restoresBooking-fromTrash.component"; 
-import ArchiveClientList from "./components/archiveClient-list.component"; 
-import TrashClientList from "./components/trashClient-list.component"; 
-import ArchiveClient from "./components/postTo-archiveClient.component"; 
-import TrashClient from "./components/postToo-trashClient.component";
-import ArchiveRestoreClient from "./components/restoreClient-fromArchive.component";
-import TrashClientFromArchive from "./components/postToTrash-fromArchiveClient.component"; 
-import TrashRestoreClient from "./components/restoresClient-fromTrash.component"; 
-import DataChart from "./components/data-charts.component"; 
+import MainNavbar from "./components/nav/main-navbar.component";
+
+import CreateInventory from "./components/inventory/create-inventory.component";
+import InventoryList from "./components/inventory/inventorys-list.component"; 
+import EditInventory from "./components/inventory/editss-inventory.component";
+import ArchiveInventory from "./components/inventory/sendTo-archiveInventory.component";
+import TrashInventory from "./components/inventory/sendToo-trashInventory.component";
+import ArchiveInventoryList from "./components/inventory/archiveInventory-list.component";
+import ArchiveRestoreInventory from "./components/inventory/restoreInventory-fromArchive.component";
+import TrashInventoryFromArchive from "./components/inventory/sendToosTrash-fromArchiveInventory.component";
+import TrashInventoryList from "./components/inventory/trashInventory-list.component";
+import TrashRestoreInventory from "./components/inventory/restoresInventory-fromTrash.component"; 
+
+import CreateBooking from "./components/booking/create-booking.component"; 
+import BookingsList from "./components/booking/bookings-list.component";
+import EditBooking from "./components/booking/edit-booking.component"; 
+import ArchiveBooking from "./components/booking/addTo-archiveBooking.component";
+import TrashBooking from "./components/booking/addToo-trashBooking.component";
+import ArchiveBookingList from "./components/booking/archiveBooking-list.component"; 
+import ArchiveRestoreBooking from "./components/booking/restoreBooking-fromArchive.component";
+import TrashBookingFromArchive from "./components/booking/addTooTrash-fromArchiveBooking.component";
+import TrashBookingList from "./components/booking/trashBooking-list.component";
+import TrashRestoreBooking from "./components/booking/restoresBooking-fromTrash.component"; 
+
+import CreateClient from "./components/client/create-client.component";  
+import ClientsList from "./components/client/clients-list.component"; 
+import EditClient from "./components/client/edits-client.components"; 
+import ArchiveClient from "./components/client/postTo-archiveClient.component";
+import TrashClient from "./components/client/postToo-trashClient.component";
+import ArchiveClientList from "./components/client/archiveClient-list.component"; 
+import ArchiveRestoreClient from "./components/client/restoreClient-fromArchive.component";
+import TrashClientFromArchive from "./components/client/postToTrash-fromArchiveClient.component"; 
+import TrashClientList from "./components/client/trashClient-list.component";  
+import TrashRestoreClient from "./components/client/restoresClient-fromTrash.component";
+
+import DataChart from "./components/report/data-charts.component"; 
 
 
 
@@ -47,13 +50,13 @@ function App() {
       <br/>
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
-      <Route path="/editss/:id" component={EditInventory} />
       <Route path="/booking" component={CreateBooking} />
       <Route path="/booking" exact component={BookingsList} />
-      <Route path="/edit/:id" component={EditBooking} />
       <Route path="/client" component={CreateClient} /> 
       <Route path="/client" component={ClientsList} />
+      <Route path="/edit/:id" component={EditBooking} />
       <Route path="/edits/:id" component={EditClient} />
+      <Route path="/editss/:id" component={EditInventory} />
       <Route path="/report" component={DataChart} />
       <Route path="/archive" component={ArchiveInventoryList} />
       <Route path="/archive" component={ArchiveBookingList} />
