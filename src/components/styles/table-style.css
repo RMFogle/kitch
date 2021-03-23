@@ -1,10 +1,20 @@
+table thead i {
+        margin-left: 10px;
+        margin-top: -5px; 
+        margin-bottom: -5px;
+}
+
+i:active {
+        color: white;
+}
+
 .table-responsive {
-    min-height: .01%;
-    overflow:auto;
+        min-height: .01%;
+        overflow:auto;
 }
 
 .table {
-    width: 100;
+        width: 100;
 }
 
 @media only screen and (max-width: 760px),
@@ -23,9 +33,9 @@
                 tr { border-bottom: 1px solid #ccc; }
                 /* Section five*/
                 td { 
-                     border: none;
-                     border-bottom: 1px solid #eee;
-                     padding-right: 60%;
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        padding-right: 60%;
                 }
                 /* inventory data coming in*/
                 table tr td.inventorylist:before {
@@ -85,7 +95,7 @@
                 td.clientlist:nth-of-type(5):before { content: "Actions: "; }
 
                 tfoot {
-                    visibility: hidden;
+                        visibility: hidden;
                 }
 }
 

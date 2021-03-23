@@ -1,16 +1,24 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import axios from 'axios'; 
+import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css'; 
-import '../styles/table-style.css'; 
+import Modal from 'react-bootstrap/Modal';
+import '../styles/table-style.css';
 
-const ArchiveInventory = props => (
+
+const TrashInventory = props => {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+return (
     <tr>
         <td className="inventorylist">{props.inventory.fooditem}</td>
         <td className="inventorylist">{props.inventory.category}</td>
@@ -22,19 +30,41 @@ const ArchiveInventory = props => (
         <td className="inventorylist">{props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="inventorylist">
             <Button variant="outline-warning" size="sm">
-            <Link to={"/restore/"+props.inventory._id}>restore</Link>
+            <Link to={"/restores/"+props.inventory._id}>restore</Link>
             </Button> |  
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/sendToos/"+props.inventory._id}>trash</Link>
-            </Button>
+            <>
+            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
+            delete
+            </Button> 
+                <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete Item</Modal.Title>
+                    </Modal.Header>
+                        <Modal.Body>
+                        Are you sure you want to delete this item? 
+                        </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                        <Button variant="primary" onClick= {() => { props.deleteInventory(props.inventory._id) }}>Confirm</Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         </td>
     </tr>
-)
+    );
+}
 
 
-export default class ArchiveInventoryList extends Component {
+export default class TrashInventoryList extends Component {
     constructor(props) { 
         super(props); 
+
+        this.deleteInventory = this.deleteInventory.bind(this); 
 
         this.state = {inventorys: []}; 
 
@@ -45,7 +75,7 @@ export default class ArchiveInventoryList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/archiveInventorys/')
+        axios.get('http://localhost:5000/trashInventorys/')
         .then(response => {
             this.setState({ inventorys: response.data})
         })
@@ -86,9 +116,18 @@ export default class ArchiveInventoryList extends Component {
     }
 
 
-    archiveInventoryList() {
+    deleteInventory(id) {
+        axios.delete('http://localhost:5000/trashInventorys/'+id)
+            .then(res => console.log(res.data)); 
+
+        this.setState({
+            inventorys: this.state.inventorys.filter(el => el._id !== id)
+        })
+    }
+
+    trashInventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <ArchiveInventory inventory={currentinventory} key={currentinventory._id}/>; 
+            return <TrashInventory inventory={currentinventory} deleteInventory={this.deleteInventory} key={currentinventory._id}/>; 
         })
     }
 
@@ -98,7 +137,7 @@ export default class ArchiveInventoryList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Archive Inventory List
+                          Trash Inventory List
                           <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
@@ -182,7 +221,7 @@ export default class ArchiveInventoryList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.archiveInventoryList() }
+                        { this.trashInventoryList() }
                     </tbody>
                     <tfoot>
                         <tr>

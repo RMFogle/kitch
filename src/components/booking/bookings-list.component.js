@@ -1,25 +1,16 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
-import axios from 'axios'; 
-import { useState } from 'react';
+import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Modal from 'react-bootstrap/Modal';
-import '../styles/style.css'; 
 import '../styles/table-style.css';
 
 
-const TrashBooking = props => {
-
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-return(
+const Booking = props => (
     <tr>
         <td className="bookinglist">{props.booking.clientname}</td>
         <td className="bookinglist">{props.booking.eventtype}</td>
@@ -29,43 +20,25 @@ return(
         <td className="bookinglist">{props.booking.endtime}</td>
         <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
-            <Link to={"/restoresBooking/"+props.booking._id}>restore</Link>
+            <Link to={"/edit/"+props.booking._id}>edit</Link>
             </Button> |
-            <>
-            <Button variant="outline-danger" style={{ color: 'blue' }} size="sm" onClick={handleShow}>
-            delete
-            </Button> 
-                <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Delete Booking</Modal.Title>
-                    </Modal.Header>
-                        <Modal.Body>
-                        Are you sure you want to delete this booking? 
-                        </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-                        <Button variant="primary" onClick= {() => { props.deleteBooking(props.booking._id) }}>Confirm</Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/addTo/"+props.booking._id}>archive</Link>
+            </Button> |
+            <Button variant="outline-warning" size="sm">
+            <Link to={"/addToo/"+props.booking._id}>trash</Link>
+            </Button>
         </td>
     </tr>
-    );
-}
+)
 
 
-export default class TrashBookingList extends Component {
-    constructor(props) {
+
+export default class BookingsList extends Component {
+    constructor(props) { 
         super(props); 
 
-        this.deleteBooking = this.deleteBooking.bind(this); 
-
-        this.state = {bookings: []}
+        this.state = {bookings: []}; 
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -74,7 +47,7 @@ export default class TrashBookingList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/trashBookings/')
+        axios.get('http://localhost:5000/bookings/')
         .then(response => {
             this.setState({ bookings: response.data})
         })
@@ -113,29 +86,21 @@ export default class TrashBookingList extends Component {
         this.setState({bookings: arrayCopy});
     }
 
-    deleteBooking(id) {
-        axios.delete('http://localhost:5000/trashBookings/'+id)
-            .then(res => console.log(res.data)); 
-
-        this.setState({
-            bookings: this.state.bookings.filter(el => el._id !== id)
-        })
-    }
-
-    trashBookingList() {
+    bookingList() {
         return this.state.bookings.map(currentbooking => {
-            return <TrashBooking booking={currentbooking} deleteBooking={this.deleteBooking} key={currentbooking._id}/>; 
+            return <Booking booking={currentbooking} key={currentbooking._id}/>; 
         })
     }
+
 
     render() { 
         return (
             <div className="table-responsive">
-                <Accordion>
+                <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Trash Booking List
-                          <Icon icon={arrowDropDownLine} height="2em" />
+                           Booking List
+                           <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
@@ -200,7 +165,7 @@ export default class TrashBookingList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.trashBookingList() }
+                        { this.bookingList() }
                     </tbody>
                     <tfoot>
                         <tr>

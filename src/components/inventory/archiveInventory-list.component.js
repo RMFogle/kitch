@@ -1,18 +1,15 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
-import axios from 'axios'; 
+import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css';
 import '../styles/table-style.css';
 
-
-const Inventory = props => (
-    
+const ArchiveInventory = props => (
     <tr>
         <td className="inventorylist">{props.inventory.fooditem}</td>
         <td className="inventorylist">{props.inventory.category}</td>
@@ -20,31 +17,25 @@ const Inventory = props => (
         <td className="inventorylist">{props.inventory.instock}</td>
         <td className="inventorylist">{props.inventory.needed}</td>
         <td className="inventorylist">{props.inventory.topurchase}</td>
-        <td className="inventorylist">${props.inventory.unitprice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-        <td className="inventorylist">${props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="inventorylist">{props.inventory.unitprice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="inventorylist">{props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="inventorylist">
             <Button variant="outline-warning" size="sm">
-            <Link to={"/editss/"+props.inventory._id}>edit</Link>
-            </Button> |
+            <Link to={"/restore/"+props.inventory._id}>restore</Link>
+            </Button> |  
             <Button variant="outline-warning" size="sm">
-            <Link to={"/sendTo/"+props.inventory._id}>archive</Link>
-            </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/sendToo/"+props.inventory._id}>trash</Link>
+            <Link to={"/sendToos/"+props.inventory._id}>trash</Link>
             </Button>
         </td>
     </tr>
 )
 
 
-export default class InventoryList extends Component {
+export default class ArchiveInventoryList extends Component {
     constructor(props) { 
         super(props); 
 
-        
-        this.state = {
-            inventorys: [], 
-        } 
+        this.state = {inventorys: []}; 
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -53,7 +44,7 @@ export default class InventoryList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/inventorys/')
+        axios.get('http://localhost:5000/archiveInventorys/')
         .then(response => {
             this.setState({ inventorys: response.data})
         })
@@ -61,6 +52,7 @@ export default class InventoryList extends Component {
             console.log(error); 
         })
     }
+
 
     compareByDescend(key) {
         return function (a, b) {
@@ -92,21 +84,21 @@ export default class InventoryList extends Component {
         this.setState({inventorys: arrayCopy});
     }
 
-    inventoryList() {
-        console.log(this); 
+
+    archiveInventoryList() {
         return this.state.inventorys.map(currentinventory => {
-            return <Inventory inventory={currentinventory} key={currentinventory._id}/>; 
+            return <ArchiveInventory inventory={currentinventory} key={currentinventory._id}/>; 
         })
     }
 
-    render() {
+    render() { 
         return (
             <div className="table-responsive">
-                <Accordion defaultActiveKey="1">
+                <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Inventory List
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                          Archive Inventory List
+                          <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
@@ -159,7 +151,7 @@ export default class InventoryList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
-                            To Purchase                                
+                            To Purchase
                                 <ButtonGroup vertical>
                                 <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('topurchase')}>
                                 </i>
@@ -185,11 +177,11 @@ export default class InventoryList extends Component {
                                 </i>
                                 </ButtonGroup>
                             </th>
-                            <th>Actions:</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        { this.inventoryList() }
+                        { this.archiveInventoryList() }
                     </tbody>
                     <tfoot>
                         <tr>

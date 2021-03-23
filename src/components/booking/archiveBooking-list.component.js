@@ -1,17 +1,16 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import axios from 'axios'; 
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import '../styles/style.css';
 import '../styles/table-style.css';
 
 
-const Booking = props => (
+const ArchiveBooking = props => (
     <tr>
         <td className="bookinglist">{props.booking.clientname}</td>
         <td className="bookinglist">{props.booking.eventtype}</td>
@@ -21,25 +20,22 @@ const Booking = props => (
         <td className="bookinglist">{props.booking.endtime}</td>
         <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
-            <Link to={"/edit/"+props.booking._id}>edit</Link>
+            <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
-            <Link to={"/addTo/"+props.booking._id}>archive</Link>
-            </Button> |
-            <Button variant="outline-warning" size="sm">
-            <Link to={"/addToo/"+props.booking._id}>trash</Link>
+            <Link to={"/addTooTrash/"+props.booking._id}>trash</Link>
             </Button>
-        </td>
-    </tr>
+        
+    </td>
+</tr>
 )
 
 
-
-export default class BookingsList extends Component {
-    constructor(props) { 
+export default class ArchiveBookingList extends Component {
+    constructor(props) {
         super(props); 
 
-        this.state = {bookings: []}; 
+        this.state = {bookings: []}
 
         this.compareByDescend.bind(this); 
         this.compareByAscend.bind(this); 
@@ -48,7 +44,7 @@ export default class BookingsList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/bookings/')
+        axios.get('http://localhost:5000/archiveBookings/')
         .then(response => {
             this.setState({ bookings: response.data})
         })
@@ -87,20 +83,19 @@ export default class BookingsList extends Component {
         this.setState({bookings: arrayCopy});
     }
 
-    bookingList() {
+    archiveBookingList() {
         return this.state.bookings.map(currentbooking => {
-            return <Booking booking={currentbooking} key={currentbooking._id}/>; 
+            return <ArchiveBooking booking={currentbooking} key={currentbooking._id}/>; 
         })
     }
-
 
     render() { 
         return (
             <div className="table-responsive">
-                <Accordion defaultActiveKey="1">
+                <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Booking List
+                           Archive Booking List
                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
@@ -166,7 +161,7 @@ export default class BookingsList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.bookingList() }
+                        { this.archiveBookingList() }
                     </tbody>
                     <tfoot>
                         <tr>
