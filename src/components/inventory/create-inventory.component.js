@@ -7,6 +7,29 @@ import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import NumberFormat from 'react-number-format'; 
 
 
+const CategoryType = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>Baking</option>
+        <option>Beverage/Hot</option>
+        <option>Beverage/Cold</option>
+        <option>Canned Goods</option>
+        <option>Condiments / Sauces</option>
+        <option>Dairy</option>
+        <option>Dry Goods</option>
+        <option>Frozen</option>
+        <option>Fruits</option>
+        <option>Grains</option>
+        <option>Herbs / Spices</option>
+        <option>Legumes</option>
+        <option>Meat</option>
+        <option>Misc</option>
+        <option>Oils / Fats</option>
+        <option>Seafood</option>
+        <option>Vegtables</option>
+    </optgroup>
+)
+
 export default class CreateInventory extends Component {
     constructor(props) {
         super(props); 
@@ -83,6 +106,10 @@ export default class CreateInventory extends Component {
         }); 
     }
 
+    categoryTypeList() {
+        return <CategoryType />
+    }
+
     
     onSubmit(e) {
         alert("Inventory Successfully Added!!!")
@@ -141,12 +168,13 @@ export default class CreateInventory extends Component {
                     </div>
                     <div className="form-group">
                         <label>Category: </label>
-                        <input type="text"
+                        <select id="category"
                         required
                         className="form-control"
                         value={this.state.category}
-                        onChange={this.onChangeCategory}
-                        />
+                        onChange={this.onChangeCategory}>
+                            { this.categoryTypeList() }
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>Unit Size: </label>
