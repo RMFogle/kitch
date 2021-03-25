@@ -16,7 +16,8 @@ router.route('/').get((req, res) => {
         const needed = Number(req.body.needed); 
         const topurchase = Number(req.body.topurchase); 
         const unitprice = Number(req.body.unitprice); 
-        const totalcost = Number(req.body.totalcost); 
+        const totalcost = Number(req.body.totalcost);
+        const unittype = req.body.unittype; 
 
         const newTrashInventory = new TrashInventory({
             fooditem, 
@@ -26,7 +27,8 @@ router.route('/').get((req, res) => {
             needed,
             topurchase,
             unitprice, 
-            totalcost, 
+            totalcost,
+            unittype,
         }); 
 
         newTrashInventory.save()
@@ -57,6 +59,7 @@ router.route('/update/:id').post((req, res) => {
             trashInventory.topurchase = Number(req.body.topurchase); 
             trashInventory.unitprice = Number(req.body.unitprice); 
             trashInventory.totalcost = Number(req.body.totalcost);
+            trashInventory.unittype = req.body.unittype;
 
             trashInventory.save()
                 .then(() => res.json('Trash Inventory updated!'))

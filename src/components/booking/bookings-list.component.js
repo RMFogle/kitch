@@ -19,6 +19,11 @@ const Booking = props => (
         <td className="bookinglist">{props.booking.starttime}</td>
         <td className="bookinglist">{props.booking.endtime}</td>
         <td className="bookinglist">
+            <input className="check-input" type="checkbox" value="" id="flexCheckDefault" />
+            {" "}
+            <label className="check-label" for="flexCheckDefault">cxl</label> 
+        </td>
+        <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/edit/"+props.booking._id}>edit</Link>
             </Button> |
@@ -161,6 +166,7 @@ export default class BookingsList extends Component {
                                 </i>
                                 </ButtonGroup>
                             </th>
+                            <th>Cancel</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -175,6 +181,7 @@ export default class BookingsList extends Component {
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>
+                            <th>Cancel</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
