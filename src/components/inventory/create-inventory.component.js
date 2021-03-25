@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
-import NumberFormat from 'react-number-format'; 
+import NumberFormat from 'react-number-format';
 
 
 const CategoryType = () => (
@@ -30,18 +30,42 @@ const CategoryType = () => (
     </optgroup>
 )
 
+const UnitType = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>c</option>
+        <option>fl oz</option>
+        <option>gal</option>
+        <option>gram</option>
+        <option>kg</option>
+        <option>L</option>
+        <option>mg</option>
+        <option>ml</option>
+        <option>oz</option>
+        <option>pt</option>
+        <option>lb</option>
+        <option>tbsp</option>
+        <option>tsp</option>
+    </optgroup>
+)
+
+// add expiration date to onChange and state and onsubmit 
+// first go back and add expiration date to model and routes 
+// add as a string input field w/ date format or as a date picker?
+
 export default class CreateInventory extends Component {
     constructor(props) {
         super(props); 
 
         this.onChangeFooditem = this.onChangeFooditem.bind(this); 
         this.onChangeCategory = this.onChangeCategory.bind(this); 
-        this.onChangeUnitsize = this.onChangeUnitsize.bind(this); 
+        this.onChangeUnitsize = this.onChangeUnitsize.bind(this);
         this.onChangeInstock = this.onChangeInstock.bind(this); 
         this.onChangeNeeded = this.onChangeNeeded.bind(this); 
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onChangeUnitType = this.onChangeUnitType.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -52,7 +76,8 @@ export default class CreateInventory extends Component {
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: '', 
+            totalcost: '',
+            unittype: '',  
         }   
     }
 
@@ -106,8 +131,18 @@ export default class CreateInventory extends Component {
         }); 
     }
 
+    onChangeUnitType(e) {
+        this.setState({
+            unittype: e.target.value 
+        });
+    }
+
     categoryTypeList() {
         return <CategoryType />
+    }
+
+    unitTypeList() {
+        return <UnitType />
     }
 
     
@@ -118,12 +153,13 @@ export default class CreateInventory extends Component {
         const inventory = {
             fooditem: this.state.fooditem,  
             category: this.state.category, 
-            unitsize: this.state.unitsize,
+            unitsize: this.state.unitsize, 
             instock: this.state.instock,
             needed: this.state.needed, 
             topurchase: this.state.topurchase, 
             unitprice: this.state.unitprice, 
-            totalcost: this.state.totalcost
+            totalcost: this.state.totalcost, 
+            unittype: this.state.unittype, 
         }
 
         console.log(inventory); 
@@ -134,12 +170,13 @@ export default class CreateInventory extends Component {
         this.setState({
             fooditem: '', 
             category: '', 
-            unitsize: '', 
+            unitsize: '',  
             instock: '', 
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: ''
+            totalcost: '', 
+            unittype: ''
         }) 
 
         window.location.reload();
@@ -176,7 +213,8 @@ export default class CreateInventory extends Component {
                             { this.categoryTypeList() }
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="form-row">
+                    <div className="form-group col-md-6">
                         <label>Unit Size: </label>
                         <input type="text"
                         required
@@ -184,6 +222,17 @@ export default class CreateInventory extends Component {
                         value={this.state.unitsize}
                         onChange={this.onChangeUnitsize}
                         />
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label>Unit Type: </label>
+                        <select id="unittype"
+                        required
+                        className="form-control"
+                        value={this.state.unittype}
+                        onChange={this.onChangeUnitType}>
+                            { this.unitTypeList() }
+                        </select>
+                    </div>
                     </div>
                     <div className="form-group">
                         <label>In Stock: </label>

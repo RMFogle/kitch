@@ -4,6 +4,48 @@ import Button from 'react-bootstrap/Button';
 import NumberFormat from 'react-number-format'; 
 
 
+const CategoryType = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>Baking</option>
+        <option>Beverage/Hot</option>
+        <option>Beverage/Cold</option>
+        <option>Canned Goods</option>
+        <option>Condiments / Sauces</option>
+        <option>Dairy</option>
+        <option>Dry Goods</option>
+        <option>Frozen</option>
+        <option>Fruits</option>
+        <option>Grains</option>
+        <option>Herbs / Spices</option>
+        <option>Legumes</option>
+        <option>Meat</option>
+        <option>Misc</option>
+        <option>Oils / Fats</option>
+        <option>Seafood</option>
+        <option>Vegtables</option>
+    </optgroup>
+)
+
+const UnitType = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>c</option>
+        <option>fl oz</option>
+        <option>gal</option>
+        <option>gram</option>
+        <option>kg</option>
+        <option>L</option>
+        <option>mg</option>
+        <option>ml</option>
+        <option>oz</option>
+        <option>pt</option>
+        <option>lb</option>
+        <option>tbsp</option>
+        <option>tsp</option>
+    </optgroup>
+)
+
 export default class EditInventory extends Component {
     constructor(props) {
         super(props); 
@@ -15,7 +57,8 @@ export default class EditInventory extends Component {
         this.onChangeNeeded = this.onChangeNeeded.bind(this); 
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
-        this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onChangeTotalcost = this.onChangeTotalcost.bind(this);
+        this.onChangeUnitType = this.onChangeUnitType.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -26,7 +69,8 @@ export default class EditInventory extends Component {
             needed: '', 
             topurchase: '', 
             unitprice: '', 
-            totalcost: '', 
+            totalcost: '',
+            unittype: '', 
             inventorys: []
         }   
     }
@@ -43,7 +87,8 @@ export default class EditInventory extends Component {
                     needed: response.data.needed, 
                     topurchase: response.data.topurchase, 
                     unitprice: response.data.unitprice, 
-                    totalcost: response.data.totalcost
+                    totalcost: response.data.totalcost, 
+                    unittype: response.data.unittype 
                 })
             })
             .catch(function (error) {
@@ -112,6 +157,20 @@ export default class EditInventory extends Component {
         }); 
     }
 
+    onChangeUnitType(e) {
+        this.setState({
+                unittype: e.target.value 
+        }); 
+    }
+
+    categoryTypeList() {
+        return <CategoryType />
+    }
+
+    unitTypeList() {
+        return <UnitType />
+    }
+
     onSubmit(e) { 
         e.preventDefault(); 
 
@@ -125,7 +184,8 @@ export default class EditInventory extends Component {
             needed: this.state.needed, 
             topurchase: this.state.topurchase, 
             unitprice: this.state.unitprice, 
-            totalcost: this.state.totalcost
+            totalcost: this.state.totalcost, 
+            unittype: this.state.unittype, 
         }
 
         console.log(inventory);
@@ -153,24 +213,36 @@ export default class EditInventory extends Component {
                         />
                 </div>
                 <div className="form-group">
-                    <label>Category: </label>
-                    <input type="text"
+                        <label>Category: </label>
+                        <select id="category"
                         required
                         className="form-control"
                         value={this.state.category}
-                        onChange={this.onChangeCategory}
-                        />
-                </div>
-                <div className="form-group">
-                    <label>Unit Size: </label>
-                    <input 
-                        type="text"
+                        onChange={this.onChangeCategory}>
+                            { this.categoryTypeList() }
+                        </select>
+                    </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label>Unit Size: </label>
+                        <input type="text"
                         required
                         className="form-control"
                         value={this.state.unitsize}
                         onChange={this.onChangeUnitsize}
                         />
-                </div>
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label>Unit Type: </label>
+                        <select id="unittype"
+                        required
+                        className="form-control"
+                        value={this.state.unittype}
+                        onChange={this.onChangeUnitType}>
+                            { this.unitTypeList() }
+                        </select>
+                    </div>
+                    </div>
                 <div className="form-group">
                     <label>In Stock: </label>
                     <input type="text"

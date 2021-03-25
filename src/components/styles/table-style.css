@@ -4,6 +4,18 @@ table thead i {
         margin-bottom: -5px;
 }
 
+table thead th {
+        font-size: 0.875em;
+}
+
+tbody tr td {
+        font-size: 0.875em; 
+}
+
+table tfoot th {
+        font-size: 0.875em;
+}
+
 i:active {
         color: white;
 }

@@ -22,7 +22,7 @@ return (
     <tr>
         <td className="inventorylist">{props.inventory.fooditem}</td>
         <td className="inventorylist">{props.inventory.category}</td>
-        <td className="inventorylist">{props.inventory.unitsize}</td>
+        <td className="inventorylist">{props.inventory.unitsize}{props.inventory.unittype}</td>
         <td className="inventorylist">{props.inventory.instock}</td>
         <td className="inventorylist">{props.inventory.needed}</td>
         <td className="inventorylist">{props.inventory.topurchase}</td>

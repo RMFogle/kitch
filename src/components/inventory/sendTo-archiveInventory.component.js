@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import NumberFormat from 'react-number-format'; 
 
+
 export default class ArchiveInventory extends Component {
     constructor(props) {
         super(props); 
@@ -15,6 +16,7 @@ export default class ArchiveInventory extends Component {
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onChangeUnitType = this.onChangeUnitType.bind(this);  
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -26,6 +28,7 @@ export default class ArchiveInventory extends Component {
             topurchase: '', 
             unitprice: '', 
             totalcost: '', 
+            unittype: '', 
             inventorys: []
         }   
     }
@@ -42,7 +45,8 @@ export default class ArchiveInventory extends Component {
                     needed: response.data.needed, 
                     topurchase: response.data.topurchase, 
                     unitprice: response.data.unitprice, 
-                    totalcost: response.data.totalcost
+                    totalcost: response.data.totalcost, 
+                    unittype: response.data.unittype 
                 })
             })
             .catch(function (error) {
@@ -109,6 +113,13 @@ export default class ArchiveInventory extends Component {
         }); 
     }
 
+    onChangeUnitType(e) {
+        this.setState({
+                unittype: e.target.value 
+        }); 
+    }
+
+
     addToArchive() {
         const inventory = {
             fooditem: this.state.fooditem, 
@@ -118,7 +129,8 @@ export default class ArchiveInventory extends Component {
             needed: this.state.needed, 
             topurchase: this.state.topurchase, 
             unitprice: this.state.unitprice, 
-            totalcost: this.state.totalcost
+            totalcost: this.state.totalcost, 
+            unittype: this.state.unittype
         }
     
         console.log(inventory);
@@ -169,16 +181,26 @@ export default class ArchiveInventory extends Component {
                         onChange={this.onChangeCategory}
                         readOnly/>
                 </div>
-                <div className="form-group">
-                    <label>Unit Size: </label>
-                    <input 
-                        type="text"
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label>Unit Size: </label>
+                        <input type="text"
                         required
                         className="form-control"
                         value={this.state.unitsize}
                         onChange={this.onChangeUnitsize}
                         readOnly/>
-                </div>
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label>Unit Type: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.unittype}
+                        onChange={this.onChangeUnitType}
+                        readOnly/>
+                    </div>
+                    </div>
                 <div className="form-group">
                     <label>In Stock: </label>
                     <input type="text"

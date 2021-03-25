@@ -11,22 +11,24 @@ router.route('/').get((req, res) => {
     router.route('/add').post((req, res) => {
         const fooditem = req.body.fooditem; 
         const category = req.body.category; 
-        const unitsize = req.body.unitsize; 
+        const unitsize = req.body.unitsize;
         const instock = Number(req.body.instock); 
         const needed = Number(req.body.needed); 
         const topurchase = Number(req.body.topurchase); 
         const unitprice = Number(req.body.unitprice); 
         const totalcost = Number(req.body.totalcost); 
+        const unittype = req.body.unittype; 
 
         const newInvetory = new Inventory({
             fooditem, 
             category, 
-            unitsize, 
+            unitsize,  
             instock, 
             needed,
             topurchase,
             unitprice, 
             totalcost, 
+            unittype, 
         }); 
 
         newInvetory.save()
@@ -51,12 +53,13 @@ router.route('/').get((req, res) => {
             .then(inventory => {
                 inventory.fooditem = req.body.fooditem; 
                 inventory.category = req.body.category; 
-                inventory.unitsize = req.body.unitsize; 
+                inventory.unitsize = req.body.unitsize;
                 inventory.instock = Number(req.body.instock); 
                 inventory.needed = Number(req.body.needed); 
                 inventory.topurchase = Number(req.body.topurchase); 
                 inventory.unitprice = Number(req.body.unitprice); 
                 inventory.totalcost = Number(req.body.totalcost); 
+                inventory.unittype = req.body.unittype; 
 
                 inventory.save()
                     .then(() => res.json('Inventory updated!'))
