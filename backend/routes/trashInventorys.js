@@ -18,6 +18,7 @@ router.route('/').get((req, res) => {
         const unitprice = Number(req.body.unitprice); 
         const totalcost = Number(req.body.totalcost);
         const unittype = req.body.unittype; 
+        const date = Date.parse(req.body.date); 
 
         const newTrashInventory = new TrashInventory({
             fooditem, 
@@ -29,6 +30,7 @@ router.route('/').get((req, res) => {
             unitprice, 
             totalcost,
             unittype,
+            date, 
         }); 
 
         newTrashInventory.save()
@@ -60,6 +62,7 @@ router.route('/update/:id').post((req, res) => {
             trashInventory.unitprice = Number(req.body.unitprice); 
             trashInventory.totalcost = Number(req.body.totalcost);
             trashInventory.unittype = req.body.unittype;
+            trashInventory.date = Date.parse(req.body.date);
 
             trashInventory.save()
                 .then(() => res.json('Trash Inventory updated!'))

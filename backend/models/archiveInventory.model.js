@@ -12,6 +12,7 @@ const archiveInventorySchema = new Schema({
     unitprice: { type: Number, required: true }, 
     totalcost: { type: Number, required: true},
     unittype: { type: String, required: true },
+    date: { type: Date, required: true },
 }, {
     timestamps: true, 
 }); 

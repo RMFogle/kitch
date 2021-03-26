@@ -16,6 +16,7 @@ const Inventory = props => (
         <td className="inventorylist">{props.inventory.fooditem}</td>
         <td className="inventorylist">{props.inventory.category}</td>
         <td className="inventorylist">{props.inventory.unitsize}{props.inventory.unittype}</td>
+        <td className="inventorylist">{props.inventory.date.substring(0,10)}</td>
         <td className="inventorylist">{props.inventory.instock}</td>
         <td className="inventorylist">{props.inventory.needed}</td>
         <td className="inventorylist">{props.inventory.topurchase}</td>
@@ -140,6 +141,15 @@ export default class InventoryList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
+                            Exp. Date
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('date')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
                             In Stock
                                 <ButtonGroup vertical>
                                 <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('instock')}>
@@ -195,6 +205,7 @@ export default class InventoryList extends Component {
                             <th>Food Item</th>
                             <th>Category</th>
                             <th>Unit Size</th>
+                            <th>Exp. Date</th>
                             <th>In Stock</th>
                             <th>Need</th>
                             <th>To Purchase</th>

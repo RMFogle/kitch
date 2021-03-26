@@ -18,6 +18,7 @@ router.route('/').get((req, res) => {
         const unitprice = Number(req.body.unitprice); 
         const totalcost = Number(req.body.totalcost); 
         const unittype = req.body.unittype; 
+        const date = Date.parse(req.body.date); 
 
         const newInvetory = new Inventory({
             fooditem, 
@@ -28,7 +29,8 @@ router.route('/').get((req, res) => {
             topurchase,
             unitprice, 
             totalcost, 
-            unittype, 
+            unittype,
+            date,  
         }); 
 
         newInvetory.save()
@@ -60,6 +62,7 @@ router.route('/').get((req, res) => {
                 inventory.unitprice = Number(req.body.unitprice); 
                 inventory.totalcost = Number(req.body.totalcost); 
                 inventory.unittype = req.body.unittype; 
+                inventory.date = Date.parse(req.body.date); 
 
                 inventory.save()
                     .then(() => res.json('Inventory updated!'))

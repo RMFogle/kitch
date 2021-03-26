@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import NumberFormat from 'react-number-format';
+import DatePicker from 'react-date-picker'; 
 
 
 const CategoryType = () => (
@@ -49,9 +50,6 @@ const UnitType = () => (
     </optgroup>
 )
 
-// add expiration date to onChange and state and onsubmit 
-// first go back and add expiration date to model and routes 
-// add as a string input field w/ date format or as a date picker?
 
 export default class CreateInventory extends Component {
     constructor(props) {
@@ -66,6 +64,7 @@ export default class CreateInventory extends Component {
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
         this.onChangeUnitType = this.onChangeUnitType.bind(this); 
+        this.onChangeDate = this.onChangeDate.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -77,7 +76,8 @@ export default class CreateInventory extends Component {
             topurchase: '', 
             unitprice: '', 
             totalcost: '',
-            unittype: '',  
+            unittype: '',
+            date: new Date()   
         }   
     }
 
@@ -137,6 +137,12 @@ export default class CreateInventory extends Component {
         });
     }
 
+    onChangeDate(date) {
+        this.setState({
+            date: date
+        });
+    }
+
     categoryTypeList() {
         return <CategoryType />
     }
@@ -159,7 +165,8 @@ export default class CreateInventory extends Component {
             topurchase: this.state.topurchase, 
             unitprice: this.state.unitprice, 
             totalcost: this.state.totalcost, 
-            unittype: this.state.unittype, 
+            unittype: this.state.unittype,
+            date: this.state.date  
         }
 
         console.log(inventory); 
@@ -176,7 +183,8 @@ export default class CreateInventory extends Component {
             topurchase: '', 
             unitprice: '', 
             totalcost: '', 
-            unittype: ''
+            unittype: '', 
+            date: ''
         }) 
 
         window.location.reload();
@@ -233,6 +241,15 @@ export default class CreateInventory extends Component {
                             { this.unitTypeList() }
                         </select>
                     </div>
+                    </div>
+                    <div className="form-group">
+                        <label>Exp. Date: </label>
+                        <div>
+                            <DatePicker 
+                            value={this.state.date}
+                            onChange={this.onChangeDate}
+                            />
+                        </div>
                     </div>
                     <div className="form-group">
                         <label>In Stock: </label>
