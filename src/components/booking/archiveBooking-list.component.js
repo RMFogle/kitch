@@ -100,6 +100,7 @@ export default class ArchiveBookingList extends Component {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
+                        <p>Cancelled Bookings: </p>
                 <table className="table table-sm table-hover table-bordered">
                     <thead className="thead-light">
                         <tr>
