@@ -1,7 +1,9 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button';
-import NumberFormat from 'react-number-format';  
+import NumberFormat from 'react-number-format'; 
+import DatePicker from 'react-date-picker'; 
+
 
 export default class TrashInventoryFromArchive extends Component {
     constructor(props) {
@@ -15,7 +17,8 @@ export default class TrashInventoryFromArchive extends Component {
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
         this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
-        this.onChangeUnitType = this.onChangeUnitType.bind(this);  
+        this.onChangeUnitType = this.onChangeUnitType.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);  
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -27,7 +30,8 @@ export default class TrashInventoryFromArchive extends Component {
             topurchase: '', 
             unitprice: '', 
             totalcost: '', 
-            unittype: '', 
+            unittype: '',
+            date: new Date(),  
             inventorys: []
         }   
     }
@@ -45,7 +49,8 @@ export default class TrashInventoryFromArchive extends Component {
                     topurchase: response.data.topurchase, 
                     unitprice: response.data.unitprice, 
                     totalcost: response.data.totalcost, 
-                    unittype: response.data.unittype 
+                    unittype: response.data.unittype, 
+                    date: response.data.date
                 })
             })
             .catch(function (error) {
@@ -118,6 +123,12 @@ export default class TrashInventoryFromArchive extends Component {
         }); 
     }
 
+    onChangeDate(date) {
+        this.setState({
+            date: date
+        });
+    }
+
     addToTrashFromArchive() {
         const inventory = {
             fooditem: this.state.fooditem, 
@@ -128,7 +139,8 @@ export default class TrashInventoryFromArchive extends Component {
             topurchase: this.state.topurchase, 
             unitprice: this.state.unitprice, 
             totalcost: this.state.totalcost, 
-            unittype: this.state.unittype
+            unittype: this.state.unittype, 
+            date: this.state.date
         }
 
         console.log(inventory);
@@ -200,6 +212,15 @@ export default class TrashInventoryFromArchive extends Component {
                         </input>
                     </div>
                     </div>
+                <div className="form-group">
+                    <label>Exp. Date: </label>
+                    <div>
+                        <DatePicker 
+                        value={this.state.date}
+                        onChange={this.onChangeDate}
+                        readOnly/>
+                    </div>
+                </div>
                 <div className="form-group">
                     <label>In Stock: </label>
                     <input type="text"

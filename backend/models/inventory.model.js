@@ -11,7 +11,8 @@ const inventorySchema = new Schema({
     topurchase: { type: Number, required: true }, 
     unitprice: { type: Number, required: true }, 
     totalcost: { type: Number, required: true},
-    unittype: { type: String, required: true }, 
+    unittype: { type: String, required: true },
+    date: { type: Date, required: true }, 
 }, {
     timestamps: true, 
 }); 

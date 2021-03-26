@@ -18,6 +18,7 @@ router.route('/').get((req, res) => {
         const unitprice = Number(req.body.unitprice); 
         const totalcost = Number(req.body.totalcost);
         const unittype = req.body.unittype; 
+        const date = Date.parse(req.body.date);
 
         const newArchiveInventory = new ArchiveInventory({
             fooditem, 
@@ -29,6 +30,7 @@ router.route('/').get((req, res) => {
             unitprice, 
             totalcost,
             unittype, 
+            date,
         }); 
 
         newArchiveInventory.save()
@@ -60,6 +62,7 @@ router.route('/').get((req, res) => {
                 archiveInventory.unitprice = Number(req.body.unitprice); 
                 archiveInventory.totalcost = Number(req.body.totalcost);
                 archiveInventory.unittype = req.body.unittype;
+                archiveInventory.date = Date.parse(req.body.date); 
 
                 archiveInventory.save()
                     .then(() => res.json('Archive Inventory updated!'))
