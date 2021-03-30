@@ -1,3 +1,13 @@
+.img-responsive {
+        display: inline-block;
+        height: 72px; 
+        width: auto; 
+}
+
+#responsive-navbar-nav {
+        font-weight: bold;
+}
+
 table thead i {
         margin-left: 10px;
         margin-top: -5px; 
