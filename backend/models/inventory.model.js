@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const inventorySchema = new Schema({
     fooditem: { type: String, required: true }, 
     category: { type: String, required: true }, 
-    unitsize: { type: String, required: true },
+    unitsize: { type: Number, required: true },
     instock: { type: Number, required: true }, 
     needed: { type: Number, required: true }, 
     topurchase: { type: Number, required: true }, 
