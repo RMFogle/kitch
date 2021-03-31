@@ -15,7 +15,8 @@ const CategoryType = () => (
         <option>Beverage/Hot</option>
         <option>Beverage/Cold</option>
         <option>Canned Goods</option>
-        <option>Condiments / Sauces</option>
+        <option>Condiments</option>
+        <option>Sauces</option>
         <option>Dairy</option>
         <option>Dry Goods</option>
         <option>Frozen</option>
