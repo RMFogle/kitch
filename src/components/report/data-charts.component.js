@@ -38,6 +38,9 @@ export default class DataChart extends Component {
                     <div className="col">
                     <iframe title="itemsExpire" className="chartStyle2" src="https://charts.mongodb.com/charts-kitchapp-mtooo/embed/charts?id=e7e59a3e-d65b-4b93-86ea-d2b4e2ea0922&theme=dark"></iframe>
                     </div>
+                    <div className="col">
+                    <iframe title="cxlBookings" className="chartStyle2" src="https://charts.mongodb.com/charts-kitchapp-mtooo/embed/charts?id=15fe3f2d-ea5d-4673-b892-58bc8f8dae50&theme=dark"></iframe>
+                    </div>
                 </div>
             </div>
         ); 
