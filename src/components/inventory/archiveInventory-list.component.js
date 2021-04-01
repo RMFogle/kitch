@@ -24,7 +24,7 @@ const ArchiveInventory = props => (
             <Button variant="outline-warning" size="sm">
             <Link to={"/restore/"+props.inventory._id}>restore</Link>
             </Button> |  
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-danger" size="sm">
             <Link to={"/sendToos/"+props.inventory._id}>trash</Link>
             </Button>
         </td>

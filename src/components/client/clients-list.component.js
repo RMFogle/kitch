@@ -17,14 +17,14 @@ const Client = props => (
         <td className="clientlist">{props.client.notes}</td>
         <td className="clientlist">
             {/* Change buttons below to new layout and add actions needed */}
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-info" size="sm">
             {/* check edit link below */}
             <Link to={"/edits/"+props.client._id}>edit</Link>
             </Button> | 
             <Button variant="outline-warning" size="sm">
             <Link to={"/postTo/"+props.client._id}>archive</Link>
             </Button> |
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-danger" size="sm">
             <Link to={"/postToo/"+props.client._id}>trash</Link>
             </Button>
             
