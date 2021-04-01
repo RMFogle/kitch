@@ -23,13 +23,13 @@ const Inventory = props => (
         <td className="inventorylist">${props.inventory.unitprice.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="inventorylist">${props.inventory.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="inventorylist">
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-info" size="sm">
             <Link to={"/editss/"+props.inventory._id}>edit</Link>
             </Button> |
             <Button variant="outline-warning" size="sm">
             <Link to={"/sendTo/"+props.inventory._id}>archive</Link>
             </Button> |
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-danger" size="sm">
             <Link to={"/sendToo/"+props.inventory._id}>trash</Link>
             </Button>
         </td>

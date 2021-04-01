@@ -19,7 +19,7 @@ const Booking = props => (
         <td className="bookinglist">{props.booking.starttime}</td>
         <td className="bookinglist">{props.booking.endtime}</td>
         <td className="bookinglist">
-            <Button variant="outline-warning" size="sm">
+            <Button variant="outline-info" size="sm">
             <Link to={"/edit/"+props.booking._id}>edit</Link>
             </Button> |
             <Button variant="outline-danger" style={{ color: 'blue' }} size="sm">
