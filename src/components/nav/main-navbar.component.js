@@ -21,8 +21,8 @@ export default class MainNavbar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="/inventory">Inventory</Nav.Link>
-                        <Nav.Link href="/booking">Bookings</Nav.Link>
                         <Nav.Link href="/client">Clients</Nav.Link>
+                        <Nav.Link href="/booking">Bookings</Nav.Link>
                             <NavDropdown title="Other" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="/report">Reports</NavDropdown.Item>
                                 <NavDropdown.Divider />

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import MainNavbar from "./components/nav/main-navbar.component";
+import HomePage from "./components/home/homepage.component";
 
 import CreateInventory from "./components/inventory/create-inventory.component";
 import InventoryList from "./components/inventory/inventorys-list.component"; 
@@ -48,6 +49,7 @@ function App() {
       <div className="container">
       <MainNavbar />
       <br/>
+      <Route path="/home" component={HomePage} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
       <Route path="/booking" component={CreateBooking} />
@@ -59,11 +61,11 @@ function App() {
       <Route path="/editss/:id" component={EditInventory} />
       <Route path="/report" component={DataChart} />
       <Route path="/archive" component={ArchiveInventoryList} />
-      <Route path="/archive" component={ArchiveBookingList} />
       <Route path="/archive" component={ArchiveClientList} />
+      <Route path="/archive" component={ArchiveBookingList} />
       <Route path="/trash" component={TrashInventoryList} />
-      <Route path="/trash" component={TrashBookingList} />
       <Route path="/trash" component={TrashClientList} />
+      <Route path="/trash" component={TrashBookingList} />
       <Route path="/postTo/:id" component={ArchiveClient} />
       <Route path="/postToo/:id" component={TrashClient} />
       <Route path="/postToTrash/:id" component={TrashClientFromArchive} />
