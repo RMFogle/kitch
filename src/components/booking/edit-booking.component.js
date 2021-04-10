@@ -68,6 +68,7 @@ export default class EditBooking extends Component {
         this.onChangeDate = this.onChangeDate.bind(this); 
         this.onChangeStartTime = this.onChangeStartTime.bind(this); 
         this.onChangeEndTime = this.onChangeEndTime.bind(this); 
+        this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -77,6 +78,7 @@ export default class EditBooking extends Component {
             date: new Date(),
             starttime: '', 
             endtime: '', 
+            guestcount: '', 
             clients: []
         }
     }
@@ -91,7 +93,8 @@ export default class EditBooking extends Component {
                     location: response.data.location, 
                     date: new Date(response.data.date), 
                     starttime: response.data.starttime, 
-                    endtime: response.data.endtime
+                    endtime: response.data.endtime, 
+                    guestcount: response.data.guestcount
                 })
             })
             .catch(function (error) {
@@ -146,6 +149,12 @@ export default class EditBooking extends Component {
         });
     }
 
+    onChangeGuestCount(e) {
+        this.setState({
+            guestcount: e.target.value 
+        })
+    }
+
     bookingTimesList() {
         return <BookingTimes />
     }
@@ -159,7 +168,8 @@ export default class EditBooking extends Component {
             location: this.state.location, 
             date: this.state.date, 
             starttime: this.state.starttime, 
-            endtime: this.state.endtime
+            endtime: this.state.endtime, 
+            guestcount: this.state.guestcount,
         }
 
         console.log(booking);
@@ -174,8 +184,8 @@ export default class EditBooking extends Component {
     render() { 
         return (
             <div>
-               <h3>Edit Booking</h3>
-               <form onSubmit={this.onSubmit}>
+            <h3>Edit Booking</h3>
+            <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
                     <select ref="clientInput"
@@ -209,6 +219,15 @@ export default class EditBooking extends Component {
                         className="form-control"
                         value={this.state.location}
                         onChange={this.onChangeLocation}
+                        />
+                </div>
+                <div className="form-group">
+                        <label>Guest#: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.guestcount}
+                        onChange={this.onChangeGuestCount}
                         />
                 </div>
                 <div className="form-row">

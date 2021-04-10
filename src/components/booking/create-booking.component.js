@@ -71,7 +71,8 @@ export default class CreateBooking extends Component {
         this.onChangeLocation = this.onChangeLocation.bind(this); 
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeStartTime = this.onChangeStartTime.bind(this); 
-        this.onChangeEndTime = this.onChangeEndTime.bind(this); 
+        this.onChangeEndTime = this.onChangeEndTime.bind(this);
+        this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -81,6 +82,7 @@ export default class CreateBooking extends Component {
             date: new Date(),
             starttime: '', 
             endtime: '', 
+            guestcount: '', 
             clients: []
         }
     }
@@ -133,6 +135,12 @@ export default class CreateBooking extends Component {
         });
     }
 
+    onChangeGuestCount(e) {
+        this.setState({
+            guestcount: e.target.value 
+        })
+    }
+
     bookingTimesList() {
         return <BookingTimes />
     }
@@ -148,7 +156,8 @@ export default class CreateBooking extends Component {
             location: this.state.location, 
             date: this.state.date,
             starttime: this.state.starttime, 
-            endtime: this.state.endtime
+            endtime: this.state.endtime, 
+            guestcount: this.state.guestcount, 
         }
 
         console.log(booking); 
@@ -162,7 +171,8 @@ export default class CreateBooking extends Component {
                 location: '',
                 date: '', 
                 starttime: '', 
-                endtime: '' 
+                endtime: '', 
+                guestcount: '', 
             })
 
         window.location.reload(); 
@@ -174,8 +184,8 @@ export default class CreateBooking extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                           +Add Booking
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                        +Add Booking
+                        <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
@@ -214,6 +224,15 @@ export default class CreateBooking extends Component {
                         className="form-control"
                         value={this.state.location}
                         onChange={this.onChangeLocation}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Guest#: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.guestcount}
+                        onChange={this.onChangeGuestCount}
                         />
                     </div>
                     <div className="form-row">

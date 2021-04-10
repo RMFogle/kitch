@@ -23,6 +23,7 @@ return(
         <td className="bookinglist">{props.booking.clientname}</td>
         <td className="bookinglist">{props.booking.eventtype}</td>
         <td className="bookinglist">{props.booking.location}</td>
+        <td className="bookinglist">{props.booking.guestcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
         <td className="bookinglist">{props.booking.starttime}</td>
         <td className="bookinglist">{props.booking.endtime}</td>
@@ -169,6 +170,15 @@ export default class TrashBookingList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
+                            Guest#
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
                             Date
                                 <ButtonGroup vertical>
                                 <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('date')}>
@@ -206,6 +216,7 @@ export default class TrashBookingList extends Component {
                             <th>Client</th>
                             <th>Event</th>
                             <th>Location</th>
+                            <th>Guest#</th>
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>

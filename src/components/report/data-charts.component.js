@@ -7,7 +7,6 @@ export default class DataChart extends Component {
     render() {
 
         return (
-
             <div className="container">
                 <p>Data Charts: (hover cursor over fields to see more data) </p>
                     <div className="row">

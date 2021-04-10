@@ -87,7 +87,7 @@ export default class ClientsList extends Component {
 
     clientList() {
         return this.state.clients.map(currentclient => {
-            return <Client client={currentclient} deleteClient={this.deleteClient} key={currentclient._id}/>; 
+            return <Client client={currentclient} key={currentclient._id}/>; 
         })
     }
 

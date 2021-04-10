@@ -13,7 +13,8 @@ export default class TrashBookingFromArchive extends Component {
         this.onChangeLocation = this.onChangeLocation.bind(this); 
         this.onChangeDate = this.onChangeDate.bind(this); 
         this.onChangeStartTime = this.onChangeStartTime.bind(this); 
-        this.onChangeEndTime = this.onChangeEndTime.bind(this); 
+        this.onChangeEndTime = this.onChangeEndTime.bind(this);
+        this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -22,7 +23,8 @@ export default class TrashBookingFromArchive extends Component {
             location: '', 
             date: new Date(), 
             starttime: '', 
-            endtime: '', 
+            endtime: '',
+            guestcount: '',
             clients: []
         }
     }
@@ -37,7 +39,8 @@ export default class TrashBookingFromArchive extends Component {
                     location: response.data.location, 
                     date: new Date(response.data.date),
                     starttime: response.data.starttime, 
-                    endtime: response.data.endtime
+                    endtime: response.data.endtime, 
+                    guestcount: response.data.guestcount
                 })
             })
             .catch(function (error) {
@@ -92,6 +95,12 @@ export default class TrashBookingFromArchive extends Component {
         });
     }
 
+    onChangeGuestCount(e) {
+        this.setState({
+            guestcount: e.target.value 
+        })
+    }
+
     addToTrashFromArchive() {
         const booking = {
             clientname: this.state.clientname, 
@@ -99,7 +108,8 @@ export default class TrashBookingFromArchive extends Component {
             location: this.state.location, 
             date: this.state.date, 
             starttime: this.state.starttime, 
-            endtime: this.state.endtime
+            endtime: this.state.endtime, 
+            guestcount: this.state.guestcount,
         }
 
         console.log(booking); 
@@ -157,6 +167,15 @@ export default class TrashBookingFromArchive extends Component {
                         className="form-control"
                         value={this.state.location}
                         onChange={this.onChangeLocation}
+                        readOnly/>
+                    </div>
+                    <div className="form-group">
+                        <label>Guest#: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.guestcount}
+                        onChange={this.onChangeGuestCount}
                         readOnly/>
                     </div>
                     <div className="form-row">
