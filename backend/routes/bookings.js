@@ -13,7 +13,8 @@ router.route('/add').post((req, res) => {
     const location = req.body.location; 
     const date = Date.parse(req.body.date); 
     const starttime = req.body.starttime; 
-    const endtime = req.body.endtime; 
+    const endtime = req.body.endtime;
+    const guestcount = req.body.guestcount; 
 
     
 const newBooking = new Booking({
@@ -23,6 +24,7 @@ const newBooking = new Booking({
     date, 
     starttime, 
     endtime,
+    guestcount, 
 }); 
 
 newBooking.save()
@@ -50,7 +52,8 @@ router.route('/update/:id').post((req, res) => {
             booking.location = req.body.location; 
             booking.date = Date.parse(req.body.date); 
             booking.starttime = req.body.starttime; 
-            booking.endtime = req.body.endtime; 
+            booking.endtime = req.body.endtime;
+            booking.guestcount = req.body.guestcount; 
 
             booking.save()
                 .then(() => res.json('Booking updated!'))

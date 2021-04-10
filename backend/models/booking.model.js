@@ -9,6 +9,7 @@ const bookingSchema = new Schema({
     date: { type: Date, required: true }, 
     starttime: { type: String, required: true, }, 
     endtime: { type: String, required: true, }, 
+    guestcount: { type: Number, required: true, }, 
 }, {
     timestamps: true, 
 }); 

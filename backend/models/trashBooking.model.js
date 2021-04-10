@@ -8,7 +8,8 @@ const trashBookingSchema = new Schema({
     location: { type: String, required: true, }, 
     date: { type: Date, required: true },
     starttime: { type: String, required: true, }, 
-    endtime: { type: String, required: true, }, 
+    endtime: { type: String, required: true, },
+    guestcount: { type: Number, required: true, }, 
 }, {
     timestamps: true, 
 }); 
