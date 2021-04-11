@@ -237,6 +237,8 @@ export default class TrashBookingList extends Component {
                             <th>Event</th>
                             <th>Location</th>
                             <th>Guest#</th>
+                            <th>Meal</th>
+                            <th>Menu</th>
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>
