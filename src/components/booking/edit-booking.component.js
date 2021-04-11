@@ -57,6 +57,37 @@ const BookingTimes = () => (
     </optgroup>
 )
 
+const MealType = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>Bkfst</option>
+        <option>Bkfst/Lnch</option>
+        <option>Bkfst/Lnch/Din</option>
+        <option>Lnch</option>
+        <option>Lnch/Din</option>
+        <option>Din</option>
+    </optgroup>
+)
+
+const MenuSelect = () => (
+    <optgroup>
+        <option>Choose...</option>
+        <option>American</option>
+        <option>Brazilian</option>
+        <option>Cajun</option>
+        <option>Chinese</option>
+        <option>Cuban</option>
+        <option>German</option>
+        <option>Greek</option>
+        <option>Indian</option>
+        <option>Italian</option>
+        <option>Mexican</option>
+        <option>Soul Food</option>
+        <option>Spanish</option>
+        <option>Vietnamese</option>
+    </optgroup>
+)
+
 
 export default class EditBooking extends Component {
     constructor(props) {
@@ -69,6 +100,8 @@ export default class EditBooking extends Component {
         this.onChangeStartTime = this.onChangeStartTime.bind(this); 
         this.onChangeEndTime = this.onChangeEndTime.bind(this); 
         this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
+        this.onChangeMeal = this.onChangeMeal.bind(this); 
+        this.onChangeMenu = this.onChangeMenu.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -79,6 +112,8 @@ export default class EditBooking extends Component {
             starttime: '', 
             endtime: '', 
             guestcount: '', 
+            meal: '', 
+            menu: '',
             clients: []
         }
     }
@@ -94,7 +129,9 @@ export default class EditBooking extends Component {
                     date: new Date(response.data.date), 
                     starttime: response.data.starttime, 
                     endtime: response.data.endtime, 
-                    guestcount: response.data.guestcount
+                    guestcount: response.data.guestcount, 
+                    meal: response.data.meal, 
+                    menu: response.data.menu, 
                 })
             })
             .catch(function (error) {
@@ -155,8 +192,28 @@ export default class EditBooking extends Component {
         })
     }
 
+    onChangeMeal(e) {
+        this.setState({
+            meal: e.target.value 
+        })
+    }
+
+    onChangeMenu(e) {
+        this.setState({
+            menu: e.target.value 
+        })
+    }
+
     bookingTimesList() {
         return <BookingTimes />
+    }
+
+    mealTypeList() {
+        return <MealType />
+    }
+
+    menuSelectList() {
+        return <MenuSelect />
     }
 
     onSubmit(e) { 
@@ -170,6 +227,8 @@ export default class EditBooking extends Component {
             starttime: this.state.starttime, 
             endtime: this.state.endtime, 
             guestcount: this.state.guestcount,
+            meal: this.state.meal, 
+            menu: this.state.menu, 
         }
 
         console.log(booking);
@@ -221,7 +280,8 @@ export default class EditBooking extends Component {
                         onChange={this.onChangeLocation}
                         />
                 </div>
-                <div className="form-group">
+                <div className="form-row">
+                    <div className="form-group col-md-3">
                         <label>Guest#: </label>
                         <input type="text"
                         required
@@ -229,7 +289,28 @@ export default class EditBooking extends Component {
                         value={this.state.guestcount}
                         onChange={this.onChangeGuestCount}
                         />
-                </div>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label>Meal: </label>
+                        <select id="meal"
+                        required
+                        className="form-control"
+                        value={this.state.meal}
+                        onChange={this.onChangeMeal}>
+                            { this.mealTypeList() }
+                        </select>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label>Menu: </label>
+                        <select id="menu"
+                        required
+                        className="form-control"
+                        value={this.state.menu}
+                        onChange={this.onChangeMenu}>
+                            { this.menuSelectList() }
+                        </select>
+                    </div>
+                    </div>
                 <div className="form-row">
                 <div className="form-group col-md-3">
                     <label>Date: </label>

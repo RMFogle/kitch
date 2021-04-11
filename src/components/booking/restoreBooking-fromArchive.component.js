@@ -15,6 +15,8 @@ export default class ArchiveRestoreBooking extends Component {
         this.onChangeStartTime = this.onChangeStartTime.bind(this); 
         this.onChangeEndTime = this.onChangeEndTime.bind(this);
         this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
+        this.onChangeMeal = this.onChangeMeal.bind(this); 
+        this.onChangeMenu = this.onChangeMenu.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -25,6 +27,8 @@ export default class ArchiveRestoreBooking extends Component {
             starttime: '', 
             endtime: '',
             guestcount: '', 
+            meal: '', 
+            menu: '',
             clients: []
         }
     }
@@ -39,7 +43,9 @@ export default class ArchiveRestoreBooking extends Component {
                     date: new Date(response.data.date),
                     starttime: response.data.starttime, 
                     endtime: response.data.endtime, 
-                    guestcount: response.data.guestcount
+                    guestcount: response.data.guestcount, 
+                    meal: response.data.meal, 
+                    menu: response.data.menu,
                 })
             })
             .catch(function (error) {
@@ -100,6 +106,18 @@ export default class ArchiveRestoreBooking extends Component {
         })
     }
 
+    onChangeMeal(e) {
+        this.setState({
+            meal: e.target.value 
+        })
+    }
+
+    onChangeMenu(e) {
+        this.setState({
+            menu: e.target.value 
+        })
+    }
+
     restoreToBooking() {
         const booking = {
             clientname: this.state.clientname, 
@@ -109,6 +127,8 @@ export default class ArchiveRestoreBooking extends Component {
             starttime: this.state.starttime, 
             endtime: this.state.endtime, 
             guestcount: this.state.guestcount,
+            meal: this.state.meal, 
+            menu: this.state.menu,
         }
 
         console.log(booking); 
@@ -167,7 +187,8 @@ export default class ArchiveRestoreBooking extends Component {
                         onChange={this.onChangeLocation}
                         readOnly/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-row">
+                    <div className="form-group col-md-3">
                         <label>Guest#: </label>
                         <input type="text"
                         required
@@ -175,6 +196,25 @@ export default class ArchiveRestoreBooking extends Component {
                         value={this.state.guestcount}
                         onChange={this.onChangeGuestCount}
                         readOnly/>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label>Meal: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.meal}
+                        onChange={this.onChangeMeal}
+                        readOnly/>
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label>Menu: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.menu}
+                        onChange={this.onChangeMenu}
+                        readOnly/>
+                    </div>
                     </div>
                     <div className="form-row">
                     <div className="form-group col-md-3">
