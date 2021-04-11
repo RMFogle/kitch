@@ -16,6 +16,8 @@ const ArchiveBooking = props => (
         <td className="bookinglist">{props.booking.eventtype}</td>
         <td className="bookinglist">{props.booking.location}</td>
         <td className="bookinglist">{props.booking.guestcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="bookinglist">{props.booking.meal}</td>
+        <td className="bookinglist">{props.booking.menu}</td>
         <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
         <td className="bookinglist">{props.booking.starttime}</td>
         <td className="bookinglist">{props.booking.endtime}</td>
@@ -135,9 +137,27 @@ export default class ArchiveBookingList extends Component {
                             <th>
                             Guest#
                                 <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('location')}>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('guestcount')}>
                                 </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('location')}>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('guestcount')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Meal
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('meal')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('meal')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Menu 
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('menu')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('menu')}>
                                 </i>
                                 </ButtonGroup>
                             </th>
