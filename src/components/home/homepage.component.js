@@ -13,6 +13,7 @@ export default class HomePage extends Component {
 
     render() {
         return (
+            <div className="card-responsive">
             <CardDeck className="card-deck">
                 <Card className="card">
                     <Card.Body className="card-body-home">
@@ -45,6 +46,7 @@ export default class HomePage extends Component {
                     </Card.Footer>
                 </Card>
             </CardDeck>
+            </div>
         )
     }
 }
