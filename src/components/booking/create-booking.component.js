@@ -239,7 +239,7 @@ export default class CreateBooking extends Component {
     
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
