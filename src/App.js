@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import MainNavbar from "./components/nav/main-navbar.component";
+import WelcomePage from "./components/welcome/welcomepage.component"; 
 import HomePage from "./components/home/homepage.component";
 
 import CreateInventory from "./components/inventory/create-inventory.component";
@@ -52,6 +53,7 @@ function App() {
     <Router>
       <MainNavbar />
       <br/>
+      <Route path="/kitch" component={WelcomePage} />
       <Route path="/home" component={HomePage} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />

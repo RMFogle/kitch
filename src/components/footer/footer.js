@@ -12,7 +12,7 @@ export default class Footer extends Component {
                     <div className="row">
                         <div className="col">
                             <p>
-                            &copy;{new Date().getFullYear()} Kitch App Inc. | All rights reserved | Terms of service | Privacy
+                            &copy;{new Date().getFullYear()} Kitch App | All rights reserved | Terms of service | Privacy
                             </p>
                         </div>
                     </div>
