@@ -21,6 +21,7 @@ connection.once('open', () => {
 const bookingsRouter = require('./routes/bookings'); 
 const clientsRouter = require('./routes/clients'); 
 const inventorysRouter = require('./routes/inventorys'); 
+const supplysRouter = require('./routes/supplys'); 
 const archiveBookingsRouter = require('./routes/archiveBookings'); 
 const archiveClientsRouter = require('./routes/archiveClients'); 
 const archiveInventorysRouter = require('./routes/archiveInventorys'); 
@@ -31,6 +32,7 @@ const trashInventorysRouter = require('./routes/trashInventorys');
 app.use('/bookings', bookingsRouter); 
 app.use('/clients', clientsRouter); 
 app.use('/inventorys', inventorysRouter); 
+app.use('/supplys', supplysRouter); 
 app.use('/archiveBookings', archiveBookingsRouter); 
 app.use('/archiveClients', archiveClientsRouter); 
 app.use('/archiveInventorys', archiveInventorysRouter); 
