@@ -12,7 +12,7 @@ export default class MainNavbar extends Component {
         return (
             <Navbar collapseOnSelect expand="lg">
                 <Navbar.Brand>
-                    <Link to="/home">
+                    <Link to="/clientHome">
                     <img width="auto" height="auto" className="img-responsive" src={Logo1} alt="logo"></img>
                     </Link>
                 </Navbar.Brand>
@@ -20,9 +20,9 @@ export default class MainNavbar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <NavDropdown title="Inventory" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="/inventory">Inventory</NavDropdown.Item>
+                                <NavDropdown.Item href="/inventory">Food Inventory</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="/supply">Supply</NavDropdown.Item>
+                                <NavDropdown.Item href="/supply">Supply Inventory</NavDropdown.Item>
                             </NavDropdown>
                         <Nav.Link href="/client">Clients</Nav.Link>
                         <Nav.Link href="/booking">Bookings</Nav.Link>

@@ -113,7 +113,7 @@ export default class CreateSupply extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                            +Add Supply
+                            +Add Supply Inventory
                             <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">

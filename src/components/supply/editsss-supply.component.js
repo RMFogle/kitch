@@ -127,7 +127,7 @@ export default class EditSupply extends Component {
     render() {
         return (
             <div>
-                <h3>Edit Supply</h3>
+                <h3>Edit Inventory</h3>
                 <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Supply Item: </label>
