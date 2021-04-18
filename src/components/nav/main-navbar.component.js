@@ -4,7 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom'; 
 import Logo1 from '../assets/img/kitch-navlogo-2a.png';
-import Logo2 from '../assets/img/kitch-navlogo-1a.png'; 
 import '../styles/table-style.css'; 
 
 export default class MainNavbar extends Component {
@@ -20,7 +19,11 @@ export default class MainNavbar extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/inventory">Inventory</Nav.Link>
+                        <NavDropdown title="Inventory" id="collasible-nav-dropdown">
+                                <NavDropdown.Item href="/inventory">Inventory</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/supply">Supply</NavDropdown.Item>
+                            </NavDropdown>
                         <Nav.Link href="/client">Clients</Nav.Link>
                         <Nav.Link href="/booking">Bookings</Nav.Link>
                             <NavDropdown title="Other" id="collasible-nav-dropdown">

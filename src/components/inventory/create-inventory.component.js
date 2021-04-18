@@ -9,7 +9,6 @@ import DatePicker from 'react-date-picker';
 // import "../styles/table-style.css";
 
 
-
 const CategoryType = () => (
     <optgroup>
         <option>Choose...</option>
@@ -199,8 +198,8 @@ export default class CreateInventory extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                           +Add Inventory
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            +Add Inventory
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
