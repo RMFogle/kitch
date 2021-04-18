@@ -16,7 +16,7 @@ import ReportScreenshot from '../assets/img/reports-info-1280x720.jpg';
 import '../styles/homePage-style.css'; 
 
 
-export default class WelcomePage extends Component {
+export default class HomePage extends Component {
 
     render() {
 

@@ -8,7 +8,7 @@ import Name from './globalVariableTest.component';
 import '../styles/clientHomePage-style.css'; 
 
 
-export default class HomePage extends Component {
+export default class ClientHomePage extends Component {
 
 
     render() {
