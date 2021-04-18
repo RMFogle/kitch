@@ -1,3 +1,17 @@
-.card-responsive{
-    padding: 1em;
+/* .container-main{
+    padding: 2em;
+} */
+
+.card-info{
+    height: 21em;
 }
+
+.container-two{
+    text-align: center;
+}
+
+.blockquote{
+    margin-top: 3em;
+    font-size: x-large;
+}
+

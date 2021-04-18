@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import MainNavbar from "./components/nav/main-navbar.component";
-import WelcomePage from "./components/welcome/welcomepage.component"; 
-import HomePage from "./components/home/homepage.component";
+import HomePage from "./components/home/homePage.component"; 
+import ClientHomePage from "./components/home/clientHomepage.component";
 
 import CreateInventory from "./components/inventory/create-inventory.component";
 import InventoryList from "./components/inventory/inventorys-list.component"; 
@@ -57,8 +57,8 @@ function App() {
     <Router>
       <MainNavbar />
       <br/>
-      <Route path="/kitch" component={WelcomePage} />
       <Route path="/home" component={HomePage} />
+      <Route path="/clientHome" component={ClientHomePage} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
       <Route path="/supply" component={CreateSupply} />

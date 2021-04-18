@@ -198,7 +198,7 @@ export default class CreateInventory extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                            +Add Inventory
+                            +Add Food Inventory
                             <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">

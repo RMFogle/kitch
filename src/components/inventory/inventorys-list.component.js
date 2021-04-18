@@ -105,7 +105,7 @@ export default class InventoryList extends Component {
                 <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Inventory List
+                           Food Inventory List
                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
