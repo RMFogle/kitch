@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import MainNavbar from "./components/nav/main-navbar.component";
-import HomePage from "./components/home/homePage.component"; 
+import HomePage from "./components/home/homePage.component";
 import ClientHomePage from "./components/home/clientHomepage.component";
 
 import CreateInventory from "./components/inventory/create-inventory.component";
