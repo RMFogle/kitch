@@ -1,22 +1,19 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import { Icon } from '@iconify/react';
-import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
-import NumberFormat from 'react-number-format';
+import Button from 'react-bootstrap/Button'; 
+import NumberFormat from 'react-number-format'; 
 
-export default class CreateSupply extends Component {
+export default class EditSupply extends Component {
     constructor(props) {
         super(props); 
 
         this.onChangeSupplyitem = this.onChangeSupplyitem.bind(this); 
         this.onChangeVendor = this.onChangeVendor.bind(this); 
         this.onChangeInstock = this.onChangeInstock.bind(this); 
-        this.onChangeNeed = this.onChangeNeed.bind(this);
+        this.onChangeNeed = this.onChangeNeed.bind(this); 
         this.onChangeTopurchase = this.onChangeTopurchase.bind(this); 
         this.onChangeUnitprice = this.onChangeUnitprice.bind(this); 
-        this.onChangeTotalcost = this.onChangeTotalcost.bind(this); 
+        this.onChangeTotalcost = this.onChangeTotalcost.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {
@@ -24,16 +21,45 @@ export default class CreateSupply extends Component {
             vendor: '', 
             instock: '', 
             need: '', 
-            topurchase: '',
+            topurchase: '', 
             unitprice: '', 
             totalcost: '', 
+            supplys: []
         }
+    }
 
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/supplys/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    supplyitem: response.data.supplyitem, 
+                    vendor: response.data.vendor, 
+                    instock: response.data.instock,
+                    need: response.data.need, 
+                    topurchase: response.data.topurchase, 
+                    unitprice: response.data.unitprice, 
+                    totalcost: response.data.totalcost
+                })
+            })
+            .catch(function (error) {
+                console.log(error); 
+            })
+        
+        axios.get('http://localhost:5000/supplys')
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        supplys: response.data.map(supply => supply.supplyitem), 
+
+                    })
+                }
+            })
     }
 
     onChangeSupplyitem(e) {
         this.setState({
-            supplyitem: e.target.value
+            supplyitem: e.target.value 
         }); 
     }
 
@@ -66,18 +92,19 @@ export default class CreateSupply extends Component {
         this.setState({
             unitprice: e.target.value, 
             totalcost: e.target.value * this.state.topurchase
-        });
+        }); 
     }
 
     onChangeTotalcost(e) {
         this.setState({
-            totalcost: e.target.value 
+                totalcost: e.target.value
         }); 
     }
 
     onSubmit(e) {
-        alert("Supply Successfully Added!!!")
         e.preventDefault(); 
+
+        console.log(this); 
 
         const supply = {
             supplyitem: this.state.supplyitem, 
@@ -91,109 +118,90 @@ export default class CreateSupply extends Component {
 
         console.log(supply); 
 
-        axios.post('http://localhost:5000/supplys/add', supply)
-            .then(res => console.log(res.data)); 
+        axios.post('http://localhost:5000/supplys/update/'+this.props.match.params.id, supply)
+        .then(res => console.log(res.data)); 
 
-        this.setState({
-            supplyitem: '', 
-            vendor: '', 
-            instock: '', 
-            need: '', 
-            topurchase: '', 
-            unitprice: '', 
-            totalcost: ''
-        })
-
-        window.location.reload(); 
+        window.location = '/supply'; 
     }
 
     render() {
         return (
-            <div className="form-responsive">
-                <Accordion>
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                            +Add Supply
-                            <Icon icon={arrowDropDownLine} height="2em" />
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0">
-                        <Card.Body>
+            <div>
+                <h3>Edit Supply</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Supply Item: </label>
-                        <input type="text"
+                <div className="form-group">
+                    <label>Supply Item: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.supplyitem}
                         onChange={this.onChangeSupplyitem}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Vendor: </label>
-                        <input type="text"
+                </div>
+                <div className="form-group">
+                    <label>Vendor: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.vendor}
                         onChange={this.onChangeVendor}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>In Stock: </label>
-                        <input type="text"
+                </div>
+                <div className="form-group">
+                    <label>In Stock: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.instock}
                         onChange={this.onChangeInstock}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Need: </label>
-                        <input type="text"
+                </div>
+                <div className="form-group">
+                    <label>Need: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.need}
                         onChange={this.onChangeNeed}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>To Purchase: </label>
-                        <input type="text"
+                </div>
+                <div className="form-group">
+                    <label>To Purchase: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.topurchase}
                         onChange={this.onChangeTopurchase}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Unit Price: </label>
-                        <input type="text"
+                </div>
+                <div className="form-group">
+                    <label>Unit Price: </label>
+                    <input type="text"
                         required
                         className="form-control"
                         value={this.state.unitprice}
                         onChange={this.onChangeUnitprice}
                         />
-                    </div>
-                    <div className="form-group">
-                        <label>Total Cost: </label>
-                        <div>
-                            <NumberFormat
-                            thousandSeparator={true}
-                            prefix={'$'}
-                            inputmode="numeric"
-                            value={this.state.totalcost}
-                            onChange={this.onChangeTotalcost}
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Add Item" className="btn btn-primary" />
-                    </div>
-                </form>
-                </Card.Body>
-                </Accordion.Collapse>
-                </Card>
-                </Accordion>
+                </div>
+                <div className="form-group">
+                    <label>Total Cost: </label>
+                    <div>
+                    <NumberFormat
+                        thousandSeparator={true} 
+                        prefix={'$'} 
+                        inputmode="numeric"
+                        value={this.state.totalcost}
+                        onChange={this.onChangeTotalcost}
+                        />
+                </div>
             </div>
+            <div className="form-group">
+                <input type="submit" value="Save" className="btn btn-primary" />
+                {" "}
+                <Button href="/supply/">Cancel</Button>
+            </div>
+        </form>
+        </div>
         )
     }
 }

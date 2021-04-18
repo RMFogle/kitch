@@ -20,6 +20,7 @@ import TrashRestoreInventory from "./components/inventory/restoresInventory-from
 
 import CreateSupply from "./components/supply/create-supply.component"; 
 import SupplyList from "./components/supply/supplys-list.component"; 
+import EditSupply from "./components/supply/editsss-supply.component"; 
 
 import CreateBooking from "./components/booking/create-booking.component"; 
 import BookingsList from "./components/booking/bookings-list.component";
@@ -69,6 +70,7 @@ function App() {
       <Route path="/edit/:id" component={EditBooking} />
       <Route path="/edits/:id" component={EditClient} />
       <Route path="/editss/:id" component={EditInventory} />
+      <Route path="/editsss/:id" component={EditSupply} />
       <Route path="/report" component={DataChart} />
       <Route path="/archive" component={ArchiveInventoryList} />
       <Route path="/archive" component={ArchiveClientList} />

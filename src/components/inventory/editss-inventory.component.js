@@ -104,7 +104,7 @@ export default class EditInventory extends Component {
                 if (response.data.length > 0) {
                     this.setState({
                         inventorys: response.data.map(inventory => inventory.fooditem), 
-
+                        
                     })
                 }
 
