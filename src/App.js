@@ -18,6 +18,9 @@ import TrashInventoryFromArchive from "./components/inventory/sendToosTrash-from
 import TrashInventoryList from "./components/inventory/trashInventory-list.component";
 import TrashRestoreInventory from "./components/inventory/restoresInventory-fromTrash.component"; 
 
+import CreateSupply from "./components/supply/create-supply.component"; 
+import SupplyList from "./components/supply/supplys-list.component"; 
+
 import CreateBooking from "./components/booking/create-booking.component"; 
 import BookingsList from "./components/booking/bookings-list.component";
 import EditBooking from "./components/booking/edit-booking.component"; 
@@ -57,6 +60,8 @@ function App() {
       <Route path="/home" component={HomePage} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
+      <Route path="/supply" component={CreateSupply} />
+      <Route path="/supply" component={SupplyList} />
       <Route path="/booking" component={CreateBooking} />
       <Route path="/booking" exact component={BookingsList} />
       <Route path="/client" component={CreateClient} /> 
