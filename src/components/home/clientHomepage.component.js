@@ -4,7 +4,7 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import InventoryIcon from '../assets/img/kitch-inventory-homepage.png'; 
 import BookingIcon from '../assets/img/kitch-bookings-homepage.png'; 
 import ClientIcon from '../assets/img/kitch-clients-homepage.png';
-import Name from './globalVariableTest.component'; 
+import Name from './globalVariableTest.component';
 import '../styles/clientHomePage-style.css'; 
 
 
