@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import MainNavbar from "./components/nav/main-navbar.component";
 import HomePage from "./components/home/homePage.component";
 import ClientHomePage from "./components/home/clientHomepage.component";
+
+import MainNavbar from "./components/nav/main-navbar.component";
+import SubNavbar from "./components/nav/sub-navbar.component";
 
 import CreateInventory from "./components/inventory/create-inventory.component";
 import InventoryList from "./components/inventory/inventorys-list.component"; 
@@ -55,26 +57,34 @@ function App() {
     <div className="page-container">
     <div className="content-wrap">
     <Router>
-      <MainNavbar />
       <br/>
+      <Route path="/home" component={MainNavbar} />
       <Route path="/home" component={HomePage} />
+      <Route path="/clientHome" component={SubNavbar} />
       <Route path="/clientHome" component={ClientHomePage} />
+      <Route path="/inventory" component={SubNavbar} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
+      <Route path="/supply" component={SubNavbar} />
       <Route path="/supply" component={CreateSupply} />
       <Route path="/supply" component={SupplyList} />
+      <Route path="/booking" component={SubNavbar} />
       <Route path="/booking" component={CreateBooking} />
-      <Route path="/booking" exact component={BookingsList} />
+      <Route path="/booking" component={BookingsList} />
+      <Route path="/client" component={SubNavbar} />
       <Route path="/client" component={CreateClient} /> 
       <Route path="/client" component={ClientsList} />
       <Route path="/edit/:id" component={EditBooking} />
       <Route path="/edits/:id" component={EditClient} />
       <Route path="/editss/:id" component={EditInventory} />
       <Route path="/editsss/:id" component={EditSupply} />
+      <Route path="/report" component={SubNavbar} />
       <Route path="/report" component={DataChart} />
+      <Route path="/archive" component={SubNavbar} />
       <Route path="/archive" component={ArchiveInventoryList} />
       <Route path="/archive" component={ArchiveClientList} />
       <Route path="/archive" component={ArchiveBookingList} />
+      <Route path="/trash" component={SubNavbar} />
       <Route path="/trash" component={TrashInventoryList} />
       <Route path="/trash" component={TrashClientList} />
       <Route path="/trash" component={TrashBookingList} />
