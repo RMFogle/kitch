@@ -92,7 +92,7 @@ export default class HomePage extends Component {
         <div className="container-three">
         <div className="row">
             <div className="col-6">
-        <Card className="card-info">
+        <Card className="card-info" id="how">
             <Card.Header>Inventory</Card.Header>
                 <Card.Body>
                 <Card.Title>Manage Your Inventory</Card.Title>
