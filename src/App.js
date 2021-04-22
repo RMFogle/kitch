@@ -3,11 +3,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import HomePage from "./components/home/homePage.component";
+import HomePage from "./components/home/homepage.component";
 import ClientHomePage from "./components/home/clientHomepage.component";
 
 import MainNavbar from "./components/nav/main-navbar.component";
 import SubNavbar from "./components/nav/sub-navbar.component";
+
+import SupportPage from "./components/support/support.component";
+import PricingPage from "./components/pricing/pricing.component"; 
 
 import CreateInventory from "./components/inventory/create-inventory.component";
 import InventoryList from "./components/inventory/inventorys-list.component"; 
@@ -48,7 +51,7 @@ import TrashRestoreClient from "./components/client/restoresClient-fromTrash.com
 
 import DataChart from "./components/report/data-charts.component"; 
 
-import Footer from "./components/footer/footer"; 
+import Footer from "./components/footer/footer.component"; 
 
 
 
@@ -60,6 +63,10 @@ function App() {
       <br/>
       <Route path="/home" component={MainNavbar} />
       <Route path="/home" component={HomePage} />
+      <Route path="/support" component={MainNavbar} />
+      <Route path="/support" component={SupportPage} />
+      <Route path="/pricing" component={MainNavbar} />
+      <Route path="/pricing" component={PricingPage} />
       <Route path="/clientHome" component={SubNavbar} />
       <Route path="/clientHome" component={ClientHomePage} />
       <Route path="/inventory" component={SubNavbar} />
