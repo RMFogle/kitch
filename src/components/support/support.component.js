@@ -1,10 +1,12 @@
 import React, { Component } from 'react'; 
 import Card from 'react-bootstrap/Card';
-import Image from '../assets/img/800x400solid.png'; 
-import Image2 from '../assets/img/674x180solid.png'; 
+import Upgrade from '../assets/img/upgrad-support.png';
+import Contact from '../assets/img/contact-support.png';
+import UpgradeBottom from '../assets/img/belowupgrad-support.png'
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion'; 
 import Form from 'react-bootstrap/Form';
+import '../styles/support-style.css'; 
 
 
 
@@ -13,77 +15,21 @@ export default class SupportPage extends Component {
     render() {
         return (
             <div className="card-responsive">
-                <Card className="bg-dark text-white">
-                    <Card.Img src={Image} alt="Card image" />
-                    <Card.ImgOverlay>
-                        <Card.Title><h4>Explore our FREE Demo</h4></Card.Title>
-                        <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
-                        </Card.Text>
-                        <Button href="/demo" variant="info">FREE Demo</Button>
-                    </Card.ImgOverlay>
-                </Card>
-                <Accordion defaultActiveKey="1">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                        <h4>Click here to schedule a demo for you and your team</h4>
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
-                            <Form>
-                                <Form.Group controlId="formGroupEmail">
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control type="name" placeholder="Enter name" />
-                                </Form.Group>
-                                <Form.Group controlId="formGroupPassword">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" placeholder="Email" />
-                                </Form.Group>
-                                <Form.Group controlId="formGroupPassword">
-                                    <Form.Label>Phone</Form.Label>
-                                    <Form.Control type="phone" placeholder="Phone" />
-                                </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Message (Include a date and time and one of our
-                                customer service associates will contact you)</Form.Label>
-                                    <Form.Control type="message" as="textarea" rows={3} />
-                                </Form.Group>
-                                <Button variant="primary" type="submit">
-                                Submit
-                                </Button>
-                            </Form>
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                </Accordion>
-                <Card className="text-center">
-                    <Card.Header></Card.Header>
-                    <Card.Body>
-                        <Card.Title>Get Started</Card.Title>
-                        <Card.Text>
-                        See which plan is right for you
-                        </Card.Text>
-                        <Button href="/pricing" variant="primary">Sign up</Button>
-                    </Card.Body>
-                    <Card.Footer className="text-muted"></Card.Footer>
-                </Card>
-                {/* break */}
-
                 <div className="row">
-                <Card className="col-6">
-                    <Card.Img variant="top" src={Image2} />
+                <Card className="col-6" id="card3">
+                    <Card.Img variant="top" src={Upgrade} />
                     <Card.Body>
                         <Card.Text>
-                            info instructions here in the image card above. 
                         </Card.Text>
-                        <Button href="/pricing" variant="primary">Upgrade</Button>
+                        <Button href="/pricing" variant="success" size="lg">Go</Button>
+                    {/* <Card.Img variant="bottom" src={Upgrade} /> */}
                     </Card.Body>
+                    <Card.Img variant="bottom" src={UpgradeBottom} />
                 </Card>
-                <Card className="col-6">
-                    <Card.Img variant="top" src={Image2} />
+                <Card className="col-6" id="card4" border="info">
+                    <Card.Img variant="top" src={Contact} />
                     <Card.Body>
-                        <Card.Text>Problem with your account? Contact us.</Card.Text>
+                        <Card.Text></Card.Text>
                     <Form>
                                 <Form.Group controlId="formGroupEmail">
                                     <Form.Label>Name</Form.Label>
