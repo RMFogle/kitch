@@ -1,7 +1,10 @@
 import React, { Component } from 'react'; 
 // import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck'
+import CardDeck from 'react-bootstrap/CardDeck'; 
+import Starter from '../assets/img/starter-pricing.png'; 
+import Pro from '../assets/img/pro-pricing.png'; 
+import Enterprise from '../assets/img/enter-pricing.png'; 
 
 
 export default class PricingPage extends Component {
@@ -11,9 +14,9 @@ export default class PricingPage extends Component {
             <div className="card-responsive">
                 <CardDeck>
                     <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
+                    <Card.Img variant="top" src={Starter} />
                         <Card.Body>
-                        <Card.Title>Basic</Card.Title>
+                        <Card.Title>Starter</Card.Title>
                             <Card.Text>
                             This is a wider card with supporting text below as a natural lead-in to
                             additional content. This content is a little bit longer.
@@ -23,7 +26,7 @@ export default class PricingPage extends Component {
                         </Card.Footer>
                     </Card>
                     <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
+                    <Card.Img variant="top" src={Pro} />
                         <Card.Body>
                         <Card.Title>Pro</Card.Title>
                             <Card.Text>
@@ -35,9 +38,9 @@ export default class PricingPage extends Component {
                         </Card.Footer>
                     </Card>
                     <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
+                    <Card.Img variant="top" src={Enterprise} />
                         <Card.Body>
-                        <Card.Title>Executive</Card.Title>
+                        <Card.Title>Enterprise</Card.Title>
                             <Card.Text>
                             This is a wider card with supporting text below as a natural lead-in to
                             additional content. This card has even longer content than the first to
