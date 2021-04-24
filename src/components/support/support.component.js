@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Upgrade from '../assets/img/upgrad-support.png';
 import Contact from '../assets/img/contact-support.png';
-import UpgradeBottom from '../assets/img/belowupgrad-support.png'
+import UpgradeBottom from '../assets/img/upgradebelow-support.png'; 
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion'; 
 import Form from 'react-bootstrap/Form';
@@ -22,7 +22,6 @@ export default class SupportPage extends Component {
                         <Card.Text>
                         </Card.Text>
                         <Button href="/pricing" variant="success" size="lg">Go</Button>
-                    {/* <Card.Img variant="bottom" src={Upgrade} /> */}
                     </Card.Body>
                     <Card.Img variant="bottom" src={UpgradeBottom} />
                 </Card>
@@ -66,41 +65,41 @@ export default class SupportPage extends Component {
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            Question one here?
+                            I cancelled a booking by mistake. How can I undo?
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="0">
-                        <Card.Body>Answer one here.</Card.Body>
+                        <Card.Body>All cancelled bookings are located in your Archive Booking List. You can restore the booking back to your main list, or send it to the trash for permanete deletion.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                            Question two here?
+                            I just added data to my Inventory and it's not showing up in my reports or data charts. How long does this take? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="1">
-                        <Card.Body>Answer two here.</Card.Body>
+                        <Card.Body>Data charts are automatically updated. It can take up to 30min. If your updates take longer than 30min please contact us at ###-####.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                            Question three here?
+                            I want to clean up my list. Is there a way to do that? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="2">
-                        <Card.Body>Answer three here.</Card.Body>
+                        <Card.Body>For clients you haven't booked in a while you can send their profile to your Client Archive.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                            Question four here?
+                            I don't see the menu option we're offering our clients. How do I add a new menu selection when I create a booking? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="3">
-                        <Card.Body>Answer four here.</Card.Body>
+                        <Card.Body>We can add it for you. Contact us at ###-####</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                 </Accordion>
