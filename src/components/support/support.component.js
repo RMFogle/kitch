@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form';
 import '../styles/support-style.css'; 
 
 
-
 export default class SupportPage extends Component {
 
     render() {
@@ -65,46 +64,45 @@ export default class SupportPage extends Component {
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            I cancelled a booking by mistake. How can I undo?
+                            Q: I cancelled a booking by mistake. How can I undo?
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="0">
-                        <Card.Body>All cancelled bookings are located in your Archive Booking List. You can restore the booking back to your main list, or send it to the trash for permanete deletion.</Card.Body>
+                        <Card.Body>A: All cancelled bookings are located in your Archive Booking List. You can restore the booking back to your main list, or send it to the trash for permanete deletion.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                            I just added data to my Inventory and it's not showing up in my reports or data charts. How long does this take? 
+                            Q: I just added data to my Inventory and it's not showing up in my reports or data charts. How long does this take? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="1">
-                        <Card.Body>Data charts are automatically updated. It can take up to 30min. If your updates take longer than 30min please contact us at ###-####.</Card.Body>
+                        <Card.Body>A: Data charts are automatically updated. It can take up to 30min. If your updates take longer than 30min please contact us at ###-####.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                            I want to clean up my list. Is there a way to do that? 
+                            Q: I want to clean up my client list. Is there a way I can do that? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="2">
-                        <Card.Body>For clients you haven't booked in a while you can send their profile to your Client Archive.</Card.Body>
+                        <Card.Body>A: For clients you haven't booked in a while you can send their profile to your Client Archive.</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                            I don't see the menu option we're offering our clients. How do I add a new menu selection when I create a booking? 
+                            Q: I don't see a menu option for what we're offering our clients. How do I add a new menu selection when I create a booking? 
                             </Accordion.Toggle>
                         </Card.Header>
                     <Accordion.Collapse eventKey="3">
-                        <Card.Body>We can add it for you. Contact us at ###-####</Card.Body>
+                        <Card.Body>A: We can add it for you. Contact us at ###-####</Card.Body>
                     </Accordion.Collapse>
                     </Card>
                 </Accordion>
                 {/* break */}
-                
             </div>
         )
     }
