@@ -21,7 +21,7 @@ export default class PricingPage extends Component {
                     <Card.Img variant="top" src={Starter} />
                         <Card.Body>
                         <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
-                        <Card.Title>_________________________________________</Card.Title>
+                        <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark" />{" "}<small>Good for Start Ups or Small Businesses</small></ListGroup.Item>
@@ -30,7 +30,6 @@ export default class PricingPage extends Component {
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Up to 10 Embedded Data Charts</small></ListGroup.Item>
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Customer Support Help Desk</small></ListGroup.Item>
                             </ListGroup>
-                            ___________________________________________________
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
@@ -40,7 +39,7 @@ export default class PricingPage extends Component {
                     <Card.Img variant="top" src={Pro} />
                         <Card.Body>
                         <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
-                        <Card.Title>_________________________________________</Card.Title>
+                        <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>All Starter Features +</small></ListGroup.Item>
@@ -49,7 +48,6 @@ export default class PricingPage extends Component {
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Up to 25 Embedded Data Charts</small></ListGroup.Item>
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Client Side Online Ordering</small></ListGroup.Item>
                             </ListGroup>
-                            ___________________________________________________
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
@@ -59,7 +57,7 @@ export default class PricingPage extends Component {
                     <Card.Img variant="top" src={Enterprise} />
                         <Card.Body>
                         <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
-                        <Card.Title>_________________________________________</Card.Title>
+                        <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>All Professional Features +</small></ListGroup.Item>
@@ -68,7 +66,6 @@ export default class PricingPage extends Component {
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Unlimited Embedded Data Charts</small></ListGroup.Item>
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark"/>{" "}<small>Full Customization of SDK Data Charts Package</small></ListGroup.Item>
                             </ListGroup>
-                            ___________________________________________________
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
