@@ -12,6 +12,8 @@ const archiveBookingSchema = new Schema({
     guestcount: { type: Number, required: true, },
     meal: { type: String, required: true, }, 
     menu: { type: String, required: true, },
+    costperguest: { type: Number, required: true, }, 
+    totalcost: { type: Number, required: true, }
 }, {
     timestamps: true, 
 }); 

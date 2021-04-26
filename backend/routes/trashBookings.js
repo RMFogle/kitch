@@ -17,6 +17,9 @@ router.route('/add').post((req, res) => {
     const guestcount = req.body.guestcount; 
     const meal = req.body.meal; 
     const menu = req.body.menu; 
+    const costperguest = req.body.costperguest; 
+    const totalcost = req.body.totalcost; 
+
 
 
 
@@ -31,6 +34,8 @@ const newTrashBooking = new TrashBooking({
     guestcount, 
     meal, 
     menu, 
+    costperguest, 
+    totalcost, 
 }); 
 
 newTrashBooking.save()
@@ -62,6 +67,8 @@ router.route('/update/:id').post((req, res) => {
             trashBooking.guestcount = req.body.guestcount; 
             trashBooking.meal = req.body.meal; 
             trashBooking.menu = req.body.menu; 
+            trashBooking.costperguest = req.body.costperguest; 
+            trashBooking.totalcost = req.body.totalcost; 
 
             trashBooking.save()
                 .then(() => res.json('Trash Booking updated!'))

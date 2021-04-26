@@ -16,7 +16,9 @@ router.route('/add').post((req, res) => {
     const endtime = req.body.endtime;
     const guestcount = req.body.guestcount; 
     const meal = req.body.meal; 
-    const menu = req.body.menu; 
+    const menu = req.body.menu;
+    const costperguest = req.body.costperguest; 
+    const totalcost = req.body.totalcost; 
 
     
 const newArchiveBooking = new ArchiveBooking({
@@ -28,7 +30,9 @@ const newArchiveBooking = new ArchiveBooking({
     endtime,
     guestcount, 
     meal, 
-    menu, 
+    menu,
+    costperguest, 
+    totalcost,
 }); 
 
 newArchiveBooking.save()
@@ -60,6 +64,8 @@ router.route('/update/:id').post((req, res) => {
             archiveBooking.guestcount = req.body.guestcount; 
             archiveBooking.meal = req.body.meal; 
             archiveBooking.menu = req.body.menu;
+            archiveBooking.costperguest = req.body.costperguest; 
+            archiveBooking.totalcost = req.body.totalcost; 
 
 
             archiveBooking.save()
