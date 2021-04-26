@@ -27,7 +27,8 @@ const archiveClientsRouter = require('./routes/archiveClients');
 const archiveInventorysRouter = require('./routes/archiveInventorys'); 
 const trashBookingsRouter = require('./routes/trashBookings'); 
 const trashClientsRouter = require('./routes/trashClients'); 
-const trashInventorysRouter = require('./routes/trashInventorys'); 
+const trashInventorysRouter = require('./routes/trashInventorys');
+const scheduleDemosRouter = require('./routes/scheduleDemos'); 
 
 app.use('/bookings', bookingsRouter); 
 app.use('/clients', clientsRouter); 
@@ -39,6 +40,7 @@ app.use('/archiveInventorys', archiveInventorysRouter);
 app.use('/trashBookings', trashBookingsRouter); 
 app.use('/trashClients', trashClientsRouter); 
 app.use('/trashInventorys', trashInventorysRouter); 
+app.use('/scheduleDemos', scheduleDemosRouter); 
 
 
 app.listen(port, () => {
