@@ -7,6 +7,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import { Icon } from '@iconify/react';
 import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
+import listOutline from '@iconify-icons/eva/list-outline';
+import peopleGroup from '@iconify-icons/vs/people-group';
+import calendarClockOutline from '@iconify-icons/mdi/calendar-clock-outline';
+import barGraph from '@iconify-icons/entypo/bar-graph';
 import KitchCarousel from '../assets/img/kitch-carousel.jpg';
 import InventoryCarousel from '../assets/img/inventory-carousel.jpg'; 
 import ClientsCarousel from '../assets/img/clients-carousel.jpg'; 
@@ -18,7 +22,9 @@ import BookingScreenshot from '../assets/img/booking-info-1280x720.jpg';
 import ReportScreenshot from '../assets/img/reports-info-1280x720.jpg';
 import Quote from '../assets/img/quote-homepage.png'; 
 import FreeDemo from '../assets/img/getstarted-freedemo.png'
-import '../styles/homePage-style.css'; 
+import '../styles/homePage-style.css';
+
+
 
 
 export default class HomePage extends Component {
@@ -27,7 +33,7 @@ export default class HomePage extends Component {
 
         return (
             <div className="container-main">
-                <div className="container-one">
+                <div className="container-carousel">
                 <div className="row">
                     <div className="col">
             <Carousel className="carousel">
@@ -72,23 +78,23 @@ export default class HomePage extends Component {
         </div>
         <br>
         </br>
-        <div className="container-two">
+        <div className="container-quote">
             <div className="row">
                 <div className="col">
         <Card>
     <Card.Header></Card.Header>
-            <Image src={Quote} fluid />
+            <Image src={Quote} fluid className="info-image" />
     </Card>
     </div>
     </div>
     </div>
         <br>
         </br>
-        <div className="container-three">
+        <div className="container-info">
         <div className="row">
             <div className="col-6">
         <Card className="card-info" id="how">
-            <Card.Header>Inventory</Card.Header>
+            <Card.Header><Icon icon={listOutline} /></Card.Header>
                 <Card.Body>
                 <Card.Title>Manage Your Inventory</Card.Title>
                     <Card.Text>
@@ -98,20 +104,20 @@ export default class HomePage extends Component {
         </Card>
         </div>
             <div className="col-6">
-        <Image src={InventoryScreenshot} fluid />
+        <Image src={InventoryScreenshot} fluid className="info-image" />
         </div>
         </div>
         </div>
         <br>
         </br>
-        <div className="container-four">
+        <div className="container-info">
         <div className="row">
             <div className="col-6">
-            <Image src={ClientScreenshot} fluid />
+            <Image src={ClientScreenshot} fluid className="info-image" />
         </div>
             <div className="col-6">
         <Card className="card-info">
-            <Card.Header>Clients</Card.Header>
+            <Card.Header><Icon icon={peopleGroup} /></Card.Header>
                 <Card.Body>
                 <Card.Title>Keep Track Of Your Clients</Card.Title>
                     <Card.Text>
@@ -124,11 +130,11 @@ export default class HomePage extends Component {
         </div>
         <br>
         </br>
-        <div className="container-five">
+        <div className="container-info">
         <div className="row">
             <div className="col-6">
         <Card className="card-info">
-            <Card.Header>Bookings</Card.Header>
+            <Card.Header><Icon icon={calendarClockOutline} /></Card.Header>
                 <Card.Body>
                 <Card.Title>Schedule Bookings</Card.Title>
                     <Card.Text>
@@ -138,20 +144,20 @@ export default class HomePage extends Component {
         </Card>
         </div>
             <div className="col-6">
-        <Image src={BookingScreenshot} fluid />
+        <Image src={BookingScreenshot} fluid className="info-image" />
         </div>
         </div>
         </div>
         <br>
         </br>
-        <div className="container-six">
+        <div className="container-info">
         <div className="row">
             <div className="col-6">
-            <Image src={ReportScreenshot} fluid />
+            <Image src={ReportScreenshot} fluid className="info-image" />
         </div>
             <div className="col-6">
         <Card className="card-info">
-            <Card.Header>Data Charts</Card.Header>
+            <Card.Header><Icon icon={barGraph} /></Card.Header>
                 <Card.Body>
                 <Card.Title>Generate Reports and Data Charts</Card.Title>
                     <Card.Text>
@@ -164,7 +170,7 @@ export default class HomePage extends Component {
         </div>
         <br>
         </br>
-        <div className="container-seven">
+        <div className="container-demo">
             <Card className="card1">
                     <Card.Img variant="top" src={FreeDemo} />
                         <Card.Body>

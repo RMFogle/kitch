@@ -2,19 +2,23 @@
     padding: 2em;
 } */
 
-.card-info{
+.container-info {
+    margin: 1em; 
+}
+
+.card-info {
     height: 21em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.container-two{
-    text-align: center;
+.info-image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.blockquote{
+.blockquote {
     margin-top: 3em;
     font-size: x-large;
 }
-
 
 .card1 {
     border: none;
