@@ -98,7 +98,7 @@ export default class HomePage extends Component {
                 <Card.Body>
                 <Card.Title>Manage Your Inventory</Card.Title>
                     <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
+                        Add food items and kitchen supplies. Keep track of total costs and stock. 
                     </Card.Text>
                 </Card.Body>
         </Card>
@@ -121,7 +121,7 @@ export default class HomePage extends Component {
                 <Card.Body>
                 <Card.Title>Keep Track Of Your Clients</Card.Title>
                     <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
+                        Sortable tables make it easy to find a client and update their contact information. 
                     </Card.Text>
                 </Card.Body>
         </Card>
@@ -138,7 +138,7 @@ export default class HomePage extends Component {
                 <Card.Body>
                 <Card.Title>Schedule Bookings</Card.Title>
                     <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
+                        Know when, where and how many guests you need to feed for your clients next event. 
                     </Card.Text>
                 </Card.Body>
         </Card>
@@ -161,7 +161,9 @@ export default class HomePage extends Component {
                 <Card.Body>
                 <Card.Title>Generate Reports and Data Charts</Card.Title>
                     <Card.Text>
-                    With supporting text below as a natural lead-in to additional content.
+                        Visulized data shows you how much you spend on inventory each month. 
+                        How many new clients you've booked, or how many bookings you've cancelled per month. 
+                        Make informed decisions about your business with our data charts powered by mongoDB Charts. 
                     </Card.Text>
                 </Card.Body>
         </Card>
