@@ -5,7 +5,7 @@ import Contact from '../assets/img/contact-support.png';
 import UpgradeBottom from '../assets/img/upgradebelow-support.png'; 
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion'; 
-import Form from 'react-bootstrap/Form';
+import ContactUs from './contactUs.component'; 
 import '../styles/support-style.css'; 
 
 
@@ -28,27 +28,7 @@ export default class SupportPage extends Component {
                     <Card.Img variant="top" src={Contact} />
                     <Card.Body>
                         <Card.Text></Card.Text>
-                    <Form>
-                                <Form.Group controlId="formGroupEmail">
-                                    <Form.Label>Name</Form.Label>
-                                    <Form.Control type="name" placeholder="Enter name" />
-                                </Form.Group>
-                                <Form.Group controlId="formGroupPassword">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control type="email" placeholder="Email" />
-                                </Form.Group>
-                                <Form.Group controlId="formGroupPassword">
-                                    <Form.Label>Phone</Form.Label>
-                                    <Form.Control type="phone" placeholder="Phone" />
-                                </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Issue</Form.Label>
-                                    <Form.Control type="message" as="textarea" rows={3} />
-                                </Form.Group>
-                                <Button variant="primary" type="submit">
-                                Submit
-                                </Button>
-                            </Form>
+                    <ContactUs />
                     </Card.Body>
                 </Card>
                 </div>
