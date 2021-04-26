@@ -3,10 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image'; 
 import Button from 'react-bootstrap/Button';
-import Accordion from 'react-bootstrap/Accordion'; 
-import Form from 'react-bootstrap/Form';
 import { Icon } from '@iconify/react';
-import arrowDropDownLine from '@iconify-icons/ri/arrow-drop-down-line';
 import listOutline from '@iconify-icons/eva/list-outline';
 import peopleGroup from '@iconify-icons/vs/people-group';
 import calendarClockOutline from '@iconify-icons/mdi/calendar-clock-outline';
@@ -21,7 +18,8 @@ import ClientScreenshot from '../assets/img/client-info-1280x720.jpg';
 import BookingScreenshot from '../assets/img/booking-info-1280x720.jpg'; 
 import ReportScreenshot from '../assets/img/reports-info-1280x720.jpg';
 import Quote from '../assets/img/quote-homepage.png'; 
-import FreeDemo from '../assets/img/getstarted-freedemo.png'
+import FreeDemo from '../assets/img/getstarted-freedemo.png'; 
+import CreateScheduleDemo from './scheduleDemo.component'; 
 import '../styles/homePage-style.css';
 
 
@@ -182,39 +180,7 @@ export default class HomePage extends Component {
                             </div>
                             <br></br>
                             <div className="col-8">
-                        <Accordion defaultActiveKey="1" id="schedule">
-                            <Card border="info">
-                                <Accordion.Toggle as={Card.Header} eventKey="0">
-                                <h4><Icon icon={arrowDropDownLine} height="2em" /> Click here to schedule a demo for you and your team</h4>
-                                </Accordion.Toggle>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body>
-                                        <Form>
-                                            <Form.Group controlId="formGroupEmail">
-                                                <Form.Label>Name</Form.Label>
-                                                <Form.Control type="name" placeholder="Enter name" />
-                                            </Form.Group>
-                                            <Form.Group controlId="formGroupPassword">
-                                                <Form.Label>Email</Form.Label>
-                                                <Form.Control type="email" placeholder="Email" />
-                                            </Form.Group>
-                                            <Form.Group controlId="formGroupPassword">
-                                                <Form.Label>Phone</Form.Label>
-                                                <Form.Control type="phone" placeholder="Phone" />
-                                            </Form.Group>
-                                            <Form.Group controlId="exampleForm.ControlTextarea1">
-                                                <Form.Label>Message (Include a date and time and one of our
-                                                customer service associates will contact you)</Form.Label>
-                                            <Form.Control type="message" as="textarea" rows={3} />
-                                            </Form.Group>
-                                                <Button variant="primary" type="submit">
-                                                Submit
-                                                </Button>
-                                        </Form>
-                                    </Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
-                        </Accordion>
+                            <CreateScheduleDemo />
                         </div>
                         </div>
                         </Card.Body>
