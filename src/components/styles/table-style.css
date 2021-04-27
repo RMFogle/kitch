@@ -15,15 +15,15 @@ table thead i {
 }
 
 table thead th {
-        font-size: 0.875em;
+        font-size: 0.825em;
 }
 
 tbody tr td {
-        font-size: 0.875em; 
+        font-size: 0.825em; 
 }
 
 table tfoot th {
-        font-size: 0.875em;
+        font-size: 0.825em;
 }
 
 i:active {

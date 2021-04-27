@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button';
 import DatePicker from 'react-date-picker'; 
+import NumberFormat from 'react-number-format';
+
 
 const BookingTimes = () => (
     <optgroup>
@@ -102,6 +104,8 @@ export default class EditBooking extends Component {
         this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
         this.onChangeMeal = this.onChangeMeal.bind(this); 
         this.onChangeMenu = this.onChangeMenu.bind(this);
+        this.onChangeCostPerGuest = this.onChangeCostPerGuest.bind(this);
+        this.onChangeTotalCost = this.onChangeTotalCost.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -114,6 +118,8 @@ export default class EditBooking extends Component {
             guestcount: '', 
             meal: '', 
             menu: '',
+            costperguest: '', 
+            totalcost: '',
             clients: []
         }
     }
@@ -131,7 +137,9 @@ export default class EditBooking extends Component {
                     endtime: response.data.endtime, 
                     guestcount: response.data.guestcount, 
                     meal: response.data.meal, 
-                    menu: response.data.menu, 
+                    menu: response.data.menu,
+                    costperguest: response.data.costperguest, 
+                    totalcost: response.data.totalcost, 
                 })
             })
             .catch(function (error) {
@@ -188,20 +196,34 @@ export default class EditBooking extends Component {
 
     onChangeGuestCount(e) {
         this.setState({
-            guestcount: e.target.value 
-        })
+            guestcount: e.target.value, 
+            totalcost: e.target.value * this.state.costperguest
+        }); 
     }
 
     onChangeMeal(e) {
         this.setState({
             meal: e.target.value 
-        })
+        });
     }
 
     onChangeMenu(e) {
         this.setState({
             menu: e.target.value 
-        })
+        });
+    }
+
+    onChangeCostPerGuest(e) {
+        this.setState({
+            costperguest: e.target.value, 
+            totalcost: e.target.value * this.state.guestcount
+        }); 
+    }
+
+    onChangeTotalCost(e) {
+        this.setState({
+            totalcost: e.target.value 
+        }); 
     }
 
     bookingTimesList() {
@@ -228,7 +250,9 @@ export default class EditBooking extends Component {
             endtime: this.state.endtime, 
             guestcount: this.state.guestcount,
             meal: this.state.meal, 
-            menu: this.state.menu, 
+            menu: this.state.menu,
+            costperguest: this.state.costperguest, 
+            totalcost: this.state.totalcost,
         }
 
         console.log(booking);
@@ -309,6 +333,29 @@ export default class EditBooking extends Component {
                         onChange={this.onChangeMenu}>
                             { this.menuSelectList() }
                         </select>
+                    </div>
+                    </div>
+                    <div className="form-row">
+                    <div className="form-group col-md-6">
+                    <label>$ Per Guest: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.costperguest}
+                        onChange={this.onChangeCostPerGuest}
+                        />
+                    </div>
+                    <div className="form-group col-md-6">
+                    <label>Total Cost: </label>
+                    <div>
+                            <NumberFormat
+                            thousandSeparator={true} 
+                            prefix={'$'} 
+                            inputmode="numeric"
+                            value={this.state.totalcost}
+                            onChange={this.onChangeTotalCost}
+                            />
+                        </div>
                     </div>
                     </div>
                 <div className="form-row">
