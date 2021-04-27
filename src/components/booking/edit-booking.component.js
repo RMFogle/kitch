@@ -287,34 +287,25 @@ export default class EditBooking extends Component {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Event: </label>
-                    <input type="text"
-                        required
+                        <label>Event: </label>
+                        <input type="text" 
+                        required 
                         className="form-control"
                         value={this.state.eventtype}
                         onChange={this.onChangeEventtype}
                         />
-                </div>
-                <div className="form-group">
-                    <label>Location: </label>
-                    <input 
-                        type="text"
+                    </div>
+                    <div className="form-group">
+                        <label>Location: </label>
+                        <input type="text"
+                        required
                         className="form-control"
                         value={this.state.location}
                         onChange={this.onChangeLocation}
                         />
-                </div>
-                <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label>Guest#: </label>
-                        <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.guestcount}
-                        onChange={this.onChangeGuestCount}
-                        />
                     </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-row">
+                    <div className="form-group col-md-6">
                         <label>Meal: </label>
                         <select id="meal"
                         required
@@ -324,7 +315,7 @@ export default class EditBooking extends Component {
                             { this.mealTypeList() }
                         </select>
                     </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-md-6">
                         <label>Menu: </label>
                         <select id="menu"
                         required
@@ -336,39 +327,16 @@ export default class EditBooking extends Component {
                     </div>
                     </div>
                     <div className="form-row">
-                    <div className="form-group col-md-6">
-                    <label>$ Per Guest: </label>
-                        <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.costperguest}
-                        onChange={this.onChangeCostPerGuest}
-                        />
-                    </div>
-                    <div className="form-group col-md-6">
-                    <label>Total Cost: </label>
-                    <div>
-                            <NumberFormat
-                            thousandSeparator={true} 
-                            prefix={'$'} 
-                            inputmode="numeric"
-                            value={this.state.totalcost}
-                            onChange={this.onChangeTotalCost}
+                    <div className="form-group col-md-4">
+                        <label>Date: </label>
+                        <div>
+                            <DatePicker 
+                            value={this.state.date}
+                            onChange={this.onChangeDate}
                             />
                         </div>
                     </div>
-                    </div>
-                <div className="form-row">
-                <div className="form-group col-md-3">
-                    <label>Date: </label>
-                    <div>
-                        <DatePicker
-                        value={this.state.date}
-                        onChange={this.onChangeDate}
-                        />
-                    </div>
-                </div>
-                <div className="form-group col-md-4">
+                    <div className="form-group col-md-4">
                     <label htmlFor="time1">Start Time: </label>
                         <select id="time1"
                         required
@@ -389,7 +357,38 @@ export default class EditBooking extends Component {
                         </select>
                         </div>
                     </div>
-
+                    <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <label>Guest#: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.guestcount}
+                        onChange={this.onChangeGuestCount}
+                        />
+                    </div>
+                    <div className="form-group col-md-4">
+                    <label>$ Per Guest: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.costperguest}
+                        onChange={this.onChangeCostPerGuest}
+                        />
+                    </div>
+                    <div className="form-group col-md-4">
+                    <label>Total Cost: </label>
+                    <div>
+                        <NumberFormat
+                        thousandSeparator={true} 
+                        prefix={'$'} 
+                        inputmode="numeric"
+                        value={this.state.totalcost}
+                        onChange={this.onChangeTotalCost}
+                        />
+                        </div>
+                    </div>
+                    </div>
                 <div className="form-group">
                     <input type="submit" value="Save" className="btn btn-primary" />
                     {" "}

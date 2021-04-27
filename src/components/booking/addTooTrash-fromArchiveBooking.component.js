@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 import DatePicker from 'react-date-picker'; 
+import NumberFormat from 'react-number-format';
 import Button from 'react-bootstrap/Button'; 
 
 
@@ -17,6 +18,8 @@ export default class TrashBookingFromArchive extends Component {
         this.onChangeGuestCount = this.onChangeGuestCount.bind(this); 
         this.onChangeMeal = this.onChangeMeal.bind(this); 
         this.onChangeMenu = this.onChangeMenu.bind(this);
+        this.onChangeCostPerGuest = this.onChangeCostPerGuest.bind(this);
+        this.onChangeTotalCost = this.onChangeTotalCost.bind(this);
         this.onSubmit = this.onSubmit.bind(this); 
         
         this.state = {
@@ -29,6 +32,8 @@ export default class TrashBookingFromArchive extends Component {
             guestcount: '',
             meal: '', 
             menu: '',
+            costperguest: '', 
+            totalcost: '',
             clients: []
         }
     }
@@ -47,6 +52,8 @@ export default class TrashBookingFromArchive extends Component {
                     guestcount: response.data.guestcount, 
                     meal: response.data.meal, 
                     menu: response.data.menu,
+                    costperguest: response.data.costperguest, 
+                    totalcost: response.data.totalcost,
                 })
             })
             .catch(function (error) {
@@ -104,19 +111,31 @@ export default class TrashBookingFromArchive extends Component {
     onChangeGuestCount(e) {
         this.setState({
             guestcount: e.target.value 
-        })
+        });
     }
 
     onChangeMeal(e) {
         this.setState({
             meal: e.target.value 
-        })
+        });
     }
 
     onChangeMenu(e) {
         this.setState({
             menu: e.target.value 
-        })
+        });
+    }
+
+    onChangeCostPerGuest(e) {
+        this.setState({
+            costperguest: e.target.value
+        }); 
+    }
+
+    onChangeTotalCost(e) {
+        this.setState({
+            totalcost: e.target.value 
+        }); 
     }
 
     addToTrashFromArchive() {
@@ -129,7 +148,9 @@ export default class TrashBookingFromArchive extends Component {
             endtime: this.state.endtime, 
             guestcount: this.state.guestcount,
             meal: this.state.meal, 
-            menu: this.state.menu, 
+            menu: this.state.menu,
+            costperguest: this.state.costperguest, 
+            totalcost: this.state.totalcost,
         }
 
         console.log(booking); 
@@ -190,16 +211,7 @@ export default class TrashBookingFromArchive extends Component {
                         readOnly/>
                     </div>
                     <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label>Guest#: </label>
-                        <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.guestcount}
-                        onChange={this.onChangeGuestCount}
-                        readOnly/>
-                    </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-md-6">
                         <label>Meal: </label>
                         <input type="text"
                         required
@@ -208,7 +220,7 @@ export default class TrashBookingFromArchive extends Component {
                         onChange={this.onChangeMeal}
                         readOnly/>
                     </div>
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-md-6">
                         <label>Menu: </label>
                         <input type="text"
                         required
@@ -219,7 +231,7 @@ export default class TrashBookingFromArchive extends Component {
                     </div>
                     </div>
                     <div className="form-row">
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label>Date: </label>
                         <div>
                             <DatePicker
@@ -247,7 +259,38 @@ export default class TrashBookingFromArchive extends Component {
                         readOnly/>
                         </div>
                     </div>
-
+                    <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <label>Guest#: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.guestcount}
+                        onChange={this.onChangeGuestCount}
+                        readOnly/>
+                    </div>
+                    <div className="form-group col-md-4">
+                    <label>$ Per Guest: </label>
+                        <input type="text"
+                        required
+                        className="form-control"
+                        value={this.state.costperguest}
+                        onChange={this.onChangeCostPerGuest}
+                        readOnly/>
+                    </div>
+                    <div className="form-group col-md-4">
+                    <label>Total Cost: </label>
+                    <div>
+                        <NumberFormat
+                        thousandSeparator={true} 
+                        prefix={'$'} 
+                        inputmode="numeric"
+                        value={this.state.totalcost}
+                        onChange={this.onChangeTotalCost}
+                        readOnly/>
+                        </div>
+                    </div>
+                    </div>
                     <div className="form-group">
                         <Button type="submit" value="Trash Booking">
                         Trash Booking</Button>
