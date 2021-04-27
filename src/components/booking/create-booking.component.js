@@ -332,7 +332,7 @@ export default class CreateBooking extends Component {
                     </div>
                     </div>
                     <div className="form-row">
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label>Date: </label>
                         <div>
                             <DatePicker 
@@ -384,13 +384,13 @@ export default class CreateBooking extends Component {
                     <div className="form-group col-md-4">
                     <label>Total Cost: </label>
                     <div>
-                            <NumberFormat
-                            thousandSeparator={true} 
-                            prefix={'$'} 
-                            inputmode="numeric"
-                            value={this.state.totalcost}
-                            onChange={this.onChangeTotalCost}
-                            />
+                        <NumberFormat
+                        thousandSeparator={true} 
+                        prefix={'$'} 
+                        inputmode="numeric"
+                        value={this.state.totalcost}
+                        onChange={this.onChangeTotalCost}
+                        />
                         </div>
                     </div>
                     </div>

@@ -15,12 +15,14 @@ const ArchiveBooking = props => (
         <td className="bookinglist">{props.booking.clientname}</td>
         <td className="bookinglist">{props.booking.eventtype}</td>
         <td className="bookinglist">{props.booking.location}</td>
-        <td className="bookinglist">{props.booking.guestcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="bookinglist">{props.booking.meal}</td>
         <td className="bookinglist">{props.booking.menu}</td>
         <td className="bookinglist">{props.booking.date.substring(0,10)}</td>
         <td className="bookinglist">{props.booking.starttime}</td>
         <td className="bookinglist">{props.booking.endtime}</td>
+        <td className="bookinglist">{props.booking.guestcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="bookinglist">${props.booking.costperguest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        <td className="bookinglist">${props.booking.totalcost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         <td className="bookinglist">
             <Button variant="outline-warning" size="sm">
             <Link to={"/restoreBooking/"+props.booking._id}>restore</Link>
@@ -135,15 +137,6 @@ export default class ArchiveBookingList extends Component {
                                 </ButtonGroup>
                             </th>
                             <th>
-                            Guest#
-                                <ButtonGroup vertical>
-                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('guestcount')}>
-                                </i>
-                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('guestcount')}>
-                                </i>
-                                </ButtonGroup>
-                            </th>
-                            <th>
                             Meal
                                 <ButtonGroup vertical>
                                 <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('meal')}>
@@ -188,6 +181,33 @@ export default class ArchiveBookingList extends Component {
                                 </i>
                                 </ButtonGroup>
                             </th>
+                            <th>
+                            Guest#
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('guestcount')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('guestcount')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            $Guest
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('costperguest')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('costperguest')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
+                            <th>
+                            Total
+                                <ButtonGroup vertical>
+                                <i className="fas fa-sort-up" role="button" onClick={() => this.sortByUp('totalcost')}>
+                                </i>
+                                <i className="fas fa-sort-down" role="button" onClick={() => this.sortByDown('totalcost')}>
+                                </i>
+                                </ButtonGroup>
+                            </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -199,12 +219,14 @@ export default class ArchiveBookingList extends Component {
                             <th>Client</th>
                             <th>Event</th>
                             <th>Location</th>
-                            <th>Guest#</th>
                             <th>Meal</th>
                             <th>Menu</th>
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>
+                            <th>Guest#</th>
+                            <th>$Guest</th>
+                            <th>Total</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
