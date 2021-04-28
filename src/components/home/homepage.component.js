@@ -163,7 +163,7 @@ export default class HomePage extends Component {
                         <Card.Text>
                         Visulized data shows you how much you spend on inventory each month. 
                         How many new clients you've booked, or how many bookings you've cancelled per month. 
-                        Make informed decisions about your business with our data charts powered by mongoDB Charts. 
+                        Make informed decisions about your business with our data charts powered by mongoDB. 
                         </Card.Text>
                     </Card.Body>
                 </Card>
