@@ -1,5 +1,7 @@
 import React, { Component } from 'react'; 
-import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card'; 
+import Row from 'react-bootstrap/Row'; 
+import Col from 'react-bootstrap/Col'; 
 import Upgrade from '../assets/img/upgrad-support.png';
 import Contact from '../assets/img/contact-support.png';
 import UpgradeBottom from '../assets/img/upgradebelow-support.png'; 
@@ -14,8 +16,10 @@ export default class SupportPage extends Component {
     render() {
         return (
             <div className="card-responsive">
-                <div className="row">
-                <Card className="col-6" id="card3">
+            <div className="container-responsive">
+                <Row>
+                    <Col md={12} lg={6}>
+                <Card id="card3">
                     <Card.Img variant="top" src={Upgrade} />
                     <Card.Body>
                         <Card.Text>
@@ -24,19 +28,19 @@ export default class SupportPage extends Component {
                     </Card.Body>
                     <Card.Img variant="bottom" src={UpgradeBottom} />
                 </Card>
-                <Card className="col-6" id="card4" border="info">
+                </Col>
+                <Col md={12} lg={6}>
+                <Card id="card4" border="info">
                     <Card.Img variant="top" src={Contact} />
                     <Card.Body>
                         <Card.Text></Card.Text>
                     <ContactUs />
                     </Card.Body>
                 </Card>
+                </Col>
+                </Row>
                 </div>
-                {/* break */}
                 <br></br>
-                {/* FAQ: 
-                    Q: Write out question
-                                --> have as accordian on click to show answer */}
                 <div>
                     <h2>FAQ's:</h2>
                 </div>
@@ -82,7 +86,6 @@ export default class SupportPage extends Component {
                     </Accordion.Collapse>
                     </Card>
                 </Accordion>
-                {/* break */}
             </div>
         )
     }
