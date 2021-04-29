@@ -126,7 +126,7 @@ export default class EditSupply extends Component {
 
     render() {
         return (
-            <div>
+            <div className="form-responsive">
                 <h3>Edit Inventory</h3>
                 <form onSubmit={this.onSubmit}>
                 <div className="form-group">

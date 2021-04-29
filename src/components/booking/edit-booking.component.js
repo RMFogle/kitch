@@ -266,7 +266,7 @@ export default class EditBooking extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
             <h3>Edit Booking</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">

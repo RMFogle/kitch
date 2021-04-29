@@ -164,7 +164,7 @@ export default class TrashRestoreBooking extends Component {
     }
 
     onSubmit(e) {
-       alert("Added Back To Booking!!!")
+        alert("Added Back To Booking!!!")
         e.preventDefault();
 
         console.log(this);
@@ -178,7 +178,7 @@ export default class TrashRestoreBooking extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
                 <h3>Restore Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">

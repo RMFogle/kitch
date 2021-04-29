@@ -164,7 +164,7 @@ export default class ArchiveBooking extends Component {
     }
 
     onSubmit(e) {
-       alert("Booking Cancelled And Sent To Archive!!!")
+        alert("Booking Cancelled And Sent To Archive!!!")
         e.preventDefault();
 
         console.log(this);
@@ -179,7 +179,7 @@ export default class ArchiveBooking extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
                 <h3>Cancel Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">

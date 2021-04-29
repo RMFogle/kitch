@@ -108,7 +108,7 @@ export default class ArchiveClient extends Component {
 
      render() { 
         return (
-            <div>
+            <div className="form-responsive">
                <h3>Archive Client</h3>
                <form onSubmit={this.onSubmit}>
                 <div className="form-group">

@@ -178,7 +178,7 @@ export default class ArchiveRestoreBooking extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
                 <h3>Restore Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">

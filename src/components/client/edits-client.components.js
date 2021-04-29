@@ -97,9 +97,9 @@ export default class EditClient extends Component {
 
     render() { 
         return (
-            <div>
-               <h3>Edit Client</h3>
-               <form onSubmit={this.onSubmit}>
+            <div className="form-responsive">
+                <h3>Edit Client</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
                     <input type="text"

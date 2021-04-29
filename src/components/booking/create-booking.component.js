@@ -222,7 +222,7 @@ export default class CreateBooking extends Component {
 
 
     onSubmit(e) {
-       alert("Booking Successfully Added!!!")
+        alert("Booking Successfully Added!!!")
         e.preventDefault(); 
 
         const booking = {

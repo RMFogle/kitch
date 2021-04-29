@@ -82,8 +82,8 @@ export default class CreateClient extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
-                           +Add Client
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            +Add Client
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
