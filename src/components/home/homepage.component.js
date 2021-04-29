@@ -119,7 +119,7 @@ export default class HomePage extends Component {
                     <Card className="card-info">
                         <Card.Header><Icon icon={peopleGroup} /></Card.Header>
                         <Card.Body>
-                        <Card.Title>Keep Track Of Your Clients</Card.Title>
+                        <Card.Title>Keep Track of Your Clients</Card.Title>
                             <Card.Text>
                             Sortable tables make it easy to find a client and update their contact information. 
                             </Card.Text>
@@ -194,7 +194,7 @@ export default class HomePage extends Component {
                         <Card.Body>
                         <Card.Title><h4>Manage Your Catering Business Today!</h4></Card.Title>
                             <Card.Text>See which plan is right for you.</Card.Text>
-                                <Button href="/pricing" variant="success" size="lg">Sign up</Button>
+                                <Button href="/pricing" variant="success" size="lg">Sign Up</Button>
                         </Card.Body>
                     </Card>
                 </div>
