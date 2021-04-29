@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck'; 
-import ListGroup from 'react-bootstrap/ListGroup'; 
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Icon } from '@iconify/react';
 import checkmarkCircle2Fill from '@iconify-icons/eva/checkmark-circle-2-fill';
 import Starter from '../assets/img/starter-pricing.png'; 
@@ -17,11 +17,12 @@ export default class PricingPage extends Component {
         return (
             <div className="card-responsive">
                 <CardDeck>
-                    <Card>
+                    <Card className="price">
                     <Card.Img variant="top" src={Starter} />
+                    <div className="center-button">
+                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        </div>
                         <Card.Body>
-                        <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
-                        <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
                             <ListGroup.Item><Icon icon={checkmarkCircle2Fill} className="checkmark" />{" "}<small>Good for Start Ups or Small Businesses</small></ListGroup.Item>
@@ -35,10 +36,12 @@ export default class PricingPage extends Component {
                         <Card.Footer>
                         </Card.Footer>
                     </Card>
-                    <Card>
+                    <Card className="price">
                     <Card.Img variant="top" src={Pro} />
+                    <div className="center-button">
+                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        </div>
                         <Card.Body>
-                        <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
                         <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
@@ -53,10 +56,12 @@ export default class PricingPage extends Component {
                         <Card.Footer>
                         </Card.Footer>
                     </Card>
-                    <Card>
+                    <Card className="price">
                     <Card.Img variant="top" src={Enterprise} />
+                    <div className="center-button">
+                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        </div>
                         <Card.Body>
-                        <Button href="/checkout" variant="success" size="lg" className="buybutton">Buy It</Button>
                         <Card.Title></Card.Title>
                             <Card.Text>
                             <ListGroup variant="flush">
