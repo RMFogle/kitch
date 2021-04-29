@@ -211,9 +211,9 @@ export default class EditInventory extends Component {
 
     render() {
         return (
-            <div>
-               <h3>Edit Inventory</h3>
-               <form onSubmit={this.onSubmit}>
+            <div className="form-responsive">
+                <h3>Edit Inventory</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
                     <input type="text"

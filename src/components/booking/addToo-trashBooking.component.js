@@ -114,7 +114,7 @@ export default class TrashBooking extends Component {
     }
 
     onSubmit(e) {
-       alert("Booking Sent To Trash!!!")
+        alert("Booking Sent To Trash!!!")
         e.preventDefault();
 
         console.log(this);

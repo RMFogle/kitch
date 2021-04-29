@@ -171,9 +171,9 @@ export default class ArchiveInventory extends Component {
 
     render() {
         return (
-            <div>
-               <h3>Archive Inventory</h3>
-               <form onSubmit={this.onSubmit}>
+            <div className="form-responsive">
+                <h3>Archive Inventory</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Food Item: </label>
                     <input type="text"

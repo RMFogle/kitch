@@ -165,7 +165,7 @@ export default class TrashBookingFromArchive extends Component {
     }
 
     onSubmit(e) {
-       alert("Booking Sent To Trash!!!")
+        alert("Booking Sent To Trash!!!")
         e.preventDefault();
 
         console.log(this);
@@ -180,7 +180,7 @@ export default class TrashBookingFromArchive extends Component {
     
     render() { 
         return (
-            <div>
+            <div className="form-responsive">
                 <h3>Trash Booking</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
