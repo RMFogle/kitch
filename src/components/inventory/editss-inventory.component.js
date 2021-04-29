@@ -1,9 +1,8 @@
 import React, { Component } from 'react'; 
 import axios from 'axios'; 
 import Button from 'react-bootstrap/Button';
+import DatePicker from 'react-date-picker';
 import NumberFormat from 'react-number-format';
-import DatePicker from 'react-date-picker'; 
-
 
 const CategoryType = () => (
     <optgroup>
@@ -92,7 +91,7 @@ export default class EditInventory extends Component {
                     unitprice: response.data.unitprice, 
                     totalcost: response.data.totalcost, 
                     unittype: response.data.unittype, 
-                    date: response.data.date
+                    date: new Date(response.data.date),
                 })
             })
             .catch(function (error) {
