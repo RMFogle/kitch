@@ -101,8 +101,8 @@ export default class BookingsList extends Component {
                 <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Booking List
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            Booking List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
