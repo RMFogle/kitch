@@ -48,7 +48,7 @@ i:active {
 (min-device-width: 768px) and (max-device-width: 1024px)  {
                 /* Section three*/
                 table, thead, tbody, th, td, tr { 
-                        display: block; 
+                        display: block;
                 }
                 /* Section four*/
                 thead tr { 
@@ -57,7 +57,7 @@ i:active {
                         left: -9999px;
                 }
                 
-                tr { border-bottom: 1px solid #ccc; }
+                tr { border-bottom: 5px solid #ccc; }
                 /* Section five*/
                 td { 
                         border: none;
@@ -86,6 +86,26 @@ i:active {
                 td.inventorylist:nth-of-type(9):before { content: "Total Cost: "; }
                 td.inventorylist:nth-of-type(10):before { content: "Actions: "; }
 
+                /* supply data coming in */
+                table tr td.supplylist:before {
+                        top: 3px;
+                        left: 6px;
+                        width: 45%; 
+                        padding-right: auto;
+                        white-space: nowrap;
+                        font-weight: bold;
+                }
+
+                
+                td.supplylist:nth-of-type(1):before { content: "Supply Item: "; }
+                td.supplylist:nth-of-type(2):before { content: "Vendor: "; }
+                td.supplylist:nth-of-type(3):before { content: "In Stock: "; }
+                td.supplylist:nth-of-type(4):before { content: "Need: "; }
+                td.supplylist:nth-of-type(5):before { content: "To Purchase: "; }
+                td.supplylist:nth-of-type(6):before { content: "Unit Price: "; }
+                td.supplylist:nth-of-type(7):before { content: "Total Cost: "; }
+                td.supplylist:nth-of-type(8):before { content: "Actions: "; }
+
                 /* booking data coming in*/
                 table tr td.bookinglist:before {
                         top: 3px;
@@ -100,13 +120,15 @@ i:active {
                 td.bookinglist:nth-of-type(1):before { content: "Client: "; }
                 td.bookinglist:nth-of-type(2):before { content: "Event: "; }
                 td.bookinglist:nth-of-type(3):before { content: "Location: "; }
-                td.bookinglist:nth-of-type(4):before { content: "Guest#: "; }
-                td.bookinglist:nth-of-type(5):before { content: "Meal: "; }
-                td.bookinglist:nth-of-type(6):before { content: "Menu: "; }
-                td.bookinglist:nth-of-type(7):before { content: "Date: "; }
-                td.bookinglist:nth-of-type(8):before { content: "Start: "; }
-                td.bookinglist:nth-of-type(9):before { content: "End: "; }
-                td.bookinglist:nth-of-type(10):before { content: "Actions: "; }
+                td.bookinglist:nth-of-type(4):before { content: "Meal: "; }
+                td.bookinglist:nth-of-type(5):before { content: "Menu: "; }
+                td.bookinglist:nth-of-type(6):before { content: "Date: "; }
+                td.bookinglist:nth-of-type(7):before { content: "Start: "; }
+                td.bookinglist:nth-of-type(8):before { content: "End: "; }
+                td.bookinglist:nth-of-type(9):before { content: "Guest#: "; }
+                td.bookinglist:nth-of-type(10):before { content: "$Guest: "; }
+                td.bookinglist:nth-of-type(11):before { content: "Total: "; }
+                td.bookinglist:nth-of-type(12):before { content: "Actions: "; }
 
                 /* client data coming in */
                 table tr td.clientlist:before {
