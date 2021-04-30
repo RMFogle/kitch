@@ -234,6 +234,7 @@ export default class ArchiveBooking extends Component {
                         <label>Date: </label>
                         <div>
                             <DatePicker
+                                required
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
                                 readOnly/>
@@ -281,6 +282,7 @@ export default class ArchiveBooking extends Component {
                     <label>Total Cost: </label>
                     <div>
                         <NumberFormat
+                        required
                         thousandSeparator={true} 
                         prefix={'$'} 
                         inputmode="numeric"

@@ -88,7 +88,8 @@ export default class CreateContactUs extends Component {
                     <div className="form-group">
                         <label>Phone: </label>
                         <div>
-                            <NumberFormat 
+                            <NumberFormat
+                            required
                             format="(###) ###-####" 
                             mask="_"
                             value={this.state.phone}
@@ -108,6 +109,7 @@ export default class CreateContactUs extends Component {
                     <div className="form-group">
                         <label>Issue: </label>
                         <input type="text"
+                        required
                         className="form-control"
                         value={this.state.issue}
                         onChange={this.onChangeIssue}

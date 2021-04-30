@@ -11,6 +11,7 @@ import Pro from '../assets/img/pro-pricing.png';
 import Enterprise from '../assets/img/enter-pricing.png'; 
 import '../styles/pricing-style.css'; 
 
+
 const AlertDismissible = () => {
     const [show, setShow] = useState(false);
 
