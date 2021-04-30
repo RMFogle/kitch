@@ -330,7 +330,8 @@ export default class EditBooking extends Component {
                     <div className="form-group col-md-4">
                         <label>Date: </label>
                         <div>
-                            <DatePicker 
+                            <DatePicker
+                            required
                             value={this.state.date}
                             onChange={this.onChangeDate}
                             />
@@ -380,6 +381,7 @@ export default class EditBooking extends Component {
                     <label>Total Cost: </label>
                     <div>
                         <NumberFormat
+                        required
                         thousandSeparator={true} 
                         prefix={'$'} 
                         inputmode="numeric"

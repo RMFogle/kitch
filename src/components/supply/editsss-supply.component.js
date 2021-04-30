@@ -187,6 +187,7 @@ export default class EditSupply extends Component {
                     <label>Total Cost: </label>
                     <div>
                     <NumberFormat
+                        required
                         thousandSeparator={true} 
                         prefix={'$'} 
                         inputmode="numeric"

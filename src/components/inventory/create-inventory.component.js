@@ -247,7 +247,8 @@ export default class CreateInventory extends Component {
                     <div className="form-group">
                         <label>Exp. Date: </label>
                         <div>
-                            <DatePicker 
+                            <DatePicker
+                            required
                             value={this.state.date}
                             onChange={this.onChangeDate}
                             />
@@ -293,6 +294,7 @@ export default class CreateInventory extends Component {
                         <label>Total Cost: </label>
                         <div>
                             <NumberFormat
+                            required
                             thousandSeparator={true} 
                             prefix={'$'} 
                             inputmode="numeric"

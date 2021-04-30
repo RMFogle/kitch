@@ -99,7 +99,8 @@ export default class CreateScheduleDemo extends Component {
                     <div className="form-group">
                         <label>Phone: </label>
                         <div>
-                            <NumberFormat 
+                            <NumberFormat
+                            required
                             format="(###) ###-####" 
                             mask="_"
                             value={this.state.phone}
@@ -120,6 +121,7 @@ export default class CreateScheduleDemo extends Component {
                         <label>Message: (Include a date and time and one of our
                         customer service associates will contact you)</label>
                         <input type="text"
+                        required
                         className="form-control"
                         value={this.state.message}
                         onChange={this.onChangeMessage}
