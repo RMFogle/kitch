@@ -12,7 +12,7 @@ export default class SubNavbar extends Component {
         return (
             <Navbar collapseOnSelect expand="lg">
             <Navbar.Brand>
-                <Link to="/clientHome">
+                <Link to="/demo">
                 <img width="auto" height="auto" className="img-responsive" src={Logo1} alt="logo"></img>
                 </Link>
             </Navbar.Brand>
@@ -35,7 +35,7 @@ export default class SubNavbar extends Component {
                         </NavDropdown>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="#deets">Sign Out</Nav.Link>
+                    <Nav.Link href="/home">Sign Out</Nav.Link>
                     {/* <Nav.Link eventKey={2} href="#memes">
                         Dank memes
                     </Nav.Link> */}
