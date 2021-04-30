@@ -1,26 +1,55 @@
-import React, { Component } from 'react'; 
+import React, { Component, useState } from 'react'; 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck'; 
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Icon } from '@iconify/react';
+import Alert from 'react-bootstrap/Alert';
 import checkmarkCircle2Fill from '@iconify-icons/eva/checkmark-circle-2-fill';
 import Starter from '../assets/img/starter-pricing.png'; 
 import Pro from '../assets/img/pro-pricing.png'; 
 import Enterprise from '../assets/img/enter-pricing.png'; 
 import '../styles/pricing-style.css'; 
 
+const AlertDismissible = () => {
+    const [show, setShow] = useState(false);
+
+    return (
+        <>
+        <Alert show={show} variant="success">
+            <Alert.Heading>Pricing Disabled!</Alert.Heading>
+            <p>
+            Kitch App is currently a demo application only. 
+            We are not taking subscriptions at this time.
+            </p>
+            <hr />
+            <div className="d-flex justify-content-end">
+                <Button onClick={() => setShow(false)} variant="outline-success">
+                Close
+                </Button>
+            </div>
+        </Alert>
+
+        {!show && <Button onClick={() => setShow(true)} variant="success" size="lg">Sign Up</Button>}
+        </>
+    );
+}
 
 export default class PricingPage extends Component {
 
+    pricingAlert() {
+        <AlertDismissible />
+    }
+
     render() {
+
         return (
             <div className="card-responsive">
                 <CardDeck>
                     <Card className="price">
                     <Card.Img variant="top" src={Starter} />
                     <div className="center-button">
-                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        <AlertDismissible />
                         </div>
                         <Card.Body>
                             <Card.Text>
@@ -39,7 +68,7 @@ export default class PricingPage extends Component {
                     <Card className="price">
                     <Card.Img variant="top" src={Pro} />
                     <div className="center-button">
-                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        <AlertDismissible />
                         </div>
                         <Card.Body>
                         <Card.Title></Card.Title>
@@ -59,7 +88,7 @@ export default class PricingPage extends Component {
                     <Card className="price">
                     <Card.Img variant="top" src={Enterprise} />
                     <div className="center-button">
-                        <Button href="/checkout" variant="success" size="lg">Sign Up</Button>
+                        <AlertDismissible />
                         </div>
                         <Card.Body>
                         <Card.Title></Card.Title>
@@ -79,5 +108,6 @@ export default class PricingPage extends Component {
                 </CardDeck>
             </div>
         )
-    }
+    
+}
 }
