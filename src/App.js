@@ -67,8 +67,8 @@ function App() {
       <Route path="/support" component={SupportPage} />
       <Route path="/pricing" component={MainNavbar} />
       <Route path="/pricing" component={PricingPage} />
-      <Route path="/clientHome" component={SubNavbar} />
-      <Route path="/clientHome" component={ClientHomePage} />
+      <Route path="/demo" component={SubNavbar} />
+      <Route path="/demo" component={ClientHomePage} />
       <Route path="/inventory" component={SubNavbar} />
       <Route path="/inventory" component={CreateInventory} />
       <Route path="/inventory" component={InventoryList} />
