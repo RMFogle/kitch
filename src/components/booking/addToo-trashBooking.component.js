@@ -164,7 +164,6 @@ export default class TrashBooking extends Component {
                         <label>Date: </label>
                         <div>
                             <DatePicker
-                                required
                                 selected={this.state.date}
                                 onChange={this.onChangeDate}
                                 readOnly/>

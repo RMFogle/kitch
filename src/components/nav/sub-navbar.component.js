@@ -35,10 +35,7 @@ export default class SubNavbar extends Component {
                         </NavDropdown>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/home">Sign Out</Nav.Link>
-                    {/* <Nav.Link eventKey={2} href="#memes">
-                        Dank memes
-                    </Nav.Link> */}
+                    <Nav.Link href="/kitch">Sign Out</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

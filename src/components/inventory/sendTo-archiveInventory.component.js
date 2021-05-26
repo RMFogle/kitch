@@ -216,7 +216,6 @@ export default class ArchiveInventory extends Component {
                     <label>Exp. Date: </label>
                     <div>
                         <DatePicker
-                        required
                         value={this.state.date}
                         onChange={this.onChangeDate}
                         readOnly/>
@@ -262,7 +261,6 @@ export default class ArchiveInventory extends Component {
                     <label>Total Cost: </label>
                     <div>
                         <NumberFormat
-                        required
                         thousandSeparator={true} 
                         prefix={'$'} 
                         inputmode="numeric"
