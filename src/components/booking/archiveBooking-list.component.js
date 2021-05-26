@@ -100,8 +100,8 @@ export default class ArchiveBookingList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Archive Booking List
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            Archive Booking List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

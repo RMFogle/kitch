@@ -61,8 +61,8 @@ function App() {
     <div className="content-wrap">
     <Router>
       <br/>
-      <Route path="/home" component={MainNavbar} />
-      <Route path="/home" component={HomePage} />
+      <Route path="/kitch" component={MainNavbar} />
+      <Route path="/kitch" component={HomePage} />
       <Route path="/support" component={MainNavbar} />
       <Route path="/support" component={SupportPage} />
       <Route path="/pricing" component={MainNavbar} />
