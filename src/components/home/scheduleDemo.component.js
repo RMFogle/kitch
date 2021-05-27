@@ -72,7 +72,7 @@ export default class CreateScheduleDemo extends Component {
             message: ''
         })
 
-        window.location = '/home';
+        window.location = '/kitch';
     }
 
 
