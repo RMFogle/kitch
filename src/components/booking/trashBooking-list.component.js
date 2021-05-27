@@ -138,8 +138,8 @@ export default class TrashBookingList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Trash Booking List
-                          <Icon icon={arrowDropDownLine} height="2em" />
+                            Trash Booking List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

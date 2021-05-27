@@ -130,8 +130,8 @@ export default class TrashClientList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Trash Client List
-                          <Icon icon={arrowDropDownLine} height="2em" />
+                            Trash Client List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

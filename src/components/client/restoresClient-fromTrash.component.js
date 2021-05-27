@@ -94,23 +94,22 @@ export default class TrashRestoreClient extends Component {
 
     onSubmit(e) {
         alert("Added Back To Client List!!!")
-         e.preventDefault();
- 
-         console.log(this);
- 
-         axios.all([this.restoreToClient(), this.deleteTrashClient()])
-         .then(res => console.log(res.data)); 
- 
- 
-         window.location = '/trash';  
-     }
+        e.preventDefault();
+
+        console.log(this);
+
+        axios.all([this.restoreToClient(), this.deleteTrashClient()])
+        .then(res => console.log(res.data)); 
+
+        window.location = '/trash';  
+    }
 
 
-     render() { 
+    render() { 
         return (
             <div className="form-responsive">
-               <h3>Restore Client</h3>
-               <form onSubmit={this.onSubmit}>
+                <h3>Restore Client</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
                     <input type="text"

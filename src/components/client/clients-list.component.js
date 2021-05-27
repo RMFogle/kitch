@@ -16,9 +16,7 @@ const Client = props => (
         <td className="clientlist">{props.client.email}</td>
         <td className="clientlist">{props.client.notes}</td>
         <td className="clientlist">
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-info" size="sm">
-            {/* check edit link below */}
             <Link to={"/edits/"+props.client._id}>edit</Link>
             </Button> | 
             <Button variant="outline-warning" size="sm">
@@ -97,8 +95,8 @@ export default class ClientsList extends Component {
                 <Accordion defaultActiveKey="1">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Client List
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            Client List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

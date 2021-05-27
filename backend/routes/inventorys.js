@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 }); 
 
 
-    router.route('/add').post((req, res) => {
+router.route('/add').post((req, res) => {
         const fooditem = req.body.fooditem; 
         const category = req.body.category; 
         const unitsize = Number(req.body.unitsize);
@@ -38,19 +38,19 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err)); 
     }); 
 
-    router.route('/:id').get((req, res) => {
+router.route('/:id').get((req, res) => {
         Inventory.findById(req.params.id)
             .then(inventory => res.json(inventory))
             .catch(err => res.status(400).json('Error: ' + err));
     }); 
 
-    router.route('/:id').delete((req, res) => {
+router.route('/:id').delete((req, res) => {
         Inventory.findByIdAndDelete(req.params.id)
             .then(() => res.json('Inventory deleted'))
             .catch(err => res.status(400).json('Error: ' + err)); 
     }); 
 
-    router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post((req, res) => {
         Inventory.findById(req.params.id)
             .then(inventory => {
                 inventory.fooditem = req.body.fooditem; 
@@ -71,6 +71,4 @@ router.route('/').get((req, res) => {
             .catch(err => res.status(400).json('Error: ' + err)); 
     });
 
-
-    module.exports = router; 
-
+module.exports = router; 

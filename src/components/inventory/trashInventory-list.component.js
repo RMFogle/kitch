@@ -138,8 +138,8 @@ export default class TrashInventoryList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Trash Inventory List
-                          <Icon icon={arrowDropDownLine} height="2em" />
+                            Trash Inventory List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

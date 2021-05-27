@@ -98,8 +98,8 @@ export default class ArchiveInventoryList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                          Archive Inventory List
-                          <Icon icon={arrowDropDownLine} height="2em" />
+                            Archive Inventory List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

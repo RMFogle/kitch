@@ -20,10 +20,6 @@ router.route('/add').post((req, res) => {
     const costperguest = req.body.costperguest; 
     const totalcost = req.body.totalcost; 
 
-
-
-
-    
 const newTrashBooking = new TrashBooking({
     clientname, 
     eventtype, 

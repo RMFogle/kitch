@@ -94,23 +94,22 @@ export default class ArchiveClient extends Component {
 
     onSubmit(e) {
         alert("Client Sent To Archive!!!")
-         e.preventDefault();
- 
-         console.log(this);
- 
-         axios.all([this.addToArchive(), this.deleteClient()])
-         .then(res => console.log(res.data)); 
- 
- 
-         window.location = '/client';  
-     }
+        e.preventDefault();
+
+        console.log(this);
+
+        axios.all([this.addToArchive(), this.deleteClient()])
+        .then(res => console.log(res.data)); 
+        
+        window.location = '/client';  
+    }
 
 
-     render() { 
+    render() { 
         return (
             <div className="form-responsive">
-               <h3>Archive Client</h3>
-               <form onSubmit={this.onSubmit}>
+                <h3>Archive Client</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
                     <input type="text"

@@ -46,11 +46,11 @@ i:active {
 
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
-                /* Section three*/
+                
                 table, thead, tbody, th, td, tr { 
                         display: block;
                 }
-                /* Section four*/
+                
                 thead tr { 
                         position: absolute;
                         top: -9999px;
@@ -58,7 +58,7 @@ i:active {
                 }
                 
                 tr { border-bottom: 5px solid #ccc; }
-                /* Section five*/
+                
                 td { 
                         border: none;
                         border-bottom: 1px solid #eee;
@@ -152,7 +152,7 @@ i:active {
                 }
 }
 
-/* Section seven*/
+
         @media only screen
         and (min-device-width : 320px)
         and (max-device-width : 480px) {
@@ -161,7 +161,7 @@ i:active {
                         margin: 0; 
                         width: 320px; }
                 }
-/* Section eight*/
+
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 body { 
                         width: 495px; 

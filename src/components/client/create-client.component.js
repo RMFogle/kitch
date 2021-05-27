@@ -14,7 +14,6 @@ export default class CreateClient extends Component {
         this.onChangePhone = this.onChangePhone.bind(this); 
         this.onChangeEmail = this.onChangeEmail.bind(this); 
         this.onChangeNotes = this.onChangeNotes.bind(this); 
-        this.lastUpdated.bind(this); 
         this.onSubmit = this.onSubmit.bind(this); 
 
         this.state = {

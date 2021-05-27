@@ -16,9 +16,7 @@ const ArchiveClient = props => (
         <td className="clientlist">{props.client.email}</td>
         <td className="clientlist">{props.client.notes}</td>
         <td className="clientlist">
-            {/* Change buttons below to new layout and add actions needed */}
             <Button variant="outline-warning" size="sm">
-            {/* check edit link below */}
             <Link to={"/restoreClient/"+props.client._id}>restore</Link>
             </Button> |  
             <Button variant="outline-danger" size="sm">
@@ -94,8 +92,8 @@ export default class ArchiveClientList extends Component {
                 <Accordion>
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
-                           Archive Client List
-                           <Icon icon={arrowDropDownLine} height="2em" />
+                            Archive Client List
+                            <Icon icon={arrowDropDownLine} height="2em" />
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>

@@ -94,23 +94,22 @@ export default class TrashClient extends Component {
 
     onSubmit(e) {
         alert("Client Sent To Trash!!!")
-         e.preventDefault();
- 
-         console.log(this);
- 
-         axios.all([this.addToTrash(), this.deleteClient()])
-         .then(res => console.log(res.data)); 
- 
- 
-         window.location = '/client';  
-     }
+        e.preventDefault();
+
+        console.log(this);
+
+        axios.all([this.addToTrash(), this.deleteClient()])
+        .then(res => console.log(res.data)); 
+
+        window.location = '/client';  
+    }
 
 
-     render() { 
+    render() { 
         return (
             <div className="form-responsive">
-               <h3>Trash Client</h3>
-               <form onSubmit={this.onSubmit}>
+                <h3>Trash Client</h3>
+                <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Client: </label>
                     <input type="text"
