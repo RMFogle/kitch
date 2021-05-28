@@ -31,7 +31,7 @@ export default class MainNavbar extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/kitch/#how">How it Works</Nav.Link>
+                        <Nav.Link href="/kitch#how">How it Works</Nav.Link>
                         <Nav.Link href="/support">Support</Nav.Link>
                         <Nav.Link href="/pricing">Pricing</Nav.Link>
                         <Nav.Link href="/Demo">Demo</Nav.Link>

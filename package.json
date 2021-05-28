@@ -1,7 +1,7 @@
 {
   "name": "kitch",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "http://RMFogle.github.io/kitch",
   "dependencies": {
     "@mongodb-js/charts-embed-dom": "^2.0.1",
